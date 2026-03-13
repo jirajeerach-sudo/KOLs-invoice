@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ใบแจ้งหนี้ / Invoice – KONVY KOL</title>
+<title>ใบแจ้งหนี้ KONVY KOL</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -760,43 +760,31 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .done-screen{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center}
 .done-screen.show{display:flex}
 .done-box{background:#fff;border-radius:16px;padding:36px 28px;text-align:center;max-width:380px;margin:20px}
-.done-box h2{color:#2e7d32;margin:12px 0 8px;font-size:1.2rem}
-.done-box p{color:#666;font-size:.87rem;line-height:1.6;margin-bottom:20px}
 .done-btn{display:block;width:100%;padding:12px;border:none;border-radius:8px;font-family:Sarabun,sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:8px}
 .done-btn.primary{background:linear-gradient(135deg,#c0515a,#e07880);color:#fff}
-.done-btn.secondary{background:#f5f5f5;color:#333}
-.sig-area{border:2px dashed #dde3ea;border-radius:7px;padding:14px;background:#fafcfe;position:relative;min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;transition:border-color .2s}
+.sig-area{border:2px dashed #dde3ea;border-radius:7px;padding:14px;background:#fafcfe;position:relative;min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}
 .sig-area:hover{border-color:#c0515a}
 .sig-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .sig-img{max-height:70px;max-width:100%;object-fit:contain}
 </style>
 </head>
 <body>
-
-<!-- Loading -->
-<div class="ov" id="ov">
-  <div class="spin"></div>
-  <div style="font-size:.9rem;font-weight:600" id="ovMsg">กำลังสร้าง PDF...</div>
-</div>
-
-<!-- Done -->
+<div class="ov" id="ov"><div class="spin"></div><div style="font-size:.9rem;font-weight:600" id="ovMsg">กำลังสร้าง PDF...</div></div>
 <div class="done-screen" id="doneScreen">
   <div class="done-box">
-    <div style="font-size:3rem">&#x2705;</div>
-    <h2>บันทึก PDF เรียบร้อย!</h2>
-    <p>ไฟล์ถูก download ลงเครื่องแล้วค่ะ<br>กรุณาส่งไฟล์ PDF ให้ทีม KONVY ผ่าน Line หรืออีเมลด้วยนะคะ</p>
-    <button class="done-btn primary" onclick="document.getElementById('doneScreen').classList.remove('show');window.scrollTo(0,0)">&#x2713; ทำใบใหม่</button>
-    <button class="done-btn secondary" onclick="document.getElementById('doneScreen').classList.remove('show')">ปิด</button>
+    <div style="font-size:3rem">✅</div>
+    <h2 style="color:#2e7d32;margin:10px 0 8px;font-size:1.1rem">บันทึก PDF เรียบร้อย!</h2>
+    <p style="color:#666;font-size:.85rem;line-height:1.6;margin-bottom:16px">ไฟล์ถูก download ลงเครื่องแล้วค่ะ<br>กรุณาส่งให้ทีม KONVY ผ่าน Line หรืออีเมลด้วยนะคะ</p>
+    <button class="done-btn primary" onclick="document.getElementById('doneScreen').classList.remove('show')">ปิด</button>
   </div>
 </div>
 
-<!-- TOP BAR -->
 <div class="picker-bar">
   <div class="picker-inner">
     <div class="picker-top">
-      <div class="picker-logo">&#x1F9FE; ใบแจ้งหนี้ KONVY KOL <span>กรอกข้อมูล &#8594; เลือกแบบ &#8594; บันทึก PDF</span></div>
+      <div class="picker-logo">🧾 ใบแจ้งหนี้ KONVY KOL <span>กรอกข้อมูล &#8594; เลือกแบบ &#8594; บันทึก PDF</span></div>
       <div class="picker-actions">
-        <button class="btn-act btn-save" onclick="savePDF()">&#x2B07;&#xFE0F; บันทึก PDF</button>
+        <button class="btn-act btn-save" onclick="savePDF()">⬇️ บันทึก PDF</button>
       </div>
     </div>
     <div class="picker-grid-label">เลือกสไตล์ใบแจ้งหนี้</div>
@@ -806,118 +794,86 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 
 <div class="main-wrap">
   <div class="sidebar">
-
-    <!-- เลขที่ & วันที่ -->
     <div class="fc">
-      <div class="fc-head" style="background:#1a4a6b;color:#fff">&#x1F4CB; เลขที่ &amp; วันที่</div>
+      <div class="fc-head" style="background:#1a4a6b;color:#fff">📋 เลขที่ &amp; วันที่</div>
       <div class="fc-body">
-        <div class="field"><label>เลขที่ใบแจ้งหนี้</label><input id="invNo" placeholder="INV-2026-001"></div>
+        <div class="field"><label>เลขที่ใบแจ้งหนี้</label><input id="invNo" placeholder="INV-2026-001" oninput="renderInvoice()"></div>
         <div class="fr">
-          <div class="field"><label>วันที่ออก</label><input type="date" id="invDate"></div>
-          <div class="field"><label>กำหนดชำระ (+60 วัน)</label><input type="date" id="invDue"></div>
+          <div class="field"><label>วันที่ออก</label><input type="date" id="invDate" onchange="updateDue();renderInvoice()"></div>
+          <div class="field"><label>กำหนดชำระ (+60 วัน)</label><input type="date" id="invDue" onchange="renderInvoice()"></div>
         </div>
-        <div class="field"><label>ชื่อแคมเปญ</label><input id="invProject" placeholder="ชื่อแคมเปญ"></div>
+        <div class="field"><label>ชื่อแคมเปญ</label><input id="invProject" placeholder="ชื่อแคมเปญ" oninput="renderInvoice()"></div>
       </div>
     </div>
-
-    <!-- ข้อมูลผู้รับเงิน -->
     <div class="fc">
-      <div class="fc-head" style="background:#c0515a;color:#fff">&#x1F464; ข้อมูลผู้รับเงิน</div>
+      <div class="fc-head" style="background:#c0515a;color:#fff">👤 ข้อมูลผู้รับเงิน</div>
       <div class="fc-body">
-        <div class="field"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input id="infName" placeholder="ตามบัตรประชาชน"></div>
+        <div class="field"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input id="infName" placeholder="ตามบัตรประชาชน" oninput="renderInvoice()"></div>
         <div class="fr">
-          <div class="field"><label>ชื่อเล่น</label><input id="infNick" placeholder="ชื่อเล่น"></div>
+          <div class="field"><label>ชื่อเล่น</label><input id="infNick" placeholder="ชื่อเล่น" oninput="renderInvoice()"></div>
           <div class="field"><label>แพลตฟอร์ม</label>
-            <select id="infPlatform"><option value="">เลือก</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Facebook</option><option>X (Twitter)</option><option>อื่นๆ</option></select>
+            <select id="infPlatform" onchange="renderInvoice()"><option value="">เลือก</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Facebook</option><option>X (Twitter)</option><option>อื่นๆ</option></select>
           </div>
         </div>
         <div class="fr">
-          <div class="field"><label>เบอร์โทร</label><input id="infPhone" placeholder="0xx-xxx-xxxx"></div>
-          <div class="field"><label>อีเมล</label><input type="email" id="infEmail" placeholder="email@"></div>
+          <div class="field"><label>เบอร์โทร</label><input id="infPhone" placeholder="0xx-xxx-xxxx" oninput="renderInvoice()"></div>
+          <div class="field"><label>อีเมล</label><input id="infEmail" placeholder="email@" oninput="renderInvoice()"></div>
         </div>
-        <div class="field"><label>เลขบัตรประชาชน</label><input id="infCardNo" placeholder="x-xxxx-xxxxx-xx-x"></div>
-        <div class="field"><label>ที่อยู่</label><textarea id="infAddr" rows="2" placeholder="ที่อยู่ตามบัตรประชาชน"></textarea></div>
+        <div class="field"><label>เลขบัตรประชาชน</label><input id="infCardNo" placeholder="x-xxxx-xxxxx-xx-x" oninput="renderInvoice()"></div>
+        <div class="field"><label>ที่อยู่</label><textarea id="infAddr" rows="2" placeholder="ที่อยู่ตามบัตรประชาชน" oninput="renderInvoice()"></textarea></div>
       </div>
     </div>
-
-    <!-- บัญชีธนาคาร -->
     <div class="fc">
-      <div class="fc-head" style="background:#1a6b4a;color:#fff">&#x1F4B3; บัญชีธนาคาร</div>
+      <div class="fc-head" style="background:#1a6b4a;color:#fff">💳 บัญชีธนาคาร</div>
       <div class="fc-body">
         <div class="field"><label>ธนาคาร <span class="req">*</span></label>
-          <select id="bankName"><option value="">-- เลือก --</option><option>ธนาคารกรุงเทพ (BBL)</option><option>ธนาคารกสิกรไทย (KBANK)</option><option>ธนาคารไทยพาณิชย์ (SCB)</option><option>ธนาคารกรุงไทย (KTB)</option><option>ธนาคารกรุงศรีอยุธยา (BAY)</option><option>ธนาคารทหารไทยธนชาต (TTB)</option><option>ธนาคารออมสิน</option><option>อื่นๆ</option></select>
+          <select id="bankName" onchange="renderInvoice()"><option value="">-- เลือก --</option><option>ธนาคารกรุงเทพ (BBL)</option><option>ธนาคารกสิกรไทย (KBANK)</option><option>ธนาคารไทยพาณิชย์ (SCB)</option><option>ธนาคารกรุงไทย (KTB)</option><option>ธนาคารกรุงศรีอยุธยา (BAY)</option><option>ธนาคารทหารไทยธนชาต (TTB)</option><option>ธนาคารออมสิน</option><option>อื่นๆ</option></select>
         </div>
         <div class="fr">
-          <div class="field"><label>ชื่อบัญชี <span class="req">*</span></label><input id="bankAccName" placeholder="ชื่อบัญชี"></div>
-          <div class="field"><label>เลขบัญชี <span class="req">*</span></label><input id="bankAccNo" placeholder="xxx-x-xxxxx-x"></div>
+          <div class="field"><label>ชื่อบัญชี <span class="req">*</span></label><input id="bankAccName" placeholder="ชื่อบัญชี" oninput="renderInvoice()"></div>
+          <div class="field"><label>เลขบัญชี <span class="req">*</span></label><input id="bankAccNo" placeholder="xxx-x-xxxxx-x" oninput="renderInvoice()"></div>
         </div>
-        <div class="field"><label>สาขา</label><input id="bankBranch" placeholder="สาขา"></div>
+        <div class="field"><label>สาขา</label><input id="bankBranch" placeholder="สาขา" oninput="renderInvoice()"></div>
       </div>
     </div>
-
-    <!-- รายการ -->
     <div class="fc">
-      <div class="fc-head" style="background:#5a3a8a;color:#fff">&#x1F4E6; รายการค่าตอบแทน</div>
+      <div class="fc-head" style="background:#5a3a8a;color:#fff">📦 รายการค่าตอบแทน</div>
       <div class="fc-body">
-        <table class="itbl">
-          <thead><tr><th class="cn">#</th><th class="cd">รายการ</th><th class="cq">จำนวน</th><th class="cp">ราคา</th><th class="ct">รวม</th><th class="cx"></th></tr></thead>
-          <tbody id="itemsBody"></tbody>
-        </table>
-        <button class="btn-ar" type="button" onclick="addRow()">&#65291; เพิ่มรายการ</button>
+        <table class="itbl"><thead><tr><th class="cn">#</th><th class="cd">รายการ</th><th class="cq">จำนวน</th><th class="cp">ราคา</th><th class="ct">รวม</th><th class="cx"></th></tr></thead><tbody id="itemsBody"></tbody></table>
+        <button class="btn-ar" type="button" onclick="addRow()">+ เพิ่มรายการ</button>
         <div class="sum-s">
           <div class="sum-sr"><span class="sum-sl">ยอดรวม</span><span class="sum-sv" id="sumSub">&#3647;0.00</span></div>
-          <div class="sum-sr">
-            <span class="sum-sl">หัก ณ ที่จ่าย
-              <select class="sum-ssel" id="whtSel" onchange="calcTotal();renderInvoice()">
-                <option value="0">ไม่มี</option><option value="3" selected>3%</option><option value="5">5%</option>
-              </select>
-            </span>
-            <span class="sum-sv" style="color:#e05050" id="sumWht">-&#3647;0.00</span>
-          </div>
-          <div class="sum-sr">
-            <span class="sum-sl">VAT
-              <select class="sum-ssel" id="vatSel" onchange="calcTotal();renderInvoice()">
-                <option value="0" selected>ไม่มี</option><option value="7">7%</option>
-              </select>
-            </span>
-            <span class="sum-sv" id="sumVat">&#3647;0.00</span>
-          </div>
+          <div class="sum-sr"><span class="sum-sl">หัก ณ ที่จ่าย<select class="sum-ssel" id="whtSel" onchange="calcTotal();renderInvoice()"><option value="0">ไม่มี</option><option value="3" selected>3%</option><option value="5">5%</option></select></span><span class="sum-sv" style="color:#e05050" id="sumWht">-&#3647;0.00</span></div>
+          <div class="sum-sr"><span class="sum-sl">VAT<select class="sum-ssel" id="vatSel" onchange="calcTotal();renderInvoice()"><option value="0" selected>ไม่มี</option><option value="7">7%</option></select></span><span class="sum-sv" id="sumVat">&#3647;0.00</span></div>
           <div class="sum-tot"><span class="sum-tot-l">ยอดที่ได้รับ</span><span class="sum-tot-v" id="sumTotal">&#3647;0.00</span></div>
         </div>
-        <div class="field" style="margin-top:6px"><label>หมายเหตุ</label><textarea id="invNote" rows="2" placeholder="หมายเหตุ..."></textarea></div>
+        <div class="field" style="margin-top:6px"><label>หมายเหตุ</label><textarea id="invNote" rows="2" placeholder="หมายเหตุ..." oninput="renderInvoice()"></textarea></div>
       </div>
     </div>
-
-    <!-- เอกสารแนบ -->
     <div class="fc">
-      <div class="fc-head" style="background:#8a4a1a;color:#fff">&#x1F4CE; เอกสารแนบ</div>
+      <div class="fc-head" style="background:#8a4a1a;color:#fff">📎 เอกสารแนบ</div>
       <div class="fc-body">
-        <div style="font-size:.68rem;color:#8a96a3;font-weight:700;margin-bottom:5px">&#x1FAA6; บัตรประชาชน</div>
-        <div class="uz"><input type="file" accept="image/*,.pdf" multiple onchange="handleFiles(this,'id')"><div class="uz-i">&#x1FAA6;</div><div class="uz-t"><strong>คลิก/ลาก</strong> JPG PNG PDF</div></div>
+        <div style="font-size:.68rem;color:#8a96a3;font-weight:700;margin-bottom:5px">🪪 บัตรประชาชน</div>
+        <div class="uz"><input type="file" accept="image/*,.pdf" multiple onchange="handleFiles(this,'id')"><div class="uz-i">🪪</div><div class="uz-t"><strong>คลิก/ลาก</strong></div></div>
         <div class="chips" id="preview-id"></div>
-        <div style="font-size:.68rem;color:#8a96a3;font-weight:700;margin:8px 0 5px">&#x1F3E6; Book Bank</div>
-        <div class="uz"><input type="file" accept="image/*,.pdf" multiple onchange="handleFiles(this,'book')"><div class="uz-i">&#x1F3E6;</div><div class="uz-t"><strong>คลิก/ลาก</strong> JPG PNG PDF</div></div>
+        <div style="font-size:.68rem;color:#8a96a3;font-weight:700;margin:8px 0 5px">🏦 Book Bank</div>
+        <div class="uz"><input type="file" accept="image/*,.pdf" multiple onchange="handleFiles(this,'book')"><div class="uz-i">🏦</div><div class="uz-t"><strong>คลิก/ลาก</strong></div></div>
         <div class="chips" id="preview-book"></div>
       </div>
     </div>
-
-    <!-- ลายเซ็น -->
     <div class="fc">
-      <div class="fc-head" style="background:#2d4a6b;color:#fff">&#x270D;&#xFE0F; ลายเซ็น</div>
+      <div class="fc-head" style="background:#2d4a6b;color:#fff">✍️ ลายเซ็น</div>
       <div class="fc-body">
-        <div style="font-size:.75rem;color:#666;margin-bottom:8px">อัปโหลดลายเซ็น PNG / JPG (พื้นหลังโปร่งใสดีที่สุด)</div>
+        <div style="font-size:.75rem;color:#666;margin-bottom:8px">อัปโหลดลายเซ็น PNG / JPG</div>
         <div class="sig-area">
-          <input type="file" id="sigFile" accept="image/png,image/jpeg,image/jpg" onchange="handleSig(this)">
-          <div id="sigPh"><div style="font-size:1.4rem;opacity:.4">&#x270D;&#xFE0F;</div><div style="font-size:.72rem;color:#8a96a3"><strong style="color:#c0515a">คลิก</strong> เพื่ออัปโหลดลายเซ็น</div></div>
+          <input type="file" id="sigFile" accept="image/png,image/jpeg" onchange="handleSig(this)">
+          <div id="sigPh"><div style="font-size:1.4rem;opacity:.4">✍️</div><div style="font-size:.72rem;color:#8a96a3"><strong style="color:#c0515a">คลิก</strong> อัปโหลดลายเซ็น</div></div>
           <img id="sigImg" class="sig-img" style="display:none">
         </div>
-        <button id="sigClear" style="display:none;margin-top:6px;background:none;border:1px solid #ddd;border-radius:6px;padding:5px 12px;font-family:Sarabun,sans-serif;font-size:.72rem;color:#888;cursor:pointer" onclick="clearSig()">&#x2715; ลบลายเซ็น</button>
+        <button id="sigClear" style="display:none;margin-top:6px;background:none;border:1px solid #ddd;border-radius:6px;padding:5px 12px;font-family:Sarabun,sans-serif;font-size:.72rem;color:#888;cursor:pointer" onclick="clearSig()">✕ ลบลายเซ็น</button>
       </div>
     </div>
-
   </div>
-
-  <!-- PREVIEW -->
   <div class="preview-area">
     <div class="prev-lbl">ตัวอย่างใบแจ้งหนี้ (อัปเดตทันที)</div>
     <div class="inv-wrap" id="invoiceWrap"></div>
@@ -953,7 +909,665 @@ const files={id:[],book:[],other:[]};
 
 // Build template buttons
 
-// ─── Sig ──────────────────────────────────────
+function addRow(){
+  rowCount++;
+  const rc=rowCount;
+  const tb=document.getElementById('itemsBody');
+  const tr=document.createElement('tr');
+  tr.id='row'+rc;
+  tr.innerHTML='<td class="cn">'+(tb.rows.length+1)+'</td>'+
+    '<td class="cd"><input placeholder="รายการ" style="width:100%"></td>'+
+    '<td class="cq"><input type="number" placeholder="1" min="0" style="width:100%;text-align:center"></td>'+
+    '<td class="cp"><input type="number" placeholder="0" min="0" step="0.01" style="width:100%;text-align:right"></td>'+
+    '<td class="ct" id="rt'+rc+'">฿0</td>'+
+    '<td class="cx"><button class="btn-dr" type="button">✕</button></td>';
+  tb.appendChild(tr);
+  tr.cells[2].querySelector('input').addEventListener('input',()=>{calcTotal();renderInvoice();});
+  tr.cells[3].querySelector('input').addEventListener('input',()=>{calcTotal();renderInvoice();});
+  tr.cells[1].querySelector('input').addEventListener('input',renderInvoice);
+  tr.cells[5].querySelector('button').addEventListener('click',()=>delRow('row'+rc));
+  renum();calcTotal();renderInvoice();
+}
+function delRow(id){document.getElementById(id)?.remove();renum();calcTotal();renderInvoice();}
+function renum(){[...document.getElementById('itemsBody').rows].forEach((r,i)=>r.cells[0].textContent=i+1);}
+function fmt(n){return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtDate(d){if(!d)return'–';const p=d.split('-');return p[2]+'/'+p[1]+'/'+(parseInt(p[0])+543);}
+function v(id){return(document.getElementById(id)?.value||'').trim();}
+
+function calcTotal(){
+  let sub=0;
+  [...document.getElementById('itemsBody').rows].forEach(r=>{
+    const q=parseFloat(r.cells[2].querySelector('input')?.value)||0;
+    const p=parseFloat(r.cells[3].querySelector('input')?.value)||0;
+    const t=q*p;sub+=t;
+    const id=r.id.replace('row','');
+    const td=document.getElementById('rt'+id);
+    if(td)td.textContent='฿'+fmt(t);
+  });
+  const whtPct=parseFloat(document.getElementById('whtSel').value)||0;
+  const vatPct=parseFloat(document.getElementById('vatSel').value)||0;
+  const wht=sub*whtPct/100,vat=sub*vatPct/100,total=sub-wht+vat;
+  document.getElementById('sumSub').textContent='฿'+fmt(sub);
+  document.getElementById('sumWht').textContent='-฿'+fmt(wht);
+  document.getElementById('sumVat').textContent='฿'+fmt(vat);
+  document.getElementById('sumTotal').textContent='฿'+fmt(total);
+  return{sub,wht,vat,total,whtPct,vatPct};
+}
+
+function getItems(){
+  return[...document.getElementById('itemsBody').rows].map(r=>({
+    desc:r.cells[1].querySelector('input')?.value||'',
+    qty:parseFloat(r.cells[2].querySelector('input')?.value)||0,
+    price:parseFloat(r.cells[3].querySelector('input')?.value)||0,
+  }));
+}
+
+function renderInvoice(){
+  const{sub,wht,vat,total,whtPct,vatPct}=calcTotal();
+  const items=getItems();
+  const t=currentTpl;
+  const iName=v('infName')||'ชื่ออินฟลูเอนเซอร์';
+  const iNick=v('infNick');const iPad=v('infAddr');const iPhone=v('infPhone');
+  const iEmail=v('infEmail');const iCard=v('infCardNo');
+  const proj=v('invProject');const note=v('invNote');
+  const bank=v('bankName');const bAcc=v('bankAccName');const bNo=v('bankAccNo');const bBr=v('bankBranch');
+  const invNo=v('invNo')||'–';const invDate=fmtDate(v('invDate'));const invDue=fmtDate(v('invDue'));
+
+  const coAddr=CO.addr.replace(/\n/g,'<br>');
+  const infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
+    (iPad?'<br>'+iPad.replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'');
+  const infDetailPlain=iName+(iNick?' ('+iNick+')':'')+
+    (iPad?'\n'+iPad:'')+(iPhone?'\nโทร: '+iPhone:'')+(iEmail?'\n'+iEmail:'')+(iCard?'\nเลขบัตร: '+iCard:'');
+  
+  const tRows=items.map((it,i)=>'<tr><td class="tn">'+(i+1)+'</td><td class="td">'+(it.desc||'–')+'</td>'+
+    '<td class="tq">'+it.qty+'</td><td class="tp">฿'+fmt(it.price)+'</td>'+
+    '<td class="ta">฿'+fmt(it.qty*it.price)+'</td></tr>').join('');
+  const tHead='<thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead>';
+  const tHeadReceipt='<thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายละเอียด</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">ยอดรวม</th></tr></thead>';
+  const tHeadReport='<thead><tr><th class="tn">ลำดับ</th><th class="td" style="text-align:left">คำอธิบาย</th><th class="tq">หน่วย</th><th class="tp">ต่อหน่วย</th><th class="ta">รวมเงิน</th></tr></thead>';
+
+  const bankGrid=(bank||bAcc||bNo)?
+    '<span class="bk">ธนาคาร</span><span class="bv">'+(bank||'–')+'</span>'+
+    '<span class="bk">ชื่อบัญชี</span><span class="bv">'+(bAcc||'–')+'</span>'+
+    '<span class="bk">เลขบัญชี</span><span class="bv">'+(bNo||'–')+'</span>'+
+    '<span class="bk">สาขา</span><span class="bv">'+(bBr||'–')+'</span>':
+    '<span style="color:#999;font-size:.72rem;grid-column:1/-1">ยังไม่ได้กรอกข้อมูลบัญชี</span>';
+
+  function sumBox(cls){
+    return'<div class="sum-r"><span>ยอดรวม</span><span>฿'+fmt(sub)+'</span></div>'+
+      '<div class="sum-r"><span>หัก ณ ที่จ่าย '+whtPct+'%</span><span>-฿'+fmt(wht)+'</span></div>'+
+      '<div class="sum-r"><span>ภาษีมูลค่าเพิ่ม '+vatPct+'%</span><span>฿'+fmt(vat)+'</span></div>'+
+      '<div class="sum-r tot"><span>ยอดที่จะได้รับ</span><span>฿'+fmt(total)+'</span></div>';
+  }
+
+  let html='';
+
+  if(t==='t1'){
+    html=
+    '<div class="inv t1">'+
+    '      <div class="top">'+
+    '        <div class="top-sub">INVOICE · ใบแจ้งหนี้</div>'+
+    '        <div class="top-doc">ใบแจ้งหนี้</div>'+
+    '        <div class="top-meta">'+
+    '          <span><span>เลขที่</span><strong>'+(invNo)+'</strong></span>'+
+    '          <span><span>วันที่ออก</span><strong>'+(invDate)+'</strong></span>'+
+    '          <span><span>กำหนดชำระ</span><strong>'+(invDue)+'</strong></span>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div class="tag">แคมเปญ: '+proj+'</div>':'')+
+    '        <div class="parties">'+
+    '          <div><div class="tag">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '          <div><div class="tag">ผู้รับเงิน / อินฟลูเอนเซอร์</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1c3f6e;margin-bottom:6px">ข้อมูลการโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t2'){
+    html=
+    '<div class="inv t2">'+
+    '      <div class="top">'+
+    '        <div class="top-stripe"></div>'+
+    '        <div class="top-content">'+
+    '          <div class="top-row">'+
+    '            <div><div class="top-doc-sub">INVOICE</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '            <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
+    '          </div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <div class="body-stripe"></div>'+
+    '        <div class="body-content">'+
+    '          '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
+    '          <div class="parties">'+
+    '            <div><div class="lbl">ผู้ออกใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '            <div><div class="lbl">ออกให้แก่ (ผู้รับเงิน)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '          </div>'+
+    '          <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '          <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '          <div class="bank-box"><div class="lbl">บัญชีสำหรับรับโอน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '          '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '          <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '        </div>'+
+    '      </div></div>';;
+  } else if(t==='t3'){
+    html=
+    '<div class="inv t3">'+
+    '      <div class="top">'+
+    '        <div class="top-inner">'+
+    '          <div><div class="top-doc-sub">TAX INVOICE / ใบกำกับภาษี</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div><span class="proj-tag">Campaign: '+proj+'</span></div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-box"><div class="lbl">BILL FROM</div><div class="pname">'+(iName)+'</div><div class="pdet">'+(infDetailPlain.replace(/\n/g,'<br>'))+'</div></div>'+
+    '          <div class="party-box"><div class="lbl">BILL TO</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">PAYMENT INFO</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">NOTE: '+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">Authorized Signature</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t4'){
+    html=
+    '<div class="inv t4">'+
+    '      <div class="top">'+
+    '        <div class="top-logo">'+(CO.name)+'</div>'+
+    '        <div class="top-addr">'+(coAddr.replace(/<br>/g,' '))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div>'+
+    '        <div class="top-title">ใบแจ้งหนี้ / Invoice</div>'+
+    '        <div class="top-meta">'+
+    '          <span class="top-meta-k">เลขที่:</span><span class="top-meta-v">'+(invNo)+'</span>'+
+    '          <span class="top-meta-k">วันที่ออก:</span><span class="top-meta-v">'+(invDate)+'</span>'+
+    '          <span class="top-meta-k">กำหนดชำระ:</span><span class="top-meta-v">'+(invDue)+'</span>'+
+    '          <span class="top-meta-k">แคมเปญ:</span><span class="top-meta-v">'+(proj||'–')+'</span>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <div class="section-title">ข้อมูลผู้รับเงิน (อินฟลูเอนเซอร์)</div>'+
+    '        <div class="parties">'+
+    '          <div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div><div class="section-title" style="margin-bottom:5px">ข้อมูลบัญชีรับเงิน</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div></div>'+
+    '        </div>'+
+    '        <div class="section-title">รายการแจ้งหนี้</div>'+
+    '        <table><thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายละเอียดงาน/บริการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">ยอดรวม</th></tr></thead><tbody>'+(tRows)+'</tbody></table>'+
+    '        <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
+    '        '+(note?'<div class="note-box">* '+note+'</div>':'')+
+    '        <div class="footer-dots">· · · · · · · · · · · · · · · ·</div>'+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '        <div class="footer-dots">· · · · · · · · · · · · · · · ·</div>'+
+    '      </div></div>';;
+  } else if(t==='t5'){
+    html=
+    '<div class="inv t5">'+
+    '      <div class="top">'+
+    '        <div class="top-left"><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div><div style="font-size:.72rem;opacity:.75;margin-top:6px;line-height:1.7">เลขที่: <strong style="opacity:1">'+(invNo)+'</strong><br>วันที่ออก: <strong style="opacity:1">'+(invDate)+'</strong></div></div>'+
+    '        <div class="top-right"><div class="top-doc-sub">ผู้จ่ายเงิน</div><div class="top-co">'+(CO.name)+'</div><div style="font-size:.7rem;opacity:.7;margin-top:4px;line-height:1.6">'+(coAddr.replace(/<br>/g,' '))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div class="proj-strip">แคมเปญ / Campaign: '+proj+'</div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">ผู้รับเงิน (Vendor)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>โทร: '+iPhone:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">บัญชีรับเงิน (Bank Account)</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div>'+(iEmail?'<div style="font-size:.72rem;color:#5a7a6a;margin-top:5px">อีเมล: '+iEmail+'</div>':'')+'</div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน / Vendor</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t6'){
+    html=
+    '<div class="inv t6">'+
+    '      <div class="top">'+
+    '        <div><div class="top-doc-sub">Invoice · Tax Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>กำหนดชำระ: <strong>'+(invDue)+'</strong></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#d4a843;margin-bottom:-6px">✦ Campaign: '+proj+' ✦</div>':'')+
+    '        <div class="parties">'+
+    '          <div><div class="lbl">Issued By / ผู้ออกใบแจ้งหนี้</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>บัตรประชาชน: '+iCard:'')+'</div></div>'+
+    '          <div><div class="lbl">Issued To / ผู้รับใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">Payment Details / บัญชีสำหรับโอน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">Signature / ลายเซ็น</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t7'){
+    html=
+    '<div class="inv t7">'+
+    '      <div class="top">'+
+    '        <div class="top-row">'+
+    '          <div><div class="top-doc-sub">ใบแจ้งหนี้ · Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-meta">No. <strong>'+(invNo)+'</strong><br>Date: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7b2d8b;background:#f8f0ff;padding:4px 10px;border-radius:4px;display:inline-block">Campaign: '+proj+'</div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">จาก (From)</div><div class="pname">'+(iName)+(iNick?' · '+iNick:'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ถึง (To)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>Tax ID: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <div class="table-wrap"><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ลายเซ็นผู้รับเงิน</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t8'){
+    html=
+    '<div class="inv t8">'+
+    '      <div class="top-accent"></div>'+
+    '      <div class="top">'+
+    '        <div class="top-row">'+
+    '          <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '        <div class="info-bar">'+
+    '          <div class="info-cell"><div class="info-cell-l">ชื่อผู้รับเงิน</div><div class="info-cell-v">'+(iName)+'</div></div>'+
+    '          <div class="info-cell"><div class="info-cell-l">แคมเปญ</div><div class="info-cell-v">'+(proj||'–')+'</div></div>'+
+    '          <div class="info-cell"><div class="info-cell-l">สถานะ</div><div class="info-cell-v">รอชำระเงิน</div></div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <div class="parties">'+
+    '          <div><div class="lbl">ผู้รับเงิน (Influencer)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div><div class="lbl">ผู้จ่ายเงิน (Company)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">บัญชีรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">Influencer Signature</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t9'){
+    html=
+    '<div class="inv t9">'+
+    '      <div class="top">'+
+    '        <div class="top-row">'+
+    '          <div><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-meta" style="background:#6d28d9;color:#fff;border-radius:8px;padding:8px 12px;font-size:.73rem;line-height:1.9">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ครบกำหนด: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '        <div class="dot-div"></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7c3aed">✦ โปรเจค: '+proj+' ✦</div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้รับแจ้งหนี้ (ผู้จ่ายเงิน)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">บัญชีธนาคารสำหรับรับเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t10'){
+    html=
+    '<div class="inv t10">'+
+    '      <div class="top">'+
+    '        <div class="top-grid">'+
+    '          <div><div class="top-doc-sub">// INVOICE DOCUMENT</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-meta">INV_NO: <strong>'+(invNo)+'</strong><br>DATE: <strong>'+(invDate)+'</strong><br>DUE: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div class="lbl">PROJECT: '+proj+'</div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">FROM (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' · '+iNick:'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>ID: '+iCard:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">TO (ผู้จ่ายเงิน)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">BANK_ACCOUNT</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">// NOTE: '+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">// SIGNED</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t11'){
+    html=
+    '<div class="inv t11">'+
+    '      <div class="outer"><div class="inner">'+
+    '        <div class="top">'+
+    '          <div class="top-left"><div class="top-doc-sub">INVOICE</div><div class="top-doc">ใบแจ้งหนี้</div><div style="font-size:.7rem;opacity:.6;margin-top:6px">'+(CO.name)+'</div></div>'+
+    '          <div class="top-right" style="padding:18px 20px;border-left:1px solid #1a1a2e;flex:1">'+
+    '            <div class="top-meta-grid">'+
+    '              <span class="mk">เลขที่ใบแจ้งหนี้:</span><span class="mv">'+(invNo)+'</span>'+
+    '              <span class="mk">วันที่ออกใบแจ้งหนี้:</span><span class="mv">'+(invDate)+'</span>'+
+    '              <span class="mk">กำหนดวันชำระ:</span><span class="mv">'+(invDue)+'</span>'+
+    '              '+(proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '        <div class="body">'+
+    '          <div class="parties">'+
+    '            <div class="party-box"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '            <div class="party-box"><div class="lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '          </div>'+
+    '          <div class="section-box">'+
+    '            <div class="section-box-head">รายการแจ้งหนี้</div>'+
+    '            <table><thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายการ/บริการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead><tbody>'+(tRows)+'</tbody></table>'+
+    '          </div>'+
+    '          <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '          <div class="section-box">'+
+    '            <div class="section-box-head">บัญชีสำหรับรับชำระเงิน</div>'+
+    '            <div class="section-box-body"><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '          </div>'+
+    '          '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+    '          <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '        </div>'+
+    '      </div></div></div>';;
+  } else if(t==='t12'){
+    html=
+    '<div class="inv t12">'+
+    '      <div class="layout">'+
+    '        <div class="sidebar-col">'+
+    '          <div><div class="doc-sub">Invoice</div><div class="doc-title">ใบแจ้งหนี้</div></div>'+
+    '          <div>'+
+    '            <div class="side-lbl">เลขที่ / วันที่</div>'+
+    '            <div class="side-meta-row">'+
+    '              <div><span class="smk">เลขที่: </span><span class="smv">'+(invNo)+'</span></div>'+
+    '              <div><span class="smk">วันที่: </span><span class="smv">'+(invDate)+'</span></div>'+
+    '              <div><span class="smk">ครบกำหนด: </span><span class="smv">'+(invDue)+'</span></div>'+
+    '            </div>'+
+    '          </div>'+
+    '          <div>'+
+    '            <div class="side-lbl">ผู้จ่ายเงิน</div>'+
+    '            <div class="side-pname">'+(CO.name)+'</div>'+
+    '            <div class="side-pdet">'+(coAddr.replace(/<br>/g,' '))+'<br>Tax: '+(CO.tax)+'</div>'+
+    '          </div>'+
+    '          '+(proj?'<div><div class="side-lbl">แคมเปญ</div><div class="side-pdet">'+proj+'</div></div>':'')+
+    '          <div>'+
+    '            <div class="side-lbl">บัญชีรับเงิน</div>'+
+    '            <div class="side-meta-row" style="font-size:.72rem">'+
+    '              <div><span class="smk">ธนาคาร: </span><span class="smv">'+(bank||'–')+'</span></div>'+
+    '              <div><span class="smk">ชื่อบัญชี: </span><span class="smv">'+(bAcc||'–')+'</span></div>'+
+    '              <div><span class="smk">เลขบัญชี: </span><span class="smv">'+(bNo||'–')+'</span></div>'+
+    '            </div>'+
+    '          </div>'+
+    '        </div>'+
+    '        <div class="main-col">'+
+    '          <div><div class="main-lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div><div class="main-lbl">รายการแจ้งหนี้</div><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
+    '          <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
+    '          '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '          <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '        </div>'+
+    '      </div></div>';;
+  } else if(t==='t13'){
+    html=
+    '<div class="inv t13">'+
+    '      <div class="top-strip"></div>'+
+    '      <div class="top">'+
+    '        <div><div class="top-doc-sub">ใบแจ้งหนี้</div><div class="top-doc">Invoice</div></div>'+
+    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>กำหนดชำระ: <strong>'+(invDue)+'</strong></div>'+
+    '      </div>'+
+    '      <div class="info-band">'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(coAddr.replace(/<br>/g,' '))+'</div></div>'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้รับเงิน</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+'</div></div>'+
+    '        <div class="info-cell"><div class="ic-lbl">แคมเปญ</div><div class="ic-val">'+(proj||'ไม่ระบุ')+'</div><div class="ic-det">'+(iEmail||'')+(iCard?'<br>บัตร: '+iCard:'')+'</div></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <table>'+(tHeadReceipt)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">ข้อมูลสำหรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t14'){
+    html=
+    '<div class="inv t14">'+
+    '      <div class="top">'+
+    '        <div class="top-grid">'+
+    '          <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-divider"></div>'+
+    '          <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div><div class="lbl">โปรเจค / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
+    '        <div><div class="lbl">คู่สัญญา</div>'+
+    '          <div class="parties">'+
+    '            <div class="party-card"><div style="font-size:.58rem;color:#006d77;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '            <div class="party-card"><div style="font-size:.58rem;color:#006d77;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">ผู้รับเงิน</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '          </div>'+
+    '        </div>'+
+    '        <div><div class="lbl">รายการงาน / บริการ</div><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
+    '        <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div><div class="lbl">ข้อมูลบัญชีรับเงิน</div><div class="bank-box"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน / Influencer</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t15'){
+    html=
+    '<div class="inv t15">'+
+    '      <div class="top">'+
+    '        <div class="top-co-block"><div class="top-co-name">'+(CO.name)+'</div><div class="top-co-det">'+(coAddr.replace(/<br>/g,' '))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        <div class="top-right">'+
+    '          <div class="top-doc">ใบแจ้งหนี้</div>'+
+    '          <table class="top-meta-tbl"><tr><td>เลขที่:</td><td>'+(invNo)+'</td></tr><tr><td>วันที่ออก:</td><td>'+(invDate)+'</td></tr><tr><td>กำหนดชำระ:</td><td>'+(invDue)+'</td></tr>'+(proj?'<tr><td>แคมเปญ:</td><td>'+proj+'</td></tr>':'')+'</table>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="info-row">'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '        <div class="info-cell"><div class="ic-lbl">บัญชีธนาคาร</div><div class="ic-val">'+(bank||'–')+'</div><div class="ic-det">'+(bAcc||'–')+'<br>เลขบัญชี: '+(bNo||'–')+(bBr?' · '+bBr:'')+'</div></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <div class="section-lbl">รายการแจ้งหนี้</div>'+
+    '        <table><thead><tr><th class="tn">ลำดับ</th><th class="td" style="text-align:left">รายละเอียดงาน/บริการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead><tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+    '        <div class="sig">'+
+    '          <div class="sig-blk"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '        </div>'+
+    '      </div></div>';;
+  } else if(t==='t16'){
+    html=
+    '<div class="inv t16">'+
+    '      <div class="top">'+
+    '        <div><div class="top-doc-sub">· INVOICE · ใบแจ้งหนี้ ·</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <div class="parties">'+
+    '          <div><div class="stamp-lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '          <div><div class="stamp-lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '        </div>'+
+    '        '+(proj?'<div><div class="stamp-lbl">แคมเปญ / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="stamp-lbl">ข้อมูลการชำระเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน / อินฟลูเอนเซอร์</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t17'){
+    html=
+    '<div class="inv t17">'+
+    '      <div class="top">'+
+    '        <div class="top-row">'+
+    '          <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '          <div class="top-meta">No. <strong>'+(invNo)+'</strong><br>Issued: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="wave"></div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div><div class="lbl">แคมเปญ / Project</div><div style="font-size:.85rem;font-weight:600">'+proj+'</div></div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">ผู้ออกใบแจ้งหนี้</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้รับใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t18'){
+    html=
+    '<div class="inv t18">'+
+    '      <div class="top">'+
+    '        <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
+    '        <hr class="divider">'+
+    '        <div><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        <hr class="divider">'+
+    '        <div><div class="lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '        <hr class="divider">'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">บัญชีสำหรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '      </div></div>';;
+  } else if(t==='t19'){
+    html=
+    '<div class="inv t19">'+
+    '      <div class="top">'+
+    '        <div><div class="top-doc-sub">// INVOICE.DOC</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+    '        <div class="top-meta">INV: <strong>'+(invNo)+'</strong><br>DATE: <strong>'+(invDate)+'</strong><br>DUE: <strong>'+(invDue)+'</strong></div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        '+(proj?'<div class="lbl">CAMPAIGN: '+proj+'</div>':'')+
+    '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">VENDOR (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' ['+iNick+']':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>TEL: '+iPhone:'')+(iEmail?'<br>EMAIL: '+iEmail:'')+(iCard?'<br>ID: '+iCard:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">CLIENT (ผู้จ่ายเงิน)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
+    '        </div>'+
+    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div class="bank-box"><div class="lbl">PAYMENT_ACCOUNT</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
+    '        '+(note?'<div class="note-box">// REMARKS: '+note+'</div>':'')+
+    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">// VENDOR_SIGNATURE</div></div>'+
+    '      </div></div>';;
+  } else { // t20
+    html=
+    '<div class="inv t20">'+
+    '      <div class="top">'+
+    '        <div class="top-left">'+
+    '          <div class="top-seal"><span>CONVEY</span><span>INTL</span></div>'+
+    '          <div class="top-co-name">'+(CO.name)+'</div>'+
+    '          <div class="top-co-det">'+(coAddr.replace(/<br>/g,'<br>'))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div>'+
+    '        </div>'+
+    '        <div class="top-right">'+
+    '          <div class="top-doc">ใบแจ้งหนี้</div>'+
+    '          <div class="top-meta-grid">'+
+    '            <span class="mk">เลขที่:</span><span class="mv">'+(invNo)+'</span>'+
+    '            <span class="mk">วันที่ออก:</span><span class="mv">'+(invDate)+'</span>'+
+    '            <span class="mk">กำหนดชำระ:</span><span class="mv">'+(invDue)+'</span>'+
+    '            '+(proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
+    '          </div>'+
+    '        </div>'+
+    '      </div>'+
+    '      <div class="body">'+
+    '        <div><div class="section-title">ข้อมูลคู่สัญญา</div>'+
+    '          <div class="parties">'+
+    '            <div class="party-box"><div class="p-sect">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '            <div class="party-box"><div class="p-sect">ผู้รับเงิน</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '          </div>'+
+    '        </div>'+
+    '        <div><div class="section-title">รายการและราคา</div>'+
+    '          <table>'+(tHeadReport)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '        </div>'+
+    '        <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '        <div><div class="section-title">ข้อมูลบัญชีธนาคาร</div><div class="section-content"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
+    '        '+(note?'<div><div class="section-title">หมายเหตุ</div><div class="note-box">'+note+'</div></div>':'')+
+    '        <div class="sig-row">'+
+    '          <div class="sig-blk"><div style="height:36px"></div><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '          <div class="sig-blk"><div style="height:36px"></div><div class="sig-line"></div><div class="sig-n">_____________</div><div class="sig-r">ผู้รับเอกสาร</div></div>'+
+    '          <div class="sig-blk"><div style="height:36px"></div><div class="sig-line"></div><div class="sig-n">_____________</div><div class="sig-r">ผู้อนุมัติจ่าย</div></div>'+
+    '        </div>'+
+    '      </div></div>';;
+  }
+  document.getElementById('invoiceWrap').innerHTML=html;
+}
+
+// Files
+function handleFiles(input,key){
+  [...input.files].forEach(f=>{
+    const r=new FileReader();
+    r.onload=e=>{files[key].push({name:f.name,size:f.size,type:f.type,data:e.target.result});renderPreviews(key);};
+    r.readAsDataURL(f);
+  });
+  input.value='';
+}
+function renderPreviews(key){
+  const w=document.getElementById('preview-'+key);
+  w.innerHTML=files[key].map((f,i)=>'<div class="chip">'+
+    (f.type.startsWith('image/')?'<img class="chip-th" src="'+f.data+'">':'<div class="chip-pdf">PDF</div>')+
+    '<div style="flex:1;min-width:0"><div class="chip-n">'+f.name+'</div><div class="chip-s">'+((f.size/1024).toFixed(1))+' KB</div></div>'+
+    '<button class="chip-rm" onclick="removeFile(\''+key+'\','+i+')">✕</button></div>').join('');
+}
+function removeFile(key,i){files[key].splice(i,1);renderPreviews(key);}
+
+// Reset
+function resetForm(){
+  if(!confirm('ล้างข้อมูลทั้งหมด?'))return;
+  document.querySelectorAll('.sidebar input,.sidebar select,.sidebar textarea').forEach(el=>el.value='');
+  document.getElementById('itemsBody').innerHTML='';
+  rowCount=0;files.id=[];files.book=[];files.other=[];
+  ['id','book','other'].forEach(k=>document.getElementById('preview-'+k).innerHTML='');
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('invDate').value=today;
+  const due=new Date();due.setDate(due.getDate()+30);
+  document.getElementById('invDue').value=due.toISOString().split('T')[0];
+  const d=new Date();
+  document.getElementById('invNo').value='INV-'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+'-001';
+  addRow();addRow();calcTotal();renderInvoice();
+}
+
+// Export PDF
+async function exportPDF(){
+  const req=['infName','infPhone','infEmail','infAddr','bankName','bankAccName','bankAccNo','invNo','invDate'];
+  for(const id of req){const el=document.getElementById(id);if(!el?.value?.trim()){el?.focus();alert('กรุณากรอกข้อมูล: '+(el?.previousElementSibling?.textContent||id));return;}}
+  const{jsPDF}=window.jspdf;
+  const ov=document.getElementById('loadingOverlay');ov.classList.add('show');
+  try{
+    await new Promise(r=>setTimeout(r,150));
+    const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+    const W=210,M=10;
+    const el=document.getElementById('invoiceWrap');
+    const cv=await html2canvas(el,{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false});
+    const img=cv.toDataURL('image/jpeg',.93);
+    const iW=W-M*2,iH=iW*(cv.height/cv.width),pH=297-M*2;
+    if(iH<=pH){pdf.addImage(img,'JPEG',M,M,iW,iH);}
+    else{
+      const n=Math.ceil(iH/pH);
+      for(let p=0;p<n;p++){
+        if(p>0)pdf.addPage();
+        const sy=(p*pH/iH)*cv.height,sh=Math.min((pH/iH)*cv.height,cv.height-sy);
+        const tc=document.createElement('canvas');tc.width=cv.width;tc.height=sh;
+        tc.getContext('2d').drawImage(cv,0,sy,cv.width,sh,0,0,cv.width,sh);
+        pdf.addImage(tc.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,Math.min(pH,(sh/cv.width)*iW));
+      }
+    }
+    const allF=[...files.id.map(f=>({...f,label:'บัตรประชาชน'})),...files.book.map(f=>({...f,label:'Book Bank'})),...files.other.map(f=>({...f,label:'เพิ่มเติม'}))];
+    for(const f of allF){
+      pdf.addPage();
+      pdf.setFontSize(10);pdf.setFont('helvetica','bold');pdf.text('เอกสารแนบ: '+f.label,M,M+5);
+      pdf.setFont('helvetica','normal');pdf.setFontSize(8);pdf.text(f.name,M,M+11);
+      pdf.line(M,M+13,W-M,M+13);
+      if(f.type.startsWith('image/')){
+        const img2=new Image();img2.src=f.data;await new Promise(r=>{img2.onload=r;});
+        const iW2=W-M*2,iH2=Math.min((img2.height/img2.width)*iW2,297-M*2-18);
+        pdf.addImage(f.data,'JPEG',M,M+16,iW2,iH2);
+      } else {
+        pdf.setFontSize(9);pdf.setTextColor(120);pdf.text('[ไฟล์ PDF — กรุณาดูแยกต่างหาก]',M,M+25);pdf.setTextColor(0);
+      }
+    }
+    const tplName=TPLS.find(x=>x.id===currentTpl)?.name.replace(/\s+/g,'-')||currentTpl;
+    pdf.save((v('invNo')||'invoice').replace(/\//g,'-')+'_'+(v('infName')||'inf').replace(/\s+/g,'_')+'_'+tplName+'.pdf');
+  }catch(e){alert('เกิดข้อผิดพลาด: '+e.message);}
+  finally{ov.classList.remove('show');}
+}
+
+
 function handleSig(input) {
   if (!input.files[0]) return;
   var r = new FileReader();
@@ -975,61 +1589,51 @@ function clearSig() {
   document.getElementById('sigFile').value = '';
   renderInvoice();
 }
-
-// ─── File uploads ─────────────────────────────
 function handleFiles(input, key) {
-  var arr = input.files;
-  for (var i = 0; i < arr.length; i++) {
+  for (var i = 0; i < input.files.length; i++) {
     (function(f) {
       var r = new FileReader();
-      r.onload = function(e) {
-        files[key].push({name:f.name, size:f.size, type:f.type, data:e.target.result});
-        renderChips(key);
-      };
+      r.onload = function(e) { files[key].push({name:f.name,size:f.size,type:f.type,data:e.target.result}); renderChips(key); };
       r.readAsDataURL(f);
-    })(arr[i]);
+    })(input.files[i]);
   }
   input.value = '';
 }
 function renderChips(key) {
-  var wrap = document.getElementById('preview-' + key);
+  var wrap = document.getElementById('preview-'+key);
   wrap.innerHTML = '';
   for (var i = 0; i < files[key].length; i++) {
     (function(f, idx) {
-      var chip = document.createElement('div'); chip.className = 'chip';
+      var chip = document.createElement('div'); chip.className='chip';
       var thumb;
-      if (f.type.indexOf('image/') === 0) {
-        thumb = document.createElement('img'); thumb.src = f.data; thumb.className = 'chip-th';
-      } else {
-        thumb = document.createElement('div');
-        thumb.style.cssText = 'width:32px;height:32px;background:#fee8e7;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#c0392b;flex-shrink:0';
-        thumb.textContent = 'PDF';
-      }
-      var info = document.createElement('div'); info.style.cssText = 'flex:1;min-width:0';
-      info.innerHTML = '<div class="chip-n">'+f.name+'</div><div class="chip-s">'+((f.size/1024).toFixed(1))+' KB</div>';
-      var btn = document.createElement('button'); btn.className = 'chip-rm'; btn.textContent = 'x';
-      btn.onclick = function() { files[key].splice(idx,1); renderChips(key); };
+      if (f.type.indexOf('image/')===0) { thumb=document.createElement('img'); thumb.src=f.data; thumb.className='chip-th'; }
+      else { thumb=document.createElement('div'); thumb.style.cssText='width:32px;height:32px;background:#fee8e7;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#c0392b;flex-shrink:0'; thumb.textContent='PDF'; }
+      var info=document.createElement('div'); info.style.cssText='flex:1;min-width:0';
+      info.innerHTML='<div class="chip-n">'+f.name+'</div><div class="chip-s">'+((f.size/1024).toFixed(1))+' KB</div>';
+      var btn=document.createElement('button'); btn.className='chip-rm'; btn.textContent='x';
+      btn.onclick=function(){ files[key].splice(idx,1); renderChips(key); };
       chip.appendChild(thumb); chip.appendChild(info); chip.appendChild(btn);
       wrap.appendChild(chip);
     })(files[key][i], i);
   }
 }
-
-// ─── Save PDF ─────────────────────────────────
+function updateDue() {
+  var d = new Date(document.getElementById('invDate').value);
+  d.setDate(d.getDate()+60);
+  document.getElementById('invDue').value = d.toISOString().split('T')[0];
+}
 function savePDF() {
   if (!v('infName')) { alert('กรุณากรอกชื่อ-นามสกุลก่อนค่ะ'); return; }
   var ov = document.getElementById('ov');
   ov.classList.add('show');
   document.getElementById('ovMsg').textContent = 'กำลังสร้าง PDF...';
   var jsPDF = window.jspdf.jsPDF;
-  var pdf = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  var pdf = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210, M=10;
-  var el = document.getElementById('invoiceWrap');
-  html2canvas(el, {scale:2.5, useCORS:true, backgroundColor:'#ffffff', logging:false}).then(function(cv) {
+  html2canvas(document.getElementById('invoiceWrap'),{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false}).then(function(cv){
     var iW=W-M*2, iH=iW*(cv.height/cv.width), pH=297-M*2;
-    if (iH<=pH) {
-      pdf.addImage(cv.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,iH);
-    } else {
+    if(iH<=pH){ pdf.addImage(cv.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,iH); }
+    else {
       var n=Math.ceil(iH/pH);
       for(var p=0;p<n;p++){
         if(p>0) pdf.addPage();
@@ -1039,76 +1643,51 @@ function savePDF() {
         pdf.addImage(tc.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,Math.min(pH,(sh/cv.width)*iW));
       }
     }
-    var allF = [];
-    for(var i=0;i<files.id.length;i++) allF.push({label:'บัตรประชาชน', data:files.id[i].data, name:files.id[i].name, type:files.id[i].type});
-    for(var i=0;i<files.book.length;i++) allF.push({label:'Book Bank', data:files.book[i].data, name:files.book[i].name, type:files.book[i].type});
-    var chain = Promise.resolve();
-    allF.forEach(function(f) {
-      chain = chain.then(function() {
+    var allF=[];
+    for(var i=0;i<files.id.length;i++) allF.push({label:'ID Card',data:files.id[i].data,name:files.id[i].name,type:files.id[i].type});
+    for(var i=0;i<files.book.length;i++) allF.push({label:'Book Bank',data:files.book[i].data,name:files.book[i].name,type:files.book[i].type});
+    var chain=Promise.resolve();
+    allF.forEach(function(f){
+      chain=chain.then(function(){
         pdf.addPage();
         pdf.setFontSize(10); pdf.setFont('helvetica','bold'); pdf.text('Attachment: '+f.label,M,M+5);
         pdf.setFont('helvetica','normal'); pdf.setFontSize(8); pdf.text(f.name,M,M+11); pdf.line(M,M+13,W-M,M+13);
         if(f.type.indexOf('image/')===0){
-          return new Promise(function(res){
-            var img2=new Image(); img2.src=f.data;
-            img2.onload=function(){ var iW2=W-M*2,iH2=Math.min((img2.height/img2.width)*iW2,267); pdf.addImage(f.data,'JPEG',M,M+16,iW2,iH2); res(); };
-          });
+          return new Promise(function(res){ var img=new Image(); img.src=f.data; img.onload=function(){ pdf.addImage(f.data,'JPEG',M,M+16,W-M*2,Math.min((img.height/img.width)*(W-M*2),267)); res(); }; });
         }
       });
     });
-    return chain.then(function(){return pdf;});
-  }).then(function(pdf) {
-    var name = (v('infName')||'KOL').replace(/\s+/g,'-');
-    var camp = (v('invProject')||'invoice').replace(/\s+/g,'_');
+    return chain.then(function(){ return pdf; });
+  }).then(function(pdf){
+    var name=(v('infName')||'KOL').replace(/\s+/g,'-');
+    var camp=(v('invProject')||'invoice').replace(/\s+/g,'_');
     pdf.save('INV_'+name+'_'+camp+'_'+new Date().toISOString().slice(0,10)+'.pdf');
     ov.classList.remove('show');
     document.getElementById('doneScreen').classList.add('show');
-  }).catch(function(e) {
-    ov.classList.remove('show');
-    alert('เกิดข้อผิดพลาด: '+e.message);
-  });
+  }).catch(function(e){ ov.classList.remove('show'); alert('Error: '+e.message); });
 }
-
-// ─── Init ─────────────────────────────────────
 (function(){
-  var today = new Date().toISOString().split('T')[0];
-  document.getElementById('invDate').value = today;
-  var due = new Date(); due.setDate(due.getDate()+60);
-  document.getElementById('invDue').value = due.toISOString().split('T')[0];
-
-  document.getElementById('invDate').addEventListener('change', function(){
-    var d = new Date(this.value); d.setDate(d.getDate()+60);
-    document.getElementById('invDue').value = d.toISOString().split('T')[0];
-    renderInvoice();
-  });
-
-  var d = new Date();
-  document.getElementById('invNo').value = 'INV-'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-001';
-
-  // Template buttons
-  var g = document.getElementById('tplGrid');
+  var today=new Date().toISOString().split('T')[0];
+  document.getElementById('invDate').value=today;
+  var due=new Date(); due.setDate(due.getDate()+60);
+  document.getElementById('invDue').value=due.toISOString().split('T')[0];
+  var d=new Date();
+  document.getElementById('invNo').value='INV-'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-001';
+  var g=document.getElementById('tplGrid');
   TPLS.forEach(function(t,i){
-    var b = document.createElement('button');
-    b.className = 'tpl-btn'+(t.id===currentTpl?' active':'');
-    b.title = t.desc||'';
-    b.textContent = (i+1)+'. '+t.name;
-    b.onclick = (function(tid){ return function(){
-      currentTpl = tid;
-      var btns = document.querySelectorAll('.tpl-btn');
-      for(var j=0;j<btns.length;j++) btns[j].classList.toggle('active', TPLS[j].id===tid);
+    var b=document.createElement('button');
+    b.className='tpl-btn'+(t.id===currentTpl?' active':'');
+    b.title=t.desc||'';
+    b.textContent=(i+1)+'. '+t.name;
+    b.onclick=(function(tid){ return function(){
+      currentTpl=tid;
+      var btns=document.querySelectorAll('.tpl-btn');
+      for(var j=0;j<btns.length;j++) btns[j].classList.toggle('active',TPLS[j].id===tid);
       renderInvoice();
     }; })(t.id);
     g.appendChild(b);
   });
-
   addRow(); addRow();
-
-  var inputs = document.querySelectorAll('input:not([type=file]):not([type=date]),select,textarea');
-  for(var i=0;i<inputs.length;i++){
-    inputs[i].addEventListener('input', renderInvoice);
-    inputs[i].addEventListener('change', renderInvoice);
-  }
-
   calcTotal();
   renderInvoice();
 })();
