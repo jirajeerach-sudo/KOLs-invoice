@@ -766,6 +766,10 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .sig-area:hover{border-color:#c0515a}
 .sig-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .sig-img{max-height:70px;max-width:100%;object-fit:contain}
+
+/* ── A4 sizing for all templates ── */
+.inv { width: 794px !important; min-height: 1123px !important; box-sizing: border-box; margin: 0 auto; }
+
 </style>
 </head>
 <body>
@@ -881,7 +885,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 </div>
 
 <script>
-const CO={name:'บริษัท คอนวี่ อินเตอร์เนชั่นแนล จำกัด',addr:'689 อาคารภิรัชทาวเวอร์ แอ๊ดเอ็มควอเทียร์ ชั้นที่ 21, 22\nห้องเลขที่ 2101-2109, 2211 ถนนสุขุมวิท\nแขวงคลองตันเหนือ เขตวัฒนา กรุงเทพมหานคร 10110',tax:'0105554129276'};
+const CO={name:'บริษัท คอนวี่ อินเตอร์เนชั่นแนล จำกัด',addr:'689 อาคารภิรัชทาวน์เวอร์ แอ๊ดเอ็มควอเทียร์ ชั้นที่ 21,22 ห้องเลขที่ 2101-2109, 2211 ถนนสุขุมวิท แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพมหานคร 10110',tax:'0105554129276'};
 const TPLS=[
   {id:'t1', name:'Classic Centered',    desc:'หัวข้อกลาง / แถบสีเข้ม'},
   {id:'t2', name:'Red Stripe Bold',     desc:'แถบแนวตั้ง / พื้นขาว-ชมพู'},
@@ -1043,7 +1047,7 @@ function renderInvoice(){
     '        <div class="body-content">'+
     '          '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
     '          <div class="parties">'+
-    '            <div><div class="lbl">ผู้ออกใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '            <div><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '            <div><div class="lbl">ออกให้แก่ (ผู้รับเงิน)</div><div class="pdet">'+(infDetail)+'</div></div>'+
     '          </div>'+
     '          <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
@@ -1066,7 +1070,7 @@ function renderInvoice(){
     '        '+(proj?'<div><span class="proj-tag">Campaign: '+proj+'</span></div>':'')+
     '        <div class="parties">'+
     '          <div class="party-box"><div class="lbl">BILL FROM</div><div class="pname">'+(iName)+'</div><div class="pdet">'+(infDetailPlain.replace(/\n/g,'<br>'))+'</div></div>'+
-    '          <div class="party-box"><div class="lbl">BILL TO</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '          <div class="party-box"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
@@ -1078,8 +1082,6 @@ function renderInvoice(){
     html=
     '<div class="inv t4">'+
     '      <div class="top">'+
-    '        <div class="top-logo">'+(CO.name)+'</div>'+
-    '        <div class="top-addr">'+(coAddr.replace(/<br>/g,' '))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div>'+
     '        <div class="top-title">ใบแจ้งหนี้ / Invoice</div>'+
     '        <div class="top-meta">'+
     '          <span class="top-meta-k">เลขที่:</span><span class="top-meta-v">'+(invNo)+'</span>'+
@@ -1091,6 +1093,7 @@ function renderInvoice(){
     '      <div class="body">'+
     '        <div class="section-title">ข้อมูลผู้รับเงิน (อินฟลูเอนเซอร์)</div>'+
     '        <div class="parties">'+
+    '          <div><div class="tag">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          <div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
     '          <div><div class="section-title" style="margin-bottom:5px">ข้อมูลบัญชีรับเงิน</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div></div>'+
     '        </div>'+
@@ -1107,11 +1110,11 @@ function renderInvoice(){
     '<div class="inv t5">'+
     '      <div class="top">'+
     '        <div class="top-left"><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div><div style="font-size:.72rem;opacity:.75;margin-top:6px;line-height:1.7">เลขที่: <strong style="opacity:1">'+(invNo)+'</strong><br>วันที่ออก: <strong style="opacity:1">'+(invDate)+'</strong></div></div>'+
-    '        <div class="top-right"><div class="top-doc-sub">ผู้จ่ายเงิน</div><div class="top-co">'+(CO.name)+'</div><div style="font-size:.7rem;opacity:.7;margin-top:4px;line-height:1.6">'+(coAddr.replace(/<br>/g,' '))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '      </div>'+
     '      <div class="body">'+
     '        '+(proj?'<div class="proj-strip">แคมเปญ / Campaign: '+proj+'</div>':'')+
     '        <div class="parties">'+
+    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          <div class="party-card"><div class="lbl">ผู้รับเงิน (Vendor)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>โทร: '+iPhone:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
     '          <div class="party-card"><div class="lbl">บัญชีรับเงิน (Bank Account)</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div>'+(iEmail?'<div style="font-size:.72rem;color:#5a7a6a;margin-top:5px">อีเมล: '+iEmail+'</div>':'')+'</div>'+
     '        </div>'+
@@ -1130,8 +1133,8 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#d4a843;margin-bottom:-6px">✦ Campaign: '+proj+' ✦</div>':'')+
     '        <div class="parties">'+
-    '          <div><div class="lbl">Issued By / ผู้ออกใบแจ้งหนี้</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>บัตรประชาชน: '+iCard:'')+'</div></div>'+
-    '          <div><div class="lbl">Issued To / ผู้รับใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '          <div><div class="lbl">Issued By / ผู้จ่ายเงิน</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>บัตรประชาชน: '+iCard:'')+'</div></div>'+
+    '          <div><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
@@ -1152,7 +1155,7 @@ function renderInvoice(){
     '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7b2d8b;background:#f8f0ff;padding:4px 10px;border-radius:4px;display:inline-block">Campaign: '+proj+'</div>':'')+
     '        <div class="parties">'+
     '          <div class="party-card"><div class="lbl">จาก (From)</div><div class="pname">'+(iName)+(iNick?' · '+iNick:'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ถึง (To)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>Tax ID: '+(CO.tax)+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>Tax ID: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <div class="table-wrap"><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
@@ -1200,7 +1203,7 @@ function renderInvoice(){
     '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7c3aed">✦ โปรเจค: '+proj+' ✦</div>':'')+
     '        <div class="parties">'+
     '          <div class="party-card"><div class="lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้รับแจ้งหนี้ (ผู้จ่ายเงิน)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
@@ -1221,7 +1224,7 @@ function renderInvoice(){
     '        '+(proj?'<div class="lbl">PROJECT: '+proj+'</div>':'')+
     '        <div class="parties">'+
     '          <div class="party-card"><div class="lbl">FROM (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' · '+iNick:'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>ID: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">TO (ผู้จ่ายเงิน)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
@@ -1234,7 +1237,6 @@ function renderInvoice(){
     '<div class="inv t11">'+
     '      <div class="outer"><div class="inner">'+
     '        <div class="top">'+
-    '          <div class="top-left"><div class="top-doc-sub">INVOICE</div><div class="top-doc">ใบแจ้งหนี้</div><div style="font-size:.7rem;opacity:.6;margin-top:6px">'+(CO.name)+'</div></div>'+
     '          <div class="top-right" style="padding:18px 20px;border-left:1px solid #1a1a2e;flex:1">'+
     '            <div class="top-meta-grid">'+
     '              <span class="mk">เลขที่ใบแจ้งหนี้:</span><span class="mv">'+(invNo)+'</span>'+
@@ -1277,9 +1279,7 @@ function renderInvoice(){
     '            </div>'+
     '          </div>'+
     '          <div>'+
-    '            <div class="side-lbl">ผู้จ่ายเงิน</div>'+
-    '            <div class="side-pname">'+(CO.name)+'</div>'+
-    '            <div class="side-pdet">'+(coAddr.replace(/<br>/g,' '))+'<br>Tax: '+(CO.tax)+'</div>'+
+    '            <div class="side-lbl">ผู้จ่ายเงิน</div><div class=\"side-pname\">\'+(CO.name)+\'</div><div class=\"side-pdet\">\'+(coAddr)+\'<br>เลขผู้เสียภาษี: \'+(CO.tax)+\'</div>'+
     '          </div>'+
     '          '+(proj?'<div><div class="side-lbl">แคมเปญ</div><div class="side-pdet">'+proj+'</div></div>':'')+
     '          <div>'+
@@ -1308,7 +1308,7 @@ function renderInvoice(){
     '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>กำหนดชำระ: <strong>'+(invDue)+'</strong></div>'+
     '      </div>'+
     '      <div class="info-band">'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(coAddr.replace(/<br>/g,' '))+'</div></div>'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(CO.addr.replace(/\n/g,' '))+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">ผู้รับเงิน</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">แคมเปญ</div><div class="ic-val">'+(proj||'ไม่ระบุ')+'</div><div class="ic-det">'+(iEmail||'')+(iCard?'<br>บัตร: '+iCard:'')+'</div></div>'+
     '      </div>'+
@@ -1347,14 +1347,14 @@ function renderInvoice(){
     html=
     '<div class="inv t15">'+
     '      <div class="top">'+
-    '        <div class="top-co-block"><div class="top-co-name">'+(CO.name)+'</div><div class="top-co-det">'+(coAddr.replace(/<br>/g,' '))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        <div class="top-right">'+
     '          <div class="top-doc">ใบแจ้งหนี้</div>'+
     '          <table class="top-meta-tbl"><tr><td>เลขที่:</td><td>'+(invNo)+'</td></tr><tr><td>วันที่ออก:</td><td>'+(invDate)+'</td></tr><tr><td>กำหนดชำระ:</td><td>'+(invDue)+'</td></tr>'+(proj?'<tr><td>แคมเปญ:</td><td>'+proj+'</td></tr>':'')+'</table>'+
     '        </div>'+
     '      </div>'+
     '      <div class="info-row">'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(CO.addr.replace(/\n/g,' '))+'</div></div>'+
+    '<div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">บัญชีธนาคาร</div><div class="ic-val">'+(bank||'–')+'</div><div class="ic-det">'+(bAcc||'–')+'<br>เลขบัญชี: '+(bNo||'–')+(bBr?' · '+bBr:'')+'</div></div>'+
     '      </div>'+
     '      <div class="body">'+
@@ -1398,7 +1398,7 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div><div class="lbl">แคมเปญ / Project</div><div style="font-size:.85rem;font-weight:600">'+proj+'</div></div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">ผู้ออกใบแจ้งหนี้</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
     '          <div class="party-card"><div class="lbl">ผู้รับใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
@@ -1438,7 +1438,7 @@ function renderInvoice(){
     '        '+(proj?'<div class="lbl">CAMPAIGN: '+proj+'</div>':'')+
     '        <div class="parties">'+
     '          <div class="party-card"><div class="lbl">VENDOR (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' ['+iNick+']':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>TEL: '+iPhone:'')+(iEmail?'<br>EMAIL: '+iEmail:'')+(iCard?'<br>ID: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">CLIENT (ผู้จ่ายเงิน)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
+    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
@@ -1451,9 +1451,6 @@ function renderInvoice(){
     '<div class="inv t20">'+
     '      <div class="top">'+
     '        <div class="top-left">'+
-    '          <div class="top-seal"><span>CONVEY</span><span>INTL</span></div>'+
-    '          <div class="top-co-name">'+(CO.name)+'</div>'+
-    '          <div class="top-co-det">'+(coAddr.replace(/<br>/g,'<br>'))+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div>'+
     '        </div>'+
     '        <div class="top-right">'+
     '          <div class="top-doc">ใบแจ้งหนี้</div>'+
@@ -1566,7 +1563,6 @@ async function exportPDF(){
   }catch(e){alert('เกิดข้อผิดพลาด: '+e.message);}
   finally{ov.classList.remove('show');}
 }
-
 
 function handleSig(input) {
   if (!input.files[0]) return;
