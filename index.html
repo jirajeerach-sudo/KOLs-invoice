@@ -93,7 +93,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .uni-party-label{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#666;margin-bottom:4px}
 .uni-party-name{font-weight:700;font-size:.88rem;color:#1a1a2e;margin-bottom:3px}
 .uni-party-det{font-size:.74rem;color:#555;line-height:1.65}
-.sig-row-uni{display:flex;justify-content:space-between;align-items:flex-end;padding:20px 30px 16px;gap:12px}
+.sig-row-uni{display:flex !important;flex-direction:row !important;justify-content:space-between;align-items:flex-end;padding:20px 30px 16px;gap:12px}
 .sig-blk-uni{flex:1;text-align:center}
 .sig-blk-uni .sig-space{height:40px}
 .sig-blk-uni .sig-line-uni{border-top:1px solid #555;margin:0 10px;padding-top:5px}
@@ -665,37 +665,6 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t18 .sig-r{font-size:.67rem;color:#9a7a40}
 
 /* ── T19: Fresh Green ── */
-.t19{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff;color:#052e16}
-.t19 .top{padding:20px 28px;border-bottom:2px solid #4ade80;display:flex;justify-content:space-between;align-items:flex-start;background:#f0fdf4}
-.t19 .top-doc{font-size:1.5rem;font-weight:700;color:#15803d;letter-spacing:.02em}
-.t19 .top-doc-sub{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:#16a34a;margin-bottom:8px;opacity:.8}
-.t19 .top-meta{font-size:.73rem;color:#166534;line-height:1.9;text-align:right}
-.t19 .top-meta strong{color:#14532d}
-.t19 .body{padding:18px 28px;display:flex;flex-direction:column;gap:13px}
-.t19 .lbl{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#15803d;margin-bottom:4px;display:flex;align-items:center;gap:5px}
-.t19 .lbl::before{content:'▸';color:#4ade80}
-.t19 .parties{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.t19 .party-card{border:1px solid #bbf7d0;border-radius:4px;padding:10px 12px;background:#fff}
-.t19 .pname{font-weight:700;font-size:.86rem;color:#052e16}
-.t19 .pdet{font-size:.73rem;color:#166534;line-height:1.65}
-.t19 thead th{background:#15803d;color:#fff;padding:8px 10px;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
-.t19 tbody td{padding:7px 10px;border-bottom:1px solid #d1fae5;font-size:.79rem;color:#1a3a2a}
-.t19 tbody tr:nth-child(even) td{background:#f5fdf7}
-.t19 .sum-area{display:flex;justify-content:flex-end}
-.t19 .sum-box{width:210px;border:1px solid #bbf7d0;border-radius:4px;padding:10px 12px;background:#fff}
-.t19 .sum-r{display:flex;justify-content:space-between;font-size:.76rem;padding:3px 0;border-bottom:1px solid #d1fae5;color:#166534}
-.t19 .sum-r:last-of-type{border:none}
-.t19 .sum-r.tot{background:#15803d;color:#fff;padding:7px 10px;border-radius:4px;font-weight:700;margin-top:5px}
-.t19 .bank-box{border:1px solid #bbf7d0;border-radius:4px;padding:10px 12px;background:#fff}
-.t19 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
-.t19 .bk{color:#4a8a5a}.t19 .bv{font-weight:600;color:#052e16}
-.t19 .note-box{border:1px solid #bbf7d0;border-radius:4px;padding:8px 11px;font-size:.73rem;color:#166534;background:#fff;border-left:3px solid #4ade80}
-.t19 .sig{text-align:right;padding-top:14px}
-.t19 .sig-line{border-top:1px solid #15803d;width:150px;margin-left:auto;padding-top:4px}
-.t19 .sig-n{font-size:.8rem;font-weight:600;color:#052e16}
-.t19 .sig-r{font-size:.67rem;color:#4a8a5a}
-
-/* ── T20: Formal Document ── */
 .t20{font-family:'Sarabun',sans-serif;background:#fff}
 .t20 .top{padding:20px 30px;border-bottom:4px solid #1a1a2e;display:flex;justify-content:space-between;align-items:flex-start}
 .t20 .top-left{}
@@ -918,7 +887,6 @@ const TPLS=[
   {id:'t16',name:'Retro Stamp',         desc:'สไตล์ตราประทับ / น้ำตาล'},
   {id:'t17',name:'Ice Blue Wave',       desc:'ฟ้าน้ำแข็ง / wave divider'},
   {id:'t18',name:'Earthy Warm',         desc:'น้ำตาลทอง / อบอุ่น'},
-  {id:'t19',name:'Fresh Green',         desc:'เขียวสด / พื้นขาว-เขียวอ่อน'},
   {id:'t20',name:'Official Document',   desc:'ตราประทับ / ลายเซ็น 3 จุด'},
 ];
 let currentTpl='t1', rowCount=0;
@@ -1406,29 +1374,6 @@ function renderInvoice(){
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
     '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
-  } else if(t==='t19'){
-    html=
-    '<div class="inv t19">'+
-    '  <div class="top">'+
-    '    <div><div class="top-doc-sub">// INVOICE.DOC</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '    <div class="top-meta">INV: <strong>'+(invNo)+'</strong><br>DATE: <strong>'+(invDate)+'</strong><br>DUE: <strong>'+(invDue)+'</strong></div>'+
-    '  </div>'+
-    '  <div class="body">'+
-    '    '+(proj?'<div class="lbl">CAMPAIGN: '+proj+'</div>':'')+
-    '    <div class="uni-parties">'+
-    '      <div class="uni-party"><div class="uni-party-label">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="uni-party-name">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="uni-party-det">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '      <div class="uni-party"><div class="uni-party-label">ผู้จ่ายเงิน</div><div class="uni-party-name">'+(CO.name)+'</div><div class="uni-party-det">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '    </div>'+
-    '    <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '    <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '    <div class="bank-box"><div class="lbl">PAYMENT_ACCOUNT</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '    '+(note?'<div class="note-box">// REMARKS: '+note+'</div>':'')+
-    '    <div class="sig-row-uni">'+
-    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">'+(iName)+'</div><div class="sig-role">ผู้แจ้งหนี้</div></div></div>'+
-    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้รับเอกสาร</div></div></div>'+
-    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้อนุมัติจ่าย</div></div></div>'+
-    '    </div>'+
-    '  </div></div>';
   } else { // t20
     html=
     '<div class="inv t20">'+
