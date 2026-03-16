@@ -1565,7 +1565,7 @@ async function exportPDF(){
     await new Promise(r=>setTimeout(r,150));
     const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
     const W=210,M=10;
-    const el=document.getElementById('invoiceWrap');
+    const el = document.getElementById('step2Panel').style.display !== 'none' ? document.getElementById('step2PreviewInner') : document.getElementById('invoiceWrap');
     const cv=await html2canvas(el,{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false});
     const img=cv.toDataURL('image/jpeg',.93);
     const iW=W-M*2,iH=iW*(cv.height/cv.width),pH=297-M*2;
@@ -1662,7 +1662,8 @@ function savePDF() {
   var jsPDF = window.jspdf.jsPDF;
   var pdf = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210, M=10;
-  html2canvas(document.getElementById('invoiceWrap'),{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false}).then(function(cv){
+  var captureEl = document.getElementById('step2Panel').style.display !== 'none' ? document.getElementById('step2PreviewInner') : document.getElementById('invoiceWrap');
+  html2canvas(captureEl,{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false}).then(function(cv){
     var iW=W-M*2, iH=iW*(cv.height/cv.width), pH=297-M*2;
     if(iH<=pH){ pdf.addImage(cv.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,iH); }
     else {
