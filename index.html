@@ -89,6 +89,16 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .preview-area{position:sticky;top:90px}
 .prev-lbl{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a96a3;margin-bottom:8px;text-align:center}
 .inv-wrap{border-radius:4px;overflow:hidden;box-shadow:0 6px 40px rgba(0,0,0,.18)}
+.uni-parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.uni-party-label{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#666;margin-bottom:4px}
+.uni-party-name{font-weight:700;font-size:.88rem;color:#1a1a2e;margin-bottom:3px}
+.uni-party-det{font-size:.74rem;color:#555;line-height:1.65}
+.sig-row-uni{display:flex;justify-content:space-between;align-items:flex-end;padding:20px 30px 16px;gap:12px}
+.sig-blk-uni{flex:1;text-align:center}
+.sig-blk-uni .sig-space{height:40px}
+.sig-blk-uni .sig-line-uni{border-top:1px solid #555;margin:0 10px;padding-top:5px}
+.sig-blk-uni .sig-name{font-size:.8rem;font-weight:700;color:#1a1a2e}
+.sig-blk-uni .sig-role{font-size:.67rem;color:#888;margin-top:1px}
 
 /* Loading */
 .loading-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:#fff}
@@ -463,36 +473,6 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t11 .sig-r{font-size:.67rem;color:#888}
 
 /* ── T12: Colorblock Side ── */
-.t12{font-family:'Prompt',sans-serif;background:#fff}
-.t12 .layout{display:flex;min-height:560px}
-.t12 .sidebar-col{width:35%;background:#fef9ed;color:#3a2800;padding:22px 18px;display:flex;flex-direction:column;gap:14px;border-right:2px solid #f59e0b}
-.t12 .main-col{flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:14px}
-.t12 .doc-title{font-size:1.5rem;font-weight:700;letter-spacing:-.3px;color:#b45309}
-.t12 .doc-sub{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;opacity:.55;margin-bottom:8px;color:#92400e}
-.t12 .side-lbl{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#92400e;border-bottom:1px solid #f59e0b;padding-bottom:4px;margin-bottom:6px}
-.t12 .side-pname{font-weight:700;font-size:.82rem;color:#3a2800;margin-bottom:2px}
-.t12 .side-pdet{font-size:.7rem;color:#7a5a20;line-height:1.6}
-.t12 .side-meta-row{display:flex;flex-direction:column;gap:2px;font-size:.73rem}
-.t12 .smk{color:#92400e}.t12 .smv{font-weight:600;color:#3a2800}
-.t12 .main-lbl{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b45309;border-left:3px solid #f59e0b;padding-left:7px;margin-bottom:5px}
-.t12 .pname{font-weight:700;font-size:.87rem}
-.t12 .pdet{font-size:.73rem;color:#556;line-height:1.65}
-.t12 thead th{background:#b45309;color:#fff;padding:8px 10px;font-size:.63rem;letter-spacing:.05em;text-transform:uppercase}
-.t12 tbody td{padding:7px 10px;border-bottom:1px solid #fde68a;font-size:.79rem}
-.t12 tbody tr:nth-child(even) td{background:#fdfbf5}
-.t12 .sum-r{display:flex;justify-content:space-between;font-size:.76rem;padding:3px 0;border-bottom:1px solid #fde68a;color:#7a5a20}
-.t12 .sum-r:last-of-type{border:none}
-.t12 .sum-r.tot{background:#b45309;color:#fff;padding:8px 11px;border-radius:5px;font-weight:700;margin-top:5px}
-.t12 .bank-box{background:#fff;border:1px solid #fde68a;border-radius:6px;padding:10px 12px}
-.t12 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
-.t12 .bk{color:#a07840}.t12 .bv{font-weight:600;color:#3a2800}
-.t12 .note-box{background:#fff;border-left:3px solid #f59e0b;padding:7px 10px;font-size:.73rem;color:#7a5a20}
-.t12 .sig{text-align:right;padding-top:14px;margin-top:auto}
-.t12 .sig-line{border-top:1px solid #b45309;width:150px;margin-left:auto;padding-top:4px}
-.t12 .sig-n{font-size:.8rem;font-weight:600}
-.t12 .sig-r{font-size:.67rem;color:#a07840}
-
-/* ── T13: Trifold Info Top ── */
 .t13{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff}
 .t13 .top-strip{background:#b5179e;height:6px}
 .t13 .top{padding:18px 26px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #f3d0ef}
@@ -932,7 +912,6 @@ const TPLS=[
   {id:'t9', name:'Pastel Violet',       desc:'หัวข้อ Playfair / ม่วงอ่อน'},
   {id:'t10',name:'Blueprint Light',     desc:'ฟ้าอ่อน / กรอบ tech style'},
   {id:'t11',name:'Bordered Frame',      desc:'กรอบซ้อน / ขาวดำ formal'},
-  {id:'t12',name:'Amber Sidebar',       desc:'คอลัมน์ข้างสีเหลืองทอง'},
   {id:'t13',name:'Trifold Info Band',   desc:'แถบข้อมูล 3 คอลัมน์ / ชมพู'},
   {id:'t14',name:'Teal Dotted',         desc:'Teal / เส้นประจุดข้อมูล'},
   {id:'t15',name:'Compact Report',      desc:'สไตล์รายงาน / 2 ลายเซ็น'},
@@ -1055,14 +1034,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div class="tag">แคมเปญ: '+proj+'</div>':'')+
     '        <div class="parties">'+
-    '          <div><div class="tag">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          <div><div class="tag">ผู้รับเงิน / อินฟลูเอนเซอร์</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1c3f6e;margin-bottom:6px">ข้อมูลการโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t2'){
     html=
@@ -1081,14 +1060,14 @@ function renderInvoice(){
     '        <div class="body-content">'+
     '          '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
     '          <div class="parties">'+
-    '            <div><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '            <div><div class="lbl">ออกให้แก่ (ผู้รับเงิน)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          </div>'+
     '          <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '          <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '          <div class="bank-box"><div class="lbl">บัญชีสำหรับรับโอน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '          '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '          <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '        </div>'+
     '      </div></div>';;
   } else if(t==='t3'){
@@ -1103,14 +1082,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div><span class="proj-tag">Campaign: '+proj+'</span></div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-box"><div class="lbl">BILL FROM</div><div class="pname">'+(iName)+'</div><div class="pdet">'+(infDetailPlain.replace(/\n/g,'<br>'))+'</div></div>'+
-    '          <div class="party-box"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">PAYMENT INFO</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">NOTE: '+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">Authorized Signature</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t4'){
     html=
@@ -1127,8 +1106,8 @@ function renderInvoice(){
     '      <div class="body">'+
     '        <div class="section-title">ข้อมูลผู้รับเงิน (อินฟลูเอนเซอร์)</div>'+
     '        <div class="parties">'+
-    '          <div><div class="tag">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          <div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          <div><div class="section-title" style="margin-bottom:5px">ข้อมูลบัญชีรับเงิน</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div></div>'+
     '        </div>'+
     '        <div class="section-title">รายการแจ้งหนี้</div>'+
@@ -1136,7 +1115,7 @@ function renderInvoice(){
     '        <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
     '        '+(note?'<div class="note-box">* '+note+'</div>':'')+
     '        <div class="footer-dots">· · · · · · · · · · · · · · · ·</div>'+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '        <div class="footer-dots">· · · · · · · · · · · · · · · ·</div>'+
     '      </div></div>';;
   } else if(t==='t5'){
@@ -1148,14 +1127,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div class="proj-strip">แคมเปญ / Campaign: '+proj+'</div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้รับเงิน (Vendor)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>โทร: '+iPhone:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          <div class="party-card"><div class="lbl">บัญชีรับเงิน (Bank Account)</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div>'+(iEmail?'<div style="font-size:.72rem;color:#5a7a6a;margin-top:5px">อีเมล: '+iEmail+'</div>':'')+'</div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน / Vendor</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t6'){
     html=
@@ -1167,14 +1146,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#d4a843;margin-bottom:-6px">✦ Campaign: '+proj+' ✦</div>':'')+
     '        <div class="parties">'+
-    '          <div><div class="lbl">Issued By / ผู้จ่ายเงิน</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>บัตรประชาชน: '+iCard:'')+'</div></div>'+
-    '          <div><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">Payment Details / บัญชีสำหรับโอน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">Signature / ลายเซ็น</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t7'){
     html=
@@ -1188,14 +1167,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7b2d8b;background:#f8f0ff;padding:4px 10px;border-radius:4px;display:inline-block">Campaign: '+proj+'</div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">จาก (From)</div><div class="pname">'+(iName)+(iNick?' · '+iNick:'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>Tax ID: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <div class="table-wrap"><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ลายเซ็นผู้รับเงิน</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t8'){
     html=
@@ -1214,14 +1193,14 @@ function renderInvoice(){
     '      </div>'+
     '      <div class="body">'+
     '        <div class="parties">'+
-    '          <div><div class="lbl">ผู้รับเงิน (Influencer)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '          <div><div class="lbl">ผู้จ่ายเงิน (Company)</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">บัญชีรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">Influencer Signature</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t9'){
     html=
@@ -1236,14 +1215,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7c3aed">✦ โปรเจค: '+proj+' ✦</div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">บัญชีธนาคารสำหรับรับเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t10'){
     html=
@@ -1257,14 +1236,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div class="lbl">PROJECT: '+proj+'</div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">FROM (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' · '+iNick:'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>ID: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">BANK_ACCOUNT</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">// NOTE: '+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">// SIGNED</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t11'){
     html=
@@ -1282,8 +1261,8 @@ function renderInvoice(){
     '        </div>'+
     '        <div class="body">'+
     '          <div class="parties">'+
-    '            <div class="party-box"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '            <div class="party-box"><div class="lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          </div>'+
     '          <div class="section-box">'+
     '            <div class="section-box-head">รายการแจ้งหนี้</div>'+
@@ -1295,44 +1274,9 @@ function renderInvoice(){
     '            <div class="section-box-body"><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '          </div>'+
     '          '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '          <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '        </div>'+
     '      </div></div></div>';;
-  } else if(t==='t12'){
-    html=
-    '<div class="inv t12">'+
-    '      <div class="layout">'+
-    '        <div class="sidebar-col">'+
-    '          <div><div class="doc-sub">Invoice</div><div class="doc-title">ใบแจ้งหนี้</div></div>'+
-    '          <div>'+
-    '            <div class="side-lbl">เลขที่ / วันที่</div>'+
-    '            <div class="side-meta-row">'+
-    '              <div><span class="smk">เลขที่: </span><span class="smv">'+(invNo)+'</span></div>'+
-    '              <div><span class="smk">วันที่: </span><span class="smv">'+(invDate)+'</span></div>'+
-    '              <div><span class="smk">ครบกำหนด: </span><span class="smv">'+(invDue)+'</span></div>'+
-    '            </div>'+
-    '          </div>'+
-    '          <div>'+
-    '            <div class="side-lbl">ผู้จ่ายเงิน</div><div class=\"side-pname\">\'+(CO.name)+\'</div><div class=\"side-pdet\">\'+(coAddr)+\'<br>เลขผู้เสียภาษี: \'+(CO.tax)+\'</div>'+
-    '          </div>'+
-    '          '+(proj?'<div><div class="side-lbl">แคมเปญ</div><div class="side-pdet">'+proj+'</div></div>':'')+
-    '          <div>'+
-    '            <div class="side-lbl">บัญชีรับเงิน</div>'+
-    '            <div class="side-meta-row" style="font-size:.72rem">'+
-    '              <div><span class="smk">ธนาคาร: </span><span class="smv">'+(bank||'–')+'</span></div>'+
-    '              <div><span class="smk">ชื่อบัญชี: </span><span class="smv">'+(bAcc||'–')+'</span></div>'+
-    '              <div><span class="smk">เลขบัญชี: </span><span class="smv">'+(bNo||'–')+'</span></div>'+
-    '            </div>'+
-    '          </div>'+
-    '        </div>'+
-    '        <div class="main-col">'+
-    '          <div><div class="main-lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '          <div><div class="main-lbl">รายการแจ้งหนี้</div><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
-    '          <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
-    '          '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '          <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
-    '        </div>'+
-    '      </div></div>';;
   } else if(t==='t13'){
     html=
     '<div class="inv t13">'+
@@ -1342,8 +1286,8 @@ function renderInvoice(){
     '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>กำหนดชำระ: <strong>'+(invDue)+'</strong></div>'+
     '      </div>'+
     '      <div class="info-band">'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(CO.addr.replace(/\n/g,' '))+'</div></div>'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้รับเงิน</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">แคมเปญ</div><div class="ic-val">'+(proj||'ไม่ระบุ')+'</div><div class="ic-det">'+(iEmail||'')+(iCard?'<br>บัตร: '+iCard:'')+'</div></div>'+
     '      </div>'+
     '      <div class="body">'+
@@ -1351,7 +1295,7 @@ function renderInvoice(){
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">ข้อมูลสำหรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t14'){
     html=
@@ -1367,15 +1311,15 @@ function renderInvoice(){
     '        '+(proj?'<div><div class="lbl">โปรเจค / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
     '        <div><div class="lbl">คู่สัญญา</div>'+
     '          <div class="parties">'+
-    '            <div class="party-card"><div style="font-size:.58rem;color:#006d77;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '            <div class="party-card"><div style="font-size:.58rem;color:#006d77;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">ผู้รับเงิน</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          </div>'+
     '        </div>'+
     '        <div><div class="lbl">รายการงาน / บริการ</div><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
     '        <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div><div class="lbl">ข้อมูลบัญชีรับเงิน</div><div class="bank-box"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน / Influencer</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t15'){
     html=
@@ -1387,8 +1331,8 @@ function renderInvoice(){
     '        </div>'+
     '      </div>'+
     '      <div class="info-row">'+
+    '        <div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(CO.addr.replace(/\n/g,' '))+'</div></div>'+
-    '<div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
     '        <div class="info-cell"><div class="ic-lbl">บัญชีธนาคาร</div><div class="ic-val">'+(bank||'–')+'</div><div class="ic-det">'+(bAcc||'–')+'<br>เลขบัญชี: '+(bNo||'–')+(bBr?' · '+bBr:'')+'</div></div>'+
     '      </div>'+
     '      <div class="body">'+
@@ -1397,7 +1341,7 @@ function renderInvoice(){
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
     '        <div class="sig">'+
-    '          <div class="sig-blk"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '        </div>'+
     '      </div></div>';;
   } else if(t==='t16'){
@@ -1409,15 +1353,15 @@ function renderInvoice(){
     '      </div>'+
     '      <div class="body">'+
     '        <div class="parties">'+
-    '          <div><div class="stamp-lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          <div><div class="stamp-lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        '+(proj?'<div><div class="stamp-lbl">แคมเปญ / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="stamp-lbl">ข้อมูลการชำระเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน / อินฟลูเอนเซอร์</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t17'){
     html=
@@ -1432,14 +1376,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div><div class="lbl">แคมเปญ / Project</div><div style="font-size:.85rem;font-weight:600">'+proj+'</div></div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>'+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้รับใบแจ้งหนี้</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t18'){
     html=
@@ -1451,7 +1395,8 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
     '        <hr class="divider">'+
-    '        <div><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '        <div class="uni-party"><div class="uni-party-label">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="uni-party-name">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="uni-party-det">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '        <div class="uni-party"><div class="uni-party-label">ผู้จ่ายเงิน</div><div class="uni-party-name">'+(CO.name)+'</div><div class="uni-party-det">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        <hr class="divider">'+
     '        <div><div class="lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
     '        <hr class="divider">'+
@@ -1459,7 +1404,7 @@ function renderInvoice(){
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">บัญชีสำหรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้รับเงิน</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else if(t==='t19'){
     html=
@@ -1471,14 +1416,14 @@ function renderInvoice(){
     '      <div class="body">'+
     '        '+(proj?'<div class="lbl">CAMPAIGN: '+proj+'</div>':'')+
     '        <div class="parties">'+
-    '          <div class="party-card"><div class="lbl">VENDOR (ผู้รับเงิน)</div><div class="pname">'+(iName)+(iNick?' ['+iNick+']':'')+'</div><div class="pdet">'+((iPad||'').replace(/\n/g,'<br>'))+(iPhone?'<br>TEL: '+iPhone:'')+(iEmail?'<br>EMAIL: '+iEmail:'')+(iCard?'<br>ID: '+iCard:'')+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>TAX_ID: '+(CO.tax)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '        </div>'+
     '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
     '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
     '        <div class="bank-box"><div class="lbl">PAYMENT_ACCOUNT</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
     '        '+(note?'<div class="note-box">// REMARKS: '+note+'</div>':'')+
-    '        <div class="sig"><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">// VENDOR_SIGNATURE</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '      </div></div>';;
   } else { // t20
     html=
@@ -1499,8 +1444,8 @@ function renderInvoice(){
     '      <div class="body">'+
     '        <div><div class="section-title">ข้อมูลคู่สัญญา</div>'+
     '          <div class="parties">'+
-    '            <div class="party-box"><div class="p-sect">ผู้จ่ายเงิน</div><div class="pname">'+(CO.name)+'</div><div class="pdet">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '            <div class="party-box"><div class="p-sect">ผู้รับเงิน</div><div class="pdet">'+(infDetail)+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
     '          </div>'+
     '        </div>'+
     '        <div><div class="section-title">รายการและราคา</div>'+
@@ -1510,9 +1455,9 @@ function renderInvoice(){
     '        <div><div class="section-title">ข้อมูลบัญชีธนาคาร</div><div class="section-content"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
     '        '+(note?'<div><div class="section-title">หมายเหตุ</div><div class="note-box">'+note+'</div></div>':'')+
     '        <div class="sig-row">'+
-    '          <div class="sig-blk"><div style="height:36px"></div><div class="sig-line"></div><div class="sig-n">'+(iName)+'</div><div class="sig-r">ผู้แจ้งหนี้</div></div>'+
-    '          <div class="sig-blk"><div style="height:36px"></div><div class="sig-line"></div><div class="sig-n">_____________</div><div class="sig-r">ผู้รับเอกสาร</div></div>'+
-    '          <div class="sig-blk"><div style="height:36px"></div><div class="sig-line"></div><div class="sig-n">_____________</div><div class="sig-r">ผู้อนุมัติจ่าย</div></div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
+    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
     '        </div>'+
     '      </div></div>';;
   }
