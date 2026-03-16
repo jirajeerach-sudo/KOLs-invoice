@@ -1698,6 +1698,34 @@ function savePDF() {
     document.getElementById('doneScreen').classList.add('show');
   }).catch(function(e){ ov.classList.remove('show'); alert('Error: '+e.message); });
 }
+function goToStep(n) {
+  var mainWrap = document.querySelector('.main-wrap');
+  var step2Panel = document.getElementById('step2Panel');
+  var step2Prev = document.getElementById('step2PreviewWrap');
+  var btnNext = document.getElementById('btnNextToTemplate');
+  var s1 = document.getElementById('step1ind');
+  var s2 = document.getElementById('step2ind');
+  var s2c = document.getElementById('step2circle');
+  if (n === 1) {
+    mainWrap.style.display = 'grid';
+    step2Panel.style.display = 'none';
+    if (step2Prev) step2Prev.style.display = 'none';
+    btnNext.style.display = 'inline-flex';
+    if(s1){ s1.style.color='#f0c040'; s1.querySelector('div').style.background='#f0c040'; s1.querySelector('div').style.color='#1a1a2e'; }
+    if(s2){ s2.style.color='rgba(255,255,255,.35)'; }
+    if(s2c){ s2c.style.background='rgba(255,255,255,.15)'; s2c.style.color='rgba(255,255,255,.4)'; }
+  } else {
+    mainWrap.style.display = 'none';
+    step2Panel.style.display = 'block';
+    if (step2Prev) step2Prev.style.display = 'block';
+    btnNext.style.display = 'none';
+    if(s1){ s1.style.color='rgba(255,255,255,.45)'; s1.querySelector('div').style.background='rgba(255,255,255,.15)'; s1.querySelector('div').style.color='rgba(255,255,255,.4)'; }
+    if(s2){ s2.style.color='#f0c040'; }
+    if(s2c){ s2c.style.background='#f0c040'; s2c.style.color='#1a1a2e'; }
+    renderInvoice();
+    window.scrollTo(0,0);
+  }
+}
 (function(){
   var today=new Date().toISOString().split('T')[0];
   document.getElementById('invDate').value=today;
@@ -1705,41 +1733,6 @@ function savePDF() {
   document.getElementById('invDue').value=due.toISOString().split('T')[0];
   var d=new Date();
   document.getElementById('invNo').value='INV-'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-001';
-function goToStep(n) {
-  var mainWrap = document.querySelector('.main-wrap');
-  var step2Panel = document.getElementById('step2Panel');
-  var btnNext = document.getElementById('btnNextToTemplate');
-  var s1 = document.getElementById('step1ind');
-  var s2 = document.getElementById('step2ind');
-  var s2c = document.getElementById('step2circle');
-  var s3 = document.getElementById('step3ind');
-  if (n === 1) {
-    mainWrap.style.display = 'grid';
-    step2Panel.style.display = 'none';
-    document.getElementById('step2PreviewWrap').style.display = 'none';
-    btnNext.style.display = 'inline-flex';
-    s1.style.color = '#f0c040';
-    s1.querySelector('div').style.background = '#f0c040';
-    s1.querySelector('div').style.color = '#1a1a2e';
-    s2.style.color = 'rgba(255,255,255,.35)';
-    s2c.style.background = 'rgba(255,255,255,.15)';
-    s2c.style.color = 'rgba(255,255,255,.4)';
-  } else {
-    mainWrap.style.display = 'none';
-    step2Panel.style.display = 'block';
-    document.getElementById('step2PreviewWrap').style.display = 'block';
-    btnNext.style.display = 'none';
-    s1.style.color = 'rgba(255,255,255,.45)';
-    s1.querySelector('div').style.background = 'rgba(255,255,255,.15)';
-    s1.querySelector('div').style.color = 'rgba(255,255,255,.4)';
-    s2.style.color = '#f0c040';
-    s2c.style.background = '#f0c040';
-    s2c.style.color = '#1a1a2e';
-    renderInvoice();
-    window.scrollTo(0,0);
-  }
-}
-
   var g=document.getElementById('tplGrid');
   TPLS.forEach(function(t,i){
     var b=document.createElement('button');
