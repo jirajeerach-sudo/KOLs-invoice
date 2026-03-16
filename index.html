@@ -1377,38 +1377,37 @@ function renderInvoice(){
   } else { // t20
     html=
     '<div class="inv t20">'+
-    '      <div class="top">'+
-    '        <div class="top-left">'+
-    '        </div>'+
-    '        <div class="top-right">'+
-    '          <div class="top-doc">ใบแจ้งหนี้</div>'+
-    '          <div class="top-meta-grid">'+
-    '            <span class="mk">เลขที่:</span><span class="mv">'+(invNo)+'</span>'+
-    '            <span class="mk">วันที่ออก:</span><span class="mv">'+(invDate)+'</span>'+
-    '            <span class="mk">กำหนดชำระ:</span><span class="mv">'+(invDue)+'</span>'+
-    '            '+(proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
-    '          </div>'+
-    '        </div>'+
+    '  <div class="top">'+
+    '    <div class="top-left"></div>'+
+    '    <div class="top-right">'+
+    '      <div class="top-doc">ใบแจ้งหนี้</div>'+
+    '      <div class="top-meta-grid">'+
+    '        <span class="mk">เลขที่:</span><span class="mv">'+(invNo)+'</span>'+
+    '        <span class="mk">วันที่ออก:</span><span class="mv">'+(invDate)+'</span>'+
+    '        <span class="mk">กำหนดชำระ:</span><span class="mv">'+(invDue)+'</span>'+
+    '        '+(proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
     '      </div>'+
-    '      <div class="body">'+
-    '        <div><div class="section-title">ข้อมูลคู่สัญญา</div>'+
-    '          <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          </div>'+
-    '        </div>'+
-    '        <div><div class="section-title">รายการและราคา</div>'+
-    '          <table>'+(tHeadReport)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        </div>'+
-    '        <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div><div class="section-title">ข้อมูลบัญชีธนาคาร</div><div class="section-content"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
-    '        '+(note?'<div><div class="section-title">หมายเหตุ</div><div class="note-box">'+note+'</div></div>':'')+
-    '        <div class="sig-row">'+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '        </div>'+
-    '      </div></div>';;
+    '    </div>'+
+    '  </div>'+
+    '  <div class="body">'+
+    '    <div><div class="section-title">ข้อมูลคู่สัญญา</div>'+
+    '      <div class="uni-parties">'+
+    '        <div class="uni-party"><div class="uni-party-label">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="uni-party-name">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="uni-party-det">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+    '        <div class="uni-party"><div class="uni-party-label">ผู้จ่ายเงิน</div><div class="uni-party-name">'+(CO.name)+'</div><div class="uni-party-det">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
+    '      </div>'+
+    '    </div>'+
+    '    <div><div class="section-title">รายการและราคา</div>'+
+    '      <table>'+(tHeadReport)+'<tbody>'+(tRows)+'</tbody></table>'+
+    '    </div>'+
+    '    <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
+    '    <div><div class="section-title">ข้อมูลบัญชีธนาคาร</div><div class="section-content"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
+    '    '+(note?'<div><div class="section-title">หมายเหตุ</div><div class="note-box">'+note+'</div></div>':'')+
+    '    <div class="sig-row-uni">'+
+    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">'+(iName)+'</div><div class="sig-role">ผู้แจ้งหนี้</div></div></div>'+
+    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้รับเอกสาร</div></div></div>'+
+    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้อนุมัติจ่าย</div></div></div>'+
+    '    </div>'+
+    '  </div></div>';
   }
   document.getElementById('invoiceWrap').innerHTML=html;
   var s2p = document.getElementById('step2PreviewInner');
