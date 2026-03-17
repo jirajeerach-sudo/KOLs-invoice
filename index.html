@@ -32,54 +32,33 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 /* ── LAYOUT ── */
 .main-wrap{max-width:1100px;margin:0 auto;padding:24px 16px 80px;display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
 @media(max-width:800px){
-  /* Layout */
   .main-wrap{grid-template-columns:1fr;padding:12px 12px 100px}
   .preview-area{display:none}
-
-  /* Picker bar compact */
   .picker-bar{padding:10px 14px}
   .picker-logo{font-size:.82rem}
   .picker-logo span{font-size:.6rem}
   .btn-act{padding:7px 12px;font-size:.75rem}
-
-  /* Step bar compact */
   #stepBar{margin-top:6px;gap:5px}
   #stepBar div{font-size:.65rem}
   #stepBar div div{width:18px;height:18px;font-size:.6rem}
-
-  /* Cards */
   .fc-head{padding:10px 14px;font-size:.7rem}
   .fc-body{padding:12px 14px;gap:8px}
-
-  /* Fields bigger touch targets */
   .field input,.field select,.field textarea{padding:11px 12px;font-size:.95rem;border-radius:8px}
   .field label{font-size:.7rem}
-
-  /* 2-col grid → 1-col on very small */
   .fr{grid-template-columns:1fr 1fr;gap:8px}
-
-  /* Items table - hide qty/price columns, show only desc+total */
   .itbl thead th{padding:8px 6px;font-size:.65rem}
   .itbl tbody td{padding:7px 6px;font-size:.8rem}
   .cq,.cp{display:none}
   .itbl input{font-size:.85rem;padding:4px 2px}
-
-  /* Sum */
   .sum-s{padding:10px 12px}
   .sum-sr{font-size:.8rem}
   .sum-tot{padding:10px 12px}
   .sum-tot-v{font-size:1.05rem}
-
-  /* Step 2 template grid - 2 per row */
   .tpl-grid{gap:5px}
   .tpl-btn{font-size:.68rem;padding:6px 10px}
-
-  /* Step 2 preview full width */
   #step2PreviewWrap{padding:0 0 100px}
   #zoomBar{display:flex !important}
   #step2ScrollWrap{height:65vh;overflow:auto;-webkit-overflow-scrolling:touch}
-
-  /* Bottom nav bar for mobile */
   .mob-nav{display:flex !important}
 }
 
@@ -224,7 +203,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t1 .sig-n{font-size:.8rem;font-weight:600}
 .t1 .sig-r{font-size:.68rem;color:#888}
 
-/* ── T2: Left Stripe Bold ── */
+/* ── T2 ── */
 .t2{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff}
 .t2 .top{display:flex;gap:0}
 .t2 .top-stripe{width:10px;background:linear-gradient(180deg,#e63946,#c1121f);flex-shrink:0}
@@ -253,12 +232,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t2 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t2 .bk{color:#aa7070}.t2 .bv{font-weight:600;color:#3a1010}
 .t2 .note-box{border-left:3px solid #e63946;padding:7px 10px;background:#fff;font-size:.73rem;color:#7a3030}
-.t2 .sig{text-align:right;padding-top:14px}
-.t2 .sig-line{border-top:2px solid #c1121f;width:150px;margin-left:auto;padding-top:4px}
-.t2 .sig-n{font-size:.8rem;font-weight:700}
-.t2 .sig-r{font-size:.67rem;color:#aa7070}
 
-/* ── T3: Slash Diagonal ── */
+/* ── T3 ── */
 .t3{font-family:'Kanit',sans-serif;background:#fff}
 .t3 .top{position:relative;background:#e8f0ff;padding:24px 30px 20px;overflow:hidden;border-bottom:2px solid #3b82f6}
 .t3 .top::after{content:'';position:absolute;bottom:0;right:0;width:60%;height:100%;background:#bfdbfe;clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%)}
@@ -286,12 +261,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t3 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t3 .bk{color:#93a8c8}.t3 .bv{font-weight:600;color:#1e3a6e}
 .t3 .note-box{background:#fff;border-radius:5px;padding:8px 11px;font-size:.73rem;color:#1e40af;border-left:3px solid #3b82f6}
-.t3 .sig{text-align:right;padding-top:14px}
-.t3 .sig-line{border-top:1px solid #3b82f6;width:150px;margin-left:auto;padding-top:4px}
-.t3 .sig-n{font-size:.8rem;font-weight:600}
-.t3 .sig-r{font-size:.67rem;color:#6b8abd}
 
-/* ── T4: Receipt Style ── */
+/* ── T4 ── */
 .t4{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff}
 .t4 .top{text-align:center;padding:20px 28px 14px;border-bottom:2px dashed #ccc}
 .t4 .top-logo{font-size:1.1rem;font-weight:700;letter-spacing:.05em;margin-bottom:3px}
@@ -312,13 +283,9 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t4 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t4 .bk{color:#888}.t4 .bv{font-weight:600}
 .t4 .note-box{background:#fff;padding:8px 11px;font-size:.73rem;color:#555;border:1px dashed #ccc}
-.t4 .sig{text-align:center;padding-top:14px;border-top:1px dashed #ccc}
-.t4 .sig-line{border-top:1px solid #111;width:140px;margin:0 auto;padding-top:4px}
-.t4 .sig-n{font-size:.8rem;font-weight:600}
-.t4 .sig-r{font-size:.67rem;color:#888}
 .t4 .footer-dots{text-align:center;color:#ccc;letter-spacing:3px;padding:8px 0 4px;font-size:.8rem}
 
-/* ── T5: Two-Tone Split ── */
+/* ── T5 ── */
 .t5{font-family:'Prompt',sans-serif}
 .t5 .top{display:grid;grid-template-columns:1fr 1fr}
 .t5 .top-left{background:#2d6a4f;color:#fff;padding:22px 22px 22px 28px}
@@ -348,12 +315,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t5 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t5 .bk{color:#7a9a84}.t5 .bv{font-weight:600}
 .t5 .note-box{border-left:3px solid #2d6a4f;padding:7px 10px;background:#fff;font-size:.73rem;color:#4a6a58}
-.t5 .sig{text-align:right;padding-top:14px}
-.t5 .sig-line{border-top:1px solid #2d6a4f;width:150px;margin-left:auto;padding-top:4px}
-.t5 .sig-n{font-size:.8rem;font-weight:600}
-.t5 .sig-r{font-size:.67rem;color:#7a9a84}
 
-/* ── T6: Luxury Gold Light ── */
+/* ── T6 ── */
 .t6{font-family:'Playfair Display',serif;color:#2a1f0a;background:#fff}
 .t6 .top{padding:26px 32px;border-bottom:2px solid #c9a84c;display:flex;justify-content:space-between;align-items:flex-end;background:#fff}
 .t6 .top-doc{font-size:2rem;color:#8a6a10;letter-spacing:-.5px;line-height:1}
@@ -377,12 +340,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t6 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t6 .bk{color:#a08040}.t6 .bv{font-weight:600;color:#3a2800}
 .t6 .note-box{border-left:2px solid #c9a84c;padding:7px 10px;background:#fff;font-size:.73rem;color:#7a6030}
-.t6 .sig{text-align:right;padding-top:16px}
-.t6 .sig-line{border-top:1px solid #c9a84c;width:150px;margin-left:auto;padding-top:4px}
-.t6 .sig-n{font-size:.82rem;font-weight:700;color:#8a6a10;font-family:'Playfair Display',serif}
-.t6 .sig-r{font-size:.67rem;color:#a08040}
 
-/* ── T7: Card Stack Layout ── */
+/* ── T7 ── */
 .t7{font-family:'Sarabun',sans-serif;background:#fff}
 .t7 .top{background:linear-gradient(135deg,#7b2d8b,#a855f7);color:#fff;padding:22px 28px}
 .t7 .top-row{display:flex;justify-content:space-between;align-items:flex-start}
@@ -409,12 +368,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t7 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t7 .bk{color:#999}.t7 .bv{font-weight:600}
 .t7 .note-box{background:#fff;border-radius:8px;padding:9px 13px;font-size:.73rem;color:#666;border-left:3px solid #a855f7;box-shadow:0 2px 8px rgba(0,0,0,.07)}
-.t7 .sig{text-align:right;padding-top:14px}
-.t7 .sig-line{border-top:1px solid #a855f7;width:150px;margin-left:auto;padding-top:4px}
-.t7 .sig-n{font-size:.8rem;font-weight:600}
-.t7 .sig-r{font-size:.67rem;color:#999}
 
-/* ── T8: Horizontal Info Bar ── */
+/* ── T8 ── */
 .t8{font-family:'Kanit',sans-serif;background:#fff}
 .t8 .top-accent{height:6px;background:linear-gradient(90deg,#f97316,#fb923c,#fbbf24,#f97316)}
 .t8 .top{padding:18px 28px 14px;border-bottom:1px solid #fed7aa}
@@ -436,7 +391,6 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t8 .pdet{font-size:.73rem;color:#7a5a3a;line-height:1.65}
 .t8 thead th{background:#c2410c;color:#fff;padding:7px 10px;font-size:.63rem;letter-spacing:.05em;text-transform:uppercase}
 .t8 tbody td{padding:7px 10px;border-bottom:1px solid #fde8d8;font-size:.79rem}
-.t8 tbody tr:nth-child(even) td{background:#fff}
 .t8 .sum-area{display:flex;justify-content:flex-end}
 .t8 .sum-box{width:210px}
 .t8 .sum-r{display:flex;justify-content:space-between;font-size:.76rem;padding:3px 0;border-bottom:1px solid #fde8d8;color:#7a5a3a}
@@ -446,12 +400,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t8 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t8 .bk{color:#ba8060}.t8 .bv{font-weight:600}
 .t8 .note-box{border-left:3px solid #f97316;padding:7px 10px;background:#fff;font-size:.73rem;color:#7a5a3a}
-.t8 .sig{text-align:right;padding-top:14px}
-.t8 .sig-line{border-top:1px solid #f97316;width:150px;margin-left:auto;padding-top:4px}
-.t8 .sig-n{font-size:.8rem;font-weight:600}
-.t8 .sig-r{font-size:.67rem;color:#ba8060}
 
-/* ── T9: Pastel Minimal ── */
+/* ── T9 ── */
 .t9{font-family:'Sarabun',sans-serif;background:#fff}
 .t9 .top{padding:22px 28px 14px}
 .t9 .top-row{display:flex;justify-content:space-between;align-items:flex-start}
@@ -478,12 +428,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t9 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t9 .bk{color:#9a8ab8}.t9 .bv{font-weight:600}
 .t9 .note-box{background:#fff;border:1px solid #ede9fe;border-radius:6px;padding:8px 11px;font-size:.73rem;color:#5a4a7a}
-.t9 .sig{text-align:center;padding-top:14px}
-.t9 .sig-line{border-top:2px solid #6d28d9;width:140px;margin:0 auto;padding-top:4px}
-.t9 .sig-n{font-size:.8rem;font-weight:700;color:#6d28d9}
-.t9 .sig-r{font-size:.67rem;color:#9a8ab8}
 
-/* ── T10: Blueprint Light ── */
+/* ── T10 ── */
 .t10{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff;color:#1a2a3a}
 .t10 .top{padding:24px 30px;border:2px solid #93c5fd;margin:12px;border-radius:4px;background:#eef5ff}
 .t10 .top-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
@@ -510,12 +456,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t10 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t10 .bk{color:#6a9aba}.t10 .bv{font-weight:600;color:#1a2a3a}
 .t10 .note-box{border:1px solid #93c5fd;border-radius:4px;padding:8px 11px;font-size:.72rem;color:#4a6a8a;background:#fff}
-.t10 .sig{text-align:right;padding-top:14px}
-.t10 .sig-line{border-top:1px solid #3b82f6;width:150px;margin-left:auto;padding-top:4px}
-.t10 .sig-n{font-size:.8rem;font-weight:600;color:#1a2a3a}
-.t10 .sig-r{font-size:.67rem;color:#6a9aba}
 
-/* ── T11: Bordered Frame ── */
+/* ── T11 ── */
 .t11{font-family:'Sarabun',sans-serif;background:#fff}
 .t11 .outer{margin:10px;border:2px solid #1a1a2e;padding:2px}
 .t11 .inner{border:1px solid #1a1a2e}
@@ -547,12 +489,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t11 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73px;padding:10px 12px}
 .t11 .bk{color:#888}.t11 .bv{font-weight:600}
 .t11 .note-box{background:#fff;border:1px solid #f0e060;padding:8px 11px;font-size:.73rem;color:#555}
-.t11 .sig{text-align:center;padding:14px 0 8px;border-top:1px solid #ddd}
-.t11 .sig-line{border-top:1px solid #1a1a2e;width:140px;margin:0 auto;padding-top:4px}
-.t11 .sig-n{font-size:.8rem;font-weight:600}
-.t11 .sig-r{font-size:.67rem;color:#888}
 
-/* ── T12: Colorblock Side ── */
+/* ── T13 ── */
 .t13{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff}
 .t13 .top-strip{background:#b5179e;height:6px}
 .t13 .top{padding:18px 26px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #f3d0ef}
@@ -580,12 +518,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t13 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t13 .bk{color:#aa88aa}.t13 .bv{font-weight:600;color:#5a2a58}
 .t13 .note-box{border-left:3px solid #b5179e;padding:7px 10px;background:#fff;font-size:.73rem;color:#886688}
-.t13 .sig{text-align:right;padding-top:13px}
-.t13 .sig-line{border-top:1px solid #b5179e;width:150px;margin-left:auto;padding-top:4px}
-.t13 .sig-n{font-size:.8rem;font-weight:700;color:#b5179e}
-.t13 .sig-r{font-size:.67rem;color:#aa88aa}
 
-/* ── T14: Teal Minimal Grid ── */
+/* ── T14 ── */
 .t14{font-family:'Kanit',sans-serif;background:#fff}
 .t14 .top{background:#006d77;color:#fff;padding:20px 28px}
 .t14 .top-grid{display:grid;grid-template-columns:auto 1fr auto;gap:0 16px;align-items:center}
@@ -612,12 +546,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t14 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t14 .bk{color:#7a9a9a}.t14 .bv{font-weight:600}
 .t14 .note-box{background:#fff;border-radius:5px;padding:8px 11px;font-size:.73rem;color:#4a7a7a;border-left:3px solid #83c5be}
-.t14 .sig{text-align:right;padding-top:14px}
-.t14 .sig-line{border-top:1px solid #006d77;width:150px;margin-left:auto;padding-top:4px}
-.t14 .sig-n{font-size:.8rem;font-weight:600}
-.t14 .sig-r{font-size:.67rem;color:#7a9a9a}
 
-/* ── T15: Compact Report ── */
+/* ── T15 ── */
 .t15{font-family:'IBM Plex Sans Thai',sans-serif;background:#fff;font-size:12px}
 .t15 .top{display:flex;align-items:stretch;background:#fff;border-bottom:3px solid #374151}
 .t15 .top-co-block{padding:16px 20px;flex:1;border-right:1px solid #e5e7eb}
@@ -647,13 +577,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t15 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.72rem}
 .t15 .bk{color:#9ca3af}.t15 .bv{font-weight:600;color:#111827}
 .t15 .note-box{background:#fff;border:1px solid #fde68a;padding:7px 10px;font-size:.72rem;color:#78350f}
-.t15 .sig{display:flex;justify-content:flex-end;align-items:flex-end;gap:40px;padding-top:14px}
-.t15 .sig-blk{text-align:center}
-.t15 .sig-line{border-top:1px solid #374151;width:130px;margin:0 auto;padding-top:4px}
-.t15 .sig-n{font-size:.78rem;font-weight:600}
-.t15 .sig-r{font-size:.65rem;color:#9ca3af}
 
-/* ── T16: Retro Stamp ── */
+/* ── T16 ── */
 .t16{font-family:'Kanit',sans-serif;background:#fff}
 .t16 .top{background:#fdecc8;color:#3a1800;padding:20px 28px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:4px double #8b5e3c}
 .t16 .top-doc{font-size:1.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8b4513}
@@ -677,12 +602,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t16 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t16 .bk{color:#9a7a5a}.t16 .bv{font-weight:600}
 .t16 .note-box{border:2px dashed #8b5e3c;padding:8px 11px;font-size:.73rem;color:#7a5a3a;background:#fff}
-.t16 .sig{text-align:right;padding-top:14px}
-.t16 .sig-line{border-top:2px solid #8b5e3c;width:150px;margin-left:auto;padding-top:4px}
-.t16 .sig-n{font-size:.82rem;font-weight:700;color:#5a2800}
-.t16 .sig-r{font-size:.68rem;color:#9a7a5a;letter-spacing:.05em}
 
-/* ── T17: Ice Blue Corporate ── */
+/* ── T17 ── */
 .t17{font-family:'Sarabun',sans-serif;background:#fff}
 .t17 .top{background:linear-gradient(135deg,#0077b6,#00b4d8);color:#fff;padding:20px 28px}
 .t17 .top-row{display:flex;justify-content:space-between;align-items:flex-start}
@@ -709,12 +630,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t17 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t17 .bk{color:#7aaabb}.t17 .bv{font-weight:600}
 .t17 .note-box{background:#fff;border-radius:6px;border-left:3px solid #00b4d8;padding:7px 10px;font-size:.73rem;color:#4a7a9a}
-.t17 .sig{text-align:right;padding-top:14px}
-.t17 .sig-line{border-top:1px solid #00b4d8;width:150px;margin-left:auto;padding-top:4px}
-.t17 .sig-n{font-size:.8rem;font-weight:600}
-.t17 .sig-r{font-size:.67rem;color:#7aaabb}
 
-/* ── T18: Earthy Warm ── */
+/* ── T18 ── */
 .t18{font-family:'Sarabun',sans-serif;background:#fff}
 .t18 .top{background:#5c4a1e;color:#fef0c7;padding:20px 28px;display:flex;justify-content:space-between;align-items:flex-start}
 .t18 .top-doc{font-size:1.5rem;font-weight:700;color:#f4c842;letter-spacing:-.2px}
@@ -739,15 +656,10 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t18 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t18 .bk{color:#9a7a40}.t18 .bv{font-weight:600}
 .t18 .note-box{border-left:3px solid #f4c842;padding:7px 10px;background:#fff;font-size:.73rem;color:#7a6030}
-.t18 .sig{text-align:right;padding-top:14px}
-.t18 .sig-line{border-top:1px solid #5c4a1e;width:150px;margin-left:auto;padding-top:4px}
-.t18 .sig-n{font-size:.8rem;font-weight:700;color:#5c4a1e}
-.t18 .sig-r{font-size:.67rem;color:#9a7a40}
 
-/* ── T19: Fresh Green ── */
+/* ── T20 ── */
 .t20{font-family:'Sarabun',sans-serif;background:#fff}
 .t20 .top{padding:20px 30px;border-bottom:4px solid #1a1a2e;display:flex;justify-content:space-between;align-items:flex-start}
-.t20 .top-left{}
 .t20 .top-seal{width:56px;height:56px;border-radius:50%;border:3px solid #1a1a2e;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.5rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:#1a1a2e;line-height:1.3;margin-bottom:6px}
 .t20 .top-co-name{font-size:.82rem;font-weight:700;color:#1a1a2e}
 .t20 .top-co-det{font-size:.68rem;color:#555;line-height:1.6}
@@ -775,12 +687,6 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .t20 .bank-grid{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:2px 12px;font-size:.73rem}
 .t20 .bk{color:#888}.t20 .bv{font-weight:600}
 .t20 .note-box{background:#f9f9f9;border:1px solid #ddd;padding:8px 11px;font-size:.73rem;color:#555}
-.t20 .sig-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid #ddd;padding-top:14px;text-align:center}
-.t20 .sig-blk{}
-.t20 .sig-line{border-top:1px solid #1a1a2e;width:130px;margin:0 auto;padding-top:4px}
-.t20 .sig-n{font-size:.78rem;font-weight:600}
-.t20 .sig-r{font-size:.65rem;color:#888}
-.t20 .sig-date{font-size:.72rem;color:#555;margin-top:2px}
 
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:#fff}
 .ov.show{display:flex}
@@ -796,8 +702,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .sig-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .sig-img{max-height:70px;max-width:100%;object-fit:contain}
 
-/* ── A4 sizing for all templates ── */
-.inv { width: 794px !important; min-height: 1123px !important; box-sizing: border-box; margin: 0 auto; }
+/* ── A4 sizing ── */
+.inv{width:794px !important;min-height:1123px !important;box-sizing:border-box;margin:0 auto}
 
 </style>
 </head>
@@ -820,7 +726,6 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <button class="btn-act" id="btnNextToTemplate" onclick="goToStep(2)" style="background:#4a90d9;color:#fff">ถัดไป: เลือกแบบ →</button>
       </div>
     </div>
-    <!-- Step indicator -->
     <div id="stepBar" style="display:flex;align-items:center;gap:8px;margin-top:8px">
       <div id="step1ind" style="display:flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;color:#f0c040">
         <div style="width:22px;height:22px;border-radius:50%;background:#f0c040;color:#1a1a2e;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700">1</div>
@@ -840,7 +745,6 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
   </div>
 </div>
 
-<!-- Step 2: เลือก template (hidden initially) -->
 <div id="step2Panel" style="display:none;background:#0f1923;padding:12px 20px;border-top:1px solid rgba(255,255,255,.1)">
   <div style="max-width:1100px;margin:0 auto">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
@@ -853,16 +757,14 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <div class="tpl-grid" id="tplGrid"></div>
   </div>
 </div>
-<!-- Step 2 preview area (full width) -->
+
 <div id="step2PreviewWrap" style="display:none;padding:0 0 100px">
-  <!-- Zoom controls (mobile only) -->
   <div id="zoomBar" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 16px;background:#0f1923;border-top:1px solid rgba(255,255,255,.1)">
     <button onclick="changeZoom(-0.1)" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center">−</button>
     <span id="zoomLbl" style="color:rgba(255,255,255,.7);font-size:.75rem;font-family:Sarabun,sans-serif;min-width:40px;text-align:center">100%</span>
     <button onclick="changeZoom(0.1)" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center">+</button>
     <button onclick="resetZoom()" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:.7rem;font-family:Sarabun,sans-serif;cursor:pointer;margin-left:4px">รีเซ็ต</button>
   </div>
-  <!-- Scrollable preview container -->
   <div id="step2ScrollWrap" style="overflow:auto;-webkit-overflow-scrolling:touch;padding:16px">
     <div id="step2ZoomInner" style="transform-origin:top center;transition:transform .2s">
       <div class="inv-wrap" id="step2PreviewInner" style="width:794px;margin:0 auto"></div>
@@ -920,10 +822,10 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <table class="itbl"><thead><tr><th class="cn">#</th><th class="cd">รายการ</th><th class="cq">จำนวน</th><th class="cp">ราคา</th><th class="ct">รวม</th><th class="cx"></th></tr></thead><tbody id="itemsBody"></tbody></table>
         <button class="btn-ar" type="button" onclick="addRow()">+ เพิ่มรายการ</button>
         <div class="sum-s">
-          <div class="sum-sr"><span class="sum-sl">ยอดรวม</span><span class="sum-sv" id="sumSub">&#3647;0.00</span></div>
-          <div class="sum-sr"><span class="sum-sl">หัก ณ ที่จ่าย<select class="sum-ssel" id="whtSel" onchange="calcTotal();renderInvoice()"><option value="0">ไม่มี</option><option value="3" selected>3%</option><option value="5">5%</option></select></span><span class="sum-sv" style="color:#e05050" id="sumWht">-&#3647;0.00</span></div>
-          <div class="sum-sr"><span class="sum-sl">VAT<select class="sum-ssel" id="vatSel" onchange="calcTotal();renderInvoice()"><option value="0" selected>ไม่มี</option><option value="7">7%</option></select></span><span class="sum-sv" id="sumVat">&#3647;0.00</span></div>
-          <div class="sum-tot"><span class="sum-tot-l">ยอดที่ได้รับ</span><span class="sum-tot-v" id="sumTotal">&#3647;0.00</span></div>
+          <div class="sum-sr"><span class="sum-sl">ยอดรวม</span><span class="sum-sv" id="sumSub">฿0.00</span></div>
+          <div class="sum-sr"><span class="sum-sl">หัก ณ ที่จ่าย<select class="sum-ssel" id="whtSel" onchange="calcTotal();renderInvoice()"><option value="0">ไม่มี</option><option value="3" selected>3%</option><option value="5">5%</option></select></span><span class="sum-sv" style="color:#e05050" id="sumWht">-฿0.00</span></div>
+          <div class="sum-sr"><span class="sum-sl">VAT<select class="sum-ssel" id="vatSel" onchange="calcTotal();renderInvoice()"><option value="0" selected>ไม่มี</option><option value="7">7%</option></select></span><span class="sum-sv" id="sumVat">฿0.00</span></div>
+          <div class="sum-tot"><span class="sum-tot-l">ยอดที่ได้รับ</span><span class="sum-tot-v" id="sumTotal">฿0.00</span></div>
         </div>
         <div class="field" style="margin-top:6px"><label>หมายเหตุ</label><textarea id="invNote" rows="2" placeholder="หมายเหตุ..." oninput="renderInvoice()"></textarea></div>
       </div>
@@ -988,837 +890,666 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 <script>
 const CO={name:'บริษัท คอนวี่ อินเตอร์เนชั่นแนล จำกัด',addr:'689 อาคารภิรัชทาวน์เวอร์ แอ๊ดเอ็มควอเทียร์ ชั้นที่ 21,22 ห้องเลขที่ 2101-2109, 2211 ถนนสุขุมวิท แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพมหานคร 10110',tax:'0105554129276'};
 const TPLS=[
-  {id:'t1', name:'Classic Centered',    desc:'หัวข้อกลาง / แถบสีเข้ม'},
-  {id:'t2', name:'Red Stripe Bold',     desc:'แถบแนวตั้ง / พื้นขาว-ชมพู'},
-  {id:'t3', name:'Diagonal Slash',      desc:'ทแยงมุม / พื้นฟ้าอ่อน'},
-  {id:'t4', name:'Receipt Format',      desc:'สไตล์ใบเสร็จ / เส้นประ'},
-  {id:'t5', name:'Two-Tone Split',      desc:'แบ่งครึ่งสีเขียว 2 โทน'},
-  {id:'t6', name:'Gold Luxury Ivory',   desc:'ทองบนครีม / ฟอนต์ Playfair'},
-  {id:'t7', name:'Card Stack UI',       desc:'การ์ดซ้อน / ม่วง gradient'},
-  {id:'t8', name:'Info Bar Orange',     desc:'แถบข้อมูล 3 ช่อง / ส้ม'},
-  {id:'t9', name:'Pastel Violet',       desc:'หัวข้อ Playfair / ม่วงอ่อน'},
-  {id:'t10',name:'Blueprint Light',     desc:'ฟ้าอ่อน / กรอบ tech style'},
-  {id:'t11',name:'Bordered Frame',      desc:'กรอบซ้อน / ขาวดำ formal'},
-  {id:'t13',name:'Trifold Info Band',   desc:'แถบข้อมูล 3 คอลัมน์ / ชมพู'},
-  {id:'t14',name:'Teal Dotted',         desc:'Teal / เส้นประจุดข้อมูล'},
-  {id:'t15',name:'Compact Report',      desc:'สไตล์รายงาน / 2 ลายเซ็น'},
-  {id:'t16',name:'Retro Stamp',         desc:'สไตล์ตราประทับ / น้ำตาล'},
-  {id:'t17',name:'Ice Blue Wave',       desc:'ฟ้าน้ำแข็ง / wave divider'},
-  {id:'t18',name:'Earthy Warm',         desc:'น้ำตาลทอง / อบอุ่น'},
-  {id:'t20',name:'Official Document',   desc:'ตราประทับ / ลายเซ็น 3 จุด'},
+  {id:'t1',name:'Classic Centered',desc:'หัวข้อกลาง / แถบสีเข้ม'},
+  {id:'t2',name:'Red Stripe Bold',desc:'แถบแนวตั้ง / พื้นขาว-ชมพู'},
+  {id:'t3',name:'Diagonal Slash',desc:'ทแยงมุม / พื้นฟ้าอ่อน'},
+  {id:'t4',name:'Receipt Format',desc:'สไตล์ใบเสร็จ / เส้นประ'},
+  {id:'t5',name:'Two-Tone Split',desc:'แบ่งครึ่งสีเขียว 2 โทน'},
+  {id:'t6',name:'Gold Luxury Ivory',desc:'ทองบนครีม / ฟอนต์ Playfair'},
+  {id:'t7',name:'Card Stack UI',desc:'การ์ดซ้อน / ม่วง gradient'},
+  {id:'t8',name:'Info Bar Orange',desc:'แถบข้อมูล 3 ช่อง / ส้ม'},
+  {id:'t9',name:'Pastel Violet',desc:'หัวข้อ Playfair / ม่วงอ่อน'},
+  {id:'t10',name:'Blueprint Light',desc:'ฟ้าอ่อน / กรอบ tech style'},
+  {id:'t11',name:'Bordered Frame',desc:'กรอบซ้อน / ขาวดำ formal'},
+  {id:'t13',name:'Trifold Info Band',desc:'แถบข้อมูล 3 คอลัมน์ / ชมพู'},
+  {id:'t14',name:'Teal Dotted',desc:'Teal / เส้นประจุดข้อมูล'},
+  {id:'t15',name:'Compact Report',desc:'สไตล์รายงาน / 2 ลายเซ็น'},
+  {id:'t16',name:'Retro Stamp',desc:'สไตล์ตราประทับ / น้ำตาล'},
+  {id:'t17',name:'Ice Blue Wave',desc:'ฟ้าน้ำแข็ง / wave divider'},
+  {id:'t18',name:'Earthy Warm',desc:'น้ำตาลทอง / อบอุ่น'},
+  {id:'t20',name:'Official Document',desc:'ตราประทับ / ลายเซ็น 3 จุด'},
 ];
-let currentTpl='t1', rowCount=0;
-const files={id:[],book:[],other:[]};
+let currentTpl='t1', rowCount=0, sigData=null;
+const files={id:[],book:[]};
+var postEvidences=[];
 
-// Build template buttons
-
+// ── FIX 1: addRow uses DOM methods to avoid quote-escaping issues ──
 function addRow(){
   rowCount++;
-  const rc=rowCount;
-  const tb=document.getElementById('itemsBody');
-  const tr=document.createElement('tr');
+  var rc=rowCount;
+  var tb=document.getElementById('itemsBody');
+  var tr=document.createElement('tr');
   tr.id='row'+rc;
-  tr.innerHTML='<td class="cn">'+(tb.rows.length+1)+'</td>'+
-    '<td class="cd"><input placeholder="รายการ" style="width:100%"></td>'+
-    '<td class="cq"><input type="number" placeholder="จำนวน" min="0" style="width:100%;text-align:center"></td>'+
-    '<td class="cp"><input type="number" placeholder="0" min="0" step="0.01" style="width:100%;text-align:right"></td>'+
-    '<td class="ct" id="rt'+rc+'">฿0</td>'+
-    '<td class="cx"><button class="btn-dr" type="button">✕</button></td>';
+
+  // #
+  var tdN=document.createElement('td'); tdN.className='cn'; tdN.textContent=tb.rows.length+1; tr.appendChild(tdN);
+  // desc
+  var tdD=document.createElement('td'); tdD.className='cd';
+  var inpD=document.createElement('input'); inpD.placeholder='รายการ'; inpD.style.width='100%';
+  inpD.addEventListener('input',renderInvoice); tdD.appendChild(inpD); tr.appendChild(tdD);
+  // qty
+  var tdQ=document.createElement('td'); tdQ.className='cq';
+  var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='จำนวน'; inpQ.min='0'; inpQ.style.width='100%'; inpQ.style.textAlign='center';
+  inpQ.addEventListener('input',function(){calcTotal();renderInvoice();}); tdQ.appendChild(inpQ); tr.appendChild(tdQ);
+  // price
+  var tdP=document.createElement('td'); tdP.className='cp';
+  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01'; inpP.style.width='100%'; inpP.style.textAlign='right';
+  inpP.addEventListener('input',function(){calcTotal();renderInvoice();}); tdP.appendChild(inpP); tr.appendChild(tdP);
+  // total
+  var tdT=document.createElement('td'); tdT.className='ct'; tdT.id='rt'+rc; tdT.textContent='฿0'; tr.appendChild(tdT);
+  // delete
+  var tdX=document.createElement('td'); tdX.className='cx';
+  var btnDel=document.createElement('button'); btnDel.className='btn-dr'; btnDel.type='button'; btnDel.textContent='✕';
+  btnDel.addEventListener('click',(function(id){return function(){delRow(id);};}('row'+rc)));
+  tdX.appendChild(btnDel); tr.appendChild(tdX);
+
   tb.appendChild(tr);
-  tr.cells[2].querySelector('input').addEventListener('input',()=>{calcTotal();renderInvoice();});
-  tr.cells[3].querySelector('input').addEventListener('input',()=>{calcTotal();renderInvoice();});
-  tr.cells[1].querySelector('input').addEventListener('input',renderInvoice);
-  tr.cells[5].querySelector('button').addEventListener('click',()=>delRow('row'+rc));
-  renum();calcTotal();renderInvoice();
+  renum(); calcTotal(); renderInvoice();
 }
-function delRow(id){document.getElementById(id)?.remove();renum();calcTotal();renderInvoice();}
-function renum(){[...document.getElementById('itemsBody').rows].forEach((r,i)=>r.cells[0].textContent=i+1);}
+
+function delRow(id){var el=document.getElementById(id);if(el)el.remove();renum();calcTotal();renderInvoice();}
+function renum(){var rows=document.getElementById('itemsBody').rows;for(var i=0;i<rows.length;i++)rows[i].cells[0].textContent=i+1;}
 function fmt(n){return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function fmtDate(d){if(!d)return'–';const p=d.split('-');return p[2]+'/'+p[1]+'/'+(parseInt(p[0])+543);}
-function v(id){return(document.getElementById(id)?.value||'').trim();}
+function fmtDate(d){if(!d)return'–';var p=d.split('-');return p[2]+'/'+p[1]+'/'+(parseInt(p[0])+543);}
+function v(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim();}
 
 function calcTotal(){
-  let sub=0;
-  [...document.getElementById('itemsBody').rows].forEach(r=>{
-    const q=parseFloat(r.cells[2].querySelector('input')?.value)||0;
-    const p=parseFloat(r.cells[3].querySelector('input')?.value)||0;
-    const t=q*p;sub+=t;
-    const id=r.id.replace('row','');
-    const td=document.getElementById('rt'+id);
-    if(td)td.textContent='฿'+fmt(t);
-  });
-  const whtPct=parseFloat(document.getElementById('whtSel').value)||0;
-  const vatPct=parseFloat(document.getElementById('vatSel').value)||0;
-  const wht=sub*whtPct/100,vat=sub*vatPct/100,total=sub-wht+vat;
+  var sub=0;
+  var rows=document.getElementById('itemsBody').rows;
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
+    var q=parseFloat(r.cells[2].querySelector('input').value)||0;
+    var p=parseFloat(r.cells[3].querySelector('input').value)||0;
+    var t=q*p; sub+=t;
+    var id=r.id.replace('row','');
+    var td=document.getElementById('rt'+id);
+    if(td) td.textContent='฿'+fmt(t);
+  }
+  var whtPct=parseFloat(document.getElementById('whtSel').value)||0;
+  var vatPct=parseFloat(document.getElementById('vatSel').value)||0;
+  var wht=sub*whtPct/100, vat=sub*vatPct/100, total=sub-wht+vat;
   document.getElementById('sumSub').textContent='฿'+fmt(sub);
   document.getElementById('sumWht').textContent='-฿'+fmt(wht);
   document.getElementById('sumVat').textContent='฿'+fmt(vat);
   document.getElementById('sumTotal').textContent='฿'+fmt(total);
-  return{sub,wht,vat,total,whtPct,vatPct};
+  return{sub:sub,wht:wht,vat:vat,total:total,whtPct:whtPct,vatPct:vatPct};
 }
 
 function getItems(){
-  return[...document.getElementById('itemsBody').rows].map(r=>({
-    desc:r.cells[1].querySelector('input')?.value||'',
-    qty:parseFloat(r.cells[2].querySelector('input')?.value)||0,
-    price:parseFloat(r.cells[3].querySelector('input')?.value)||0,
-  }));
+  var rows=document.getElementById('itemsBody').rows, items=[];
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
+    items.push({
+      desc:r.cells[1].querySelector('input').value||'',
+      qty:parseFloat(r.cells[2].querySelector('input').value)||0,
+      price:parseFloat(r.cells[3].querySelector('input').value)||0
+    });
+  }
+  return items;
 }
 
 function renderInvoice(){
-  const{sub,wht,vat,total,whtPct,vatPct}=calcTotal();
-  const items=getItems();
-  const t=currentTpl;
-  const iName=v('infName')||'ชื่ออินฟลูเอนเซอร์';
-  const iNick=v('infNick');const iPad=v('infAddr');const iPhone=v('infPhone');
-  const iEmail=v('infEmail');const iCard=v('infCardNo');
-  const proj=v('invProject');const note=v('invNote');
-  const bank=v('bankName');const bAcc=v('bankAccName');const bNo=v('bankAccNo');const bBr=v('bankBranch');
-  const invNo=v('invNo')||'–';const invDate=fmtDate(v('invDate'));const invDue=fmtDate(v('invDue'));
+  var c=calcTotal(), sub=c.sub, wht=c.wht, vat=c.vat, total=c.total, whtPct=c.whtPct, vatPct=c.vatPct;
+  var items=getItems();
+  var t=currentTpl;
+  var iName=v('infName')||'ชื่ออินฟลูเอนเซอร์';
+  var iNick=v('infNick'), iPad=v('infAddr'), iPhone=v('infPhone');
+  var iEmail=v('infEmail'), iCard=v('infCardNo');
+  var proj=v('invProject'), note=v('invNote');
+  var bank=v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
+  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(v('invDue'));
+  var coAddr=CO.addr.replace(/\n/g,'<br>');
 
-  const coAddr=CO.addr.replace(/\n/g,'<br>');
-  const infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
+  var infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
     (iPad?'<br>'+iPad.replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'');
-  const infDetailPlain=iName+(iNick?' ('+iNick+')':'')+
-    (iPad?'\n'+iPad:'')+(iPhone?'\nโทร: '+iPhone:'')+(iEmail?'\n'+iEmail:'')+(iCard?'\nเลขบัตร: '+iCard:'');
-  
-  const tRows=items.map((it,i)=>'<tr><td class="tn">'+(i+1)+'</td><td class="td">'+(it.desc||'–')+'</td>'+
-    '<td class="tq">'+it.qty+'</td><td class="tp">฿'+fmt(it.price)+'</td>'+
-    '<td class="ta">฿'+fmt(it.qty*it.price)+'</td></tr>').join('');
-  const tHead='<thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead>';
-  const tHeadReceipt='<thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายละเอียด</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">ยอดรวม</th></tr></thead>';
-  const tHeadReport='<thead><tr><th class="tn">ลำดับ</th><th class="td" style="text-align:left">คำอธิบาย</th><th class="tq">หน่วย</th><th class="tp">ต่อหน่วย</th><th class="ta">รวมเงิน</th></tr></thead>';
 
-  const bankGrid=(bank||bAcc||bNo)?
+  var tRows=items.map(function(it,i){
+    return '<tr><td class="tn">'+(i+1)+'</td><td class="td">'+(it.desc||'–')+'</td>'+
+      '<td class="tq">'+it.qty+'</td><td class="tp">฿'+fmt(it.price)+'</td>'+
+      '<td class="ta">฿'+fmt(it.qty*it.price)+'</td></tr>';
+  }).join('');
+
+  var tHead='<thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead>';
+  var tHeadReceipt='<thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายละเอียด</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">ยอดรวม</th></tr></thead>';
+  var tHeadReport='<thead><tr><th class="tn">ลำดับ</th><th class="td" style="text-align:left">คำอธิบาย</th><th class="tq">หน่วย</th><th class="tp">ต่อหน่วย</th><th class="ta">รวมเงิน</th></tr></thead>';
+
+  var bankGrid=(bank||bAcc||bNo)?
     '<span class="bk">ธนาคาร</span><span class="bv">'+(bank||'–')+'</span>'+
     '<span class="bk">ชื่อบัญชี</span><span class="bv">'+(bAcc||'–')+'</span>'+
     '<span class="bk">เลขบัญชี</span><span class="bv">'+(bNo||'–')+'</span>'+
     '<span class="bk">สาขา</span><span class="bv">'+(bBr||'–')+'</span>':
     '<span style="color:#999;font-size:.72rem;grid-column:1/-1">ยังไม่ได้กรอกข้อมูลบัญชี</span>';
 
-  function sumBox(cls){
-    return'<div class="sum-r"><span>ยอดรวม</span><span>฿'+fmt(sub)+'</span></div>'+
+  function sumBox(){
+    return '<div class="sum-r"><span>ยอดรวม</span><span>฿'+fmt(sub)+'</span></div>'+
       '<div class="sum-r"><span>หัก ณ ที่จ่าย '+whtPct+'%</span><span>-฿'+fmt(wht)+'</span></div>'+
       '<div class="sum-r"><span>ภาษีมูลค่าเพิ่ม '+vatPct+'%</span><span>฿'+fmt(vat)+'</span></div>'+
       '<div class="sum-r tot"><span>ยอดที่จะได้รับ</span><span>฿'+fmt(total)+'</span></div>';
   }
 
-  let html='';
+  var partyFrom='<div class="uni-party"><div class="uni-party-label">ผู้แจ้งหนี้ (ผู้รับเงิน)</div>'+
+    '<div class="uni-party-name">'+iName+(iNick?' ('+iNick+')':'')+'</div>'+
+    '<div class="uni-party-det">'+(iPad?iPad.replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>';
+  var partyTo='<div class="uni-party"><div class="uni-party-label">ผู้จ่ายเงิน</div>'+
+    '<div class="uni-party-name">'+CO.name+'</div>'+
+    '<div class="uni-party-det">'+coAddr+'<br>เลขผู้เสียภาษี: '+CO.tax+'</div></div>';
+
+  var sigRow='<div class="sig-row-uni">'+
+    '<div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">'+iName+'</div><div class="sig-role">ผู้แจ้งหนี้</div></div></div>'+
+    '<div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้รับเอกสาร</div></div></div>'+
+    '<div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้อนุมัติจ่าย</div></div></div>'+
+    '</div>';
+
+  var html='';
 
   if(t==='t1'){
-    html=
-    '<div class="inv t1">'+
-    '      <div class="top">'+
-    '        <div class="top-sub">INVOICE · ใบแจ้งหนี้</div>'+
-    '        <div class="top-doc">ใบแจ้งหนี้</div>'+
-    '        <div class="top-meta">'+
-    '          <span><span>เลขที่</span><strong>'+(invNo)+'</strong></span>'+
-    '          <span><span>วันที่ออก</span><strong>'+(invDate)+'</strong></span>'+
-    '          <span><span>กำหนดชำระ</span><strong>'+(invDue)+'</strong></span>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div class="tag">แคมเปญ: '+proj+'</div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1c3f6e;margin-bottom:6px">ข้อมูลการโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t1">'+
+      '<div class="top"><div class="top-sub">INVOICE · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div>'+
+      '<div class="top-meta"><span><span>เลขที่</span><strong>'+invNo+'</strong></span>'+
+      '<span><span>วันที่ออก</span><strong>'+invDate+'</strong></span>'+
+      '<span><span>กำหนดชำระ</span><strong>'+invDue+'</strong></span></div></div>'+
+      '<div class="body">'+(proj?'<div class="tag">แคมเปญ: '+proj+'</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div style="display:flex;justify-content:flex-end"><div style="width:210px">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1c3f6e;margin-bottom:6px">ข้อมูลการโอนเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t2'){
-    html=
-    '<div class="inv t2">'+
-    '      <div class="top">'+
-    '        <div class="top-stripe"></div>'+
-    '        <div class="top-content">'+
-    '          <div class="top-row">'+
-    '            <div><div class="top-doc-sub">INVOICE</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '            <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
-    '          </div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        <div class="body-stripe"></div>'+
-    '        <div class="body-content">'+
-    '          '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
-    '          <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          </div>'+
-    '          <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '          <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '          <div class="bank-box"><div class="lbl">บัญชีสำหรับรับโอน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '          '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '        </div>'+
-    '      </div></div>';;
+    html='<div class="inv t2"><div class="top"><div class="top-stripe"></div>'+
+      '<div class="top-content"><div class="top-row">'+
+      '<div><div class="top-doc-sub">INVOICE</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่: <strong>'+invDate+'</strong><br>ชำระภายใน: <strong>'+invDue+'</strong></div>'+
+      '</div></div></div>'+
+      '<div class="body"><div class="body-stripe"></div><div class="body-content">'+
+      (proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">บัญชีสำหรับรับโอน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div></div>';
   } else if(t==='t3'){
-    html=
-    '<div class="inv t3">'+
-    '      <div class="top">'+
-    '        <div class="top-inner">'+
-    '          <div><div class="top-doc-sub">TAX INVOICE / ใบกำกับภาษี</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div><span class="proj-tag">Campaign: '+proj+'</span></div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">PAYMENT INFO</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">NOTE: '+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t3"><div class="top">'+
+      '<div class="top-inner"><div><div class="top-doc-sub">TAX INVOICE / ใบกำกับภาษี</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่: <strong>'+invDate+'</strong><br>Due: <strong>'+invDue+'</strong></div></div></div>'+
+      '<div class="body">'+(proj?'<div><span class="proj-tag">Campaign: '+proj+'</span></div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">PAYMENT INFO</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">NOTE: '+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t4'){
-    html=
-    '<div class="inv t4">'+
-    '      <div class="top">'+
-    '        <div class="top-title">ใบแจ้งหนี้ / Invoice</div>'+
-    '        <div class="top-meta">'+
-    '          <span class="top-meta-k">เลขที่:</span><span class="top-meta-v">'+(invNo)+'</span>'+
-    '          <span class="top-meta-k">วันที่ออก:</span><span class="top-meta-v">'+(invDate)+'</span>'+
-    '          <span class="top-meta-k">กำหนดชำระ:</span><span class="top-meta-v">'+(invDue)+'</span>'+
-    '          <span class="top-meta-k">แคมเปญ:</span><span class="top-meta-v">'+(proj||'–')+'</span>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        <div class="section-title">ข้อมูลผู้รับเงิน (อินฟลูเอนเซอร์)</div>'+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          <div><div class="section-title" style="margin-bottom:5px">ข้อมูลบัญชีรับเงิน</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div></div>'+
-    '        </div>'+
-    '        <div class="section-title">รายการแจ้งหนี้</div>'+
-    '        <table><thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายละเอียดงาน/บริการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">ยอดรวม</th></tr></thead><tbody>'+(tRows)+'</tbody></table>'+
-    '        <div style="display:flex;justify-content:flex-end"><div style="width:210px">'+(sumBox())+'</div></div>'+
-    '        '+(note?'<div class="note-box">* '+note+'</div>':'')+
-    '        <div class="footer-dots">· · · · · · · · · · · · · · · ·</div>'+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '        <div class="footer-dots">· · · · · · · · · · · · · · · ·</div>'+
-    '      </div></div>';;
+    html='<div class="inv t4"><div class="top">'+
+      '<div class="top-title">ใบแจ้งหนี้ / Invoice</div>'+
+      '<div class="top-meta"><span class="top-meta-k">เลขที่:</span><span class="top-meta-v">'+invNo+'</span>'+
+      '<span class="top-meta-k">วันที่ออก:</span><span class="top-meta-v">'+invDate+'</span>'+
+      '<span class="top-meta-k">กำหนดชำระ:</span><span class="top-meta-v">'+invDue+'</span>'+
+      '<span class="top-meta-k">แคมเปญ:</span><span class="top-meta-v">'+(proj||'–')+'</span></div></div>'+
+      '<div class="body"><div class="section-title">ข้อมูลผู้รับเงิน</div>'+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<div class="section-title">รายการแจ้งหนี้</div>'+
+      '<table>'+tHeadReceipt+'<tbody>'+tRows+'</tbody></table>'+
+      '<div style="display:flex;justify-content:flex-end"><div style="width:210px">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">บัญชีรับเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">* '+note+'</div>':'')+
+      '<div class="footer-dots">· · · · · · · · · · · ·</div>'+
+      sigRow+
+      '<div class="footer-dots">· · · · · · · · · · · ·</div>'+
+      '</div></div>';
   } else if(t==='t5'){
-    html=
-    '<div class="inv t5">'+
-    '      <div class="top">'+
-    '        <div class="top-left"><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div><div style="font-size:.72rem;opacity:.75;margin-top:6px;line-height:1.7">เลขที่: <strong style="opacity:1">'+(invNo)+'</strong><br>วันที่ออก: <strong style="opacity:1">'+(invDate)+'</strong></div></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div class="proj-strip">แคมเปญ / Campaign: '+proj+'</div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          <div class="party-card"><div class="lbl">บัญชีรับเงิน (Bank Account)</div><div class="bank-grid" style="display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:.73rem">'+(bankGrid)+'</div>'+(iEmail?'<div style="font-size:.72rem;color:#5a7a6a;margin-top:5px">อีเมล: '+iEmail+'</div>':'')+'</div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t5"><div class="top">'+
+      '<div class="top-left"><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div>'+
+      '<div style="font-size:.72rem;opacity:.75;margin-top:6px;line-height:1.7">เลขที่: <strong style="opacity:1">'+invNo+'</strong><br>วันที่ออก: <strong style="opacity:1">'+invDate+'</strong></div></div>'+
+      '<div class="top-right"><div style="font-size:.72rem;opacity:.75;line-height:1.7;text-align:right">กำหนดชำระ: <strong style="opacity:1">'+invDue+'</strong></div></div></div>'+
+      '<div class="body">'+(proj?'<div class="proj-strip">แคมเปญ / Campaign: '+proj+'</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">บัญชีรับเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t6'){
-    html=
-    '<div class="inv t6">'+
-    '      <div class="top">'+
-    '        <div><div class="top-doc-sub">Invoice · Tax Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>กำหนดชำระ: <strong>'+(invDue)+'</strong></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#d4a843;margin-bottom:-6px">✦ Campaign: '+proj+' ✦</div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">Payment Details / บัญชีสำหรับโอน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t6"><div class="top">'+
+      '<div><div class="top-doc-sub">Invoice · Tax Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่ออก: <strong>'+invDate+'</strong><br>กำหนดชำระ: <strong>'+invDue+'</strong></div></div>'+
+      '<div class="body">'+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#d4a843;margin-bottom:-6px">✦ Campaign: '+proj+' ✦</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">Payment Details / บัญชีสำหรับโอน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t7'){
-    html=
-    '<div class="inv t7">'+
-    '      <div class="top">'+
-    '        <div class="top-row">'+
-    '          <div><div class="top-doc-sub">ใบแจ้งหนี้ · Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-meta">No. <strong>'+(invNo)+'</strong><br>Date: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7b2d8b;background:#f8f0ff;padding:4px 10px;border-radius:4px;display:inline-block">Campaign: '+proj+'</div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <div class="table-wrap"><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t7"><div class="top"><div class="top-row">'+
+      '<div><div class="top-doc-sub">ใบแจ้งหนี้ · Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">No. <strong>'+invNo+'</strong><br>Date: <strong>'+invDate+'</strong><br>Due: <strong>'+invDue+'</strong></div></div></div>'+
+      '<div class="body">'+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7b2d8b;background:#f8f0ff;padding:4px 10px;border-radius:4px;display:inline-block">Campaign: '+proj+'</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<div class="table-wrap"><table>'+tHead+'<tbody>'+tRows+'</tbody></table></div>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t8'){
-    html=
-    '<div class="inv t8">'+
-    '      <div class="top-accent"></div>'+
-    '      <div class="top">'+
-    '        <div class="top-row">'+
-    '          <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '        <div class="info-bar">'+
-    '          <div class="info-cell"><div class="info-cell-l">ชื่อผู้รับเงิน</div><div class="info-cell-v">'+(iName)+'</div></div>'+
-    '          <div class="info-cell"><div class="info-cell-l">แคมเปญ</div><div class="info-cell-v">'+(proj||'–')+'</div></div>'+
-    '          <div class="info-cell"><div class="info-cell-l">สถานะ</div><div class="info-cell-v">รอชำระเงิน</div></div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">บัญชีรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t8"><div class="top-accent"></div><div class="top"><div class="top-row">'+
+      '<div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่: <strong>'+invDate+'</strong><br>Due: <strong>'+invDue+'</strong></div></div>'+
+      '<div class="info-bar">'+
+      '<div class="info-cell"><div class="info-cell-l">ชื่อผู้รับเงิน</div><div class="info-cell-v">'+iName+'</div></div>'+
+      '<div class="info-cell"><div class="info-cell-l">แคมเปญ</div><div class="info-cell-v">'+(proj||'–')+'</div></div>'+
+      '<div class="info-cell"><div class="info-cell-l">สถานะ</div><div class="info-cell-v">รอชำระเงิน</div></div></div></div>'+
+      '<div class="body"><div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">บัญชีรับโอนเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t9'){
-    html=
-    '<div class="inv t9">'+
-    '      <div class="top">'+
-    '        <div class="top-row">'+
-    '          <div><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-meta" style="background:#6d28d9;color:#fff;border-radius:8px;padding:8px 12px;font-size:.73rem;line-height:1.9">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ครบกำหนด: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '        <div class="dot-div"></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7c3aed">✦ โปรเจค: '+proj+' ✦</div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">บัญชีธนาคารสำหรับรับเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t9"><div class="top"><div class="top-row">'+
+      '<div><div class="top-doc-sub">Invoice</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่: <strong>'+invDate+'</strong><br>ครบกำหนด: <strong>'+invDue+'</strong></div></div>'+
+      '<div class="dot-div"></div></div>'+
+      '<div class="body">'+(proj?'<div style="font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7c3aed">✦ โปรเจค: '+proj+' ✦</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">บัญชีธนาคารสำหรับรับเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t10'){
-    html=
-    '<div class="inv t10">'+
-    '      <div class="top">'+
-    '        <div class="top-grid">'+
-    '          <div><div class="top-doc-sub">// INVOICE DOCUMENT</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-meta">INV_NO: <strong>'+(invNo)+'</strong><br>DATE: <strong>'+(invDate)+'</strong><br>DUE: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div class="lbl">PROJECT: '+proj+'</div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">BANK_ACCOUNT</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">// NOTE: '+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t10"><div class="top"><div class="top-grid">'+
+      '<div><div class="top-doc-sub">// INVOICE DOCUMENT</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">INV_NO: <strong>'+invNo+'</strong><br>DATE: <strong>'+invDate+'</strong><br>DUE: <strong>'+invDue+'</strong></div></div></div>'+
+      '<div class="body">'+(proj?'<div class="lbl">PROJECT: '+proj+'</div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">BANK_ACCOUNT</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">// NOTE: '+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t11'){
-    html=
-    '<div class="inv t11">'+
-    '      <div class="outer"><div class="inner">'+
-    '        <div class="top">'+
-    '          <div class="top-right" style="padding:18px 20px;border-left:1px solid #1a1a2e;flex:1">'+
-    '            <div class="top-meta-grid">'+
-    '              <span class="mk">เลขที่ใบแจ้งหนี้:</span><span class="mv">'+(invNo)+'</span>'+
-    '              <span class="mk">วันที่ออกใบแจ้งหนี้:</span><span class="mv">'+(invDate)+'</span>'+
-    '              <span class="mk">กำหนดวันชำระ:</span><span class="mv">'+(invDue)+'</span>'+
-    '              '+(proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
-    '            </div>'+
-    '          </div>'+
-    '        </div>'+
-    '        <div class="body">'+
-    '          <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          </div>'+
-    '          <div class="section-box">'+
-    '            <div class="section-box-head">รายการแจ้งหนี้</div>'+
-    '            <table><thead><tr><th class="tn">#</th><th class="td" style="text-align:left">รายการ/บริการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead><tbody>'+(tRows)+'</tbody></table>'+
-    '          </div>'+
-    '          <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '          <div class="section-box">'+
-    '            <div class="section-box-head">บัญชีสำหรับรับชำระเงิน</div>'+
-    '            <div class="section-box-body"><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '          </div>'+
-    '          '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '        </div>'+
-    '      </div></div></div>';;
+    html='<div class="inv t11"><div class="outer"><div class="inner">'+
+      '<div class="top"><div class="top-right" style="padding:18px 20px;border-left:1px solid #1a1a2e;flex:1">'+
+      '<div class="top-meta-grid">'+
+      '<span class="mk">เลขที่ใบแจ้งหนี้:</span><span class="mv">'+invNo+'</span>'+
+      '<span class="mk">วันที่ออก:</span><span class="mv">'+invDate+'</span>'+
+      '<span class="mk">กำหนดชำระ:</span><span class="mv">'+invDue+'</span>'+
+      (proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
+      '</div></div></div>'+
+      '<div class="body"><div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<div class="section-box"><div class="section-box-head">รายการแจ้งหนี้</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table></div>'+
+      '<div style="display:flex;justify-content:flex-end"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="section-box"><div class="section-box-head">บัญชีสำหรับรับชำระเงิน</div>'+
+      '<div class="section-box-body"><div class="bank-grid">'+bankGrid+'</div></div></div>'+
+      (note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+      sigRow+'</div></div></div></div>';
   } else if(t==='t13'){
-    html=
-    '<div class="inv t13">'+
-    '      <div class="top-strip"></div>'+
-    '      <div class="top">'+
-    '        <div><div class="top-doc-sub">ใบแจ้งหนี้</div><div class="top-doc">Invoice</div></div>'+
-    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>กำหนดชำระ: <strong>'+(invDue)+'</strong></div>'+
-    '      </div>'+
-    '      <div class="info-band">'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+'</div></div>'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(CO.addr.replace(/\n/g,' '))+'</div></div>'+
-    '        <div class="info-cell"><div class="ic-lbl">แคมเปญ</div><div class="ic-val">'+(proj||'ไม่ระบุ')+'</div><div class="ic-det">'+(iEmail||'')+(iCard?'<br>บัตร: '+iCard:'')+'</div></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        <table>'+(tHeadReceipt)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">ข้อมูลสำหรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t13"><div class="top-strip"></div>'+
+      '<div class="top"><div><div class="top-doc-sub">ใบแจ้งหนี้</div><div class="top-doc">Invoice</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่ออก: <strong>'+invDate+'</strong><br>กำหนดชำระ: <strong>'+invDue+'</strong></div></div>'+
+      '<div class="info-band">'+
+      '<div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้</div><div class="ic-val">'+iName+'</div><div class="ic-det">'+(iPad||'').replace(/\n/g,' ')+(iPhone?' · '+iPhone:'')+'</div></div>'+
+      '<div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+CO.name+'</div><div class="ic-det">'+CO.addr.replace(/\n/g,' ')+'</div></div>'+
+      '<div class="info-cell"><div class="ic-lbl">แคมเปญ</div><div class="ic-val">'+(proj||'ไม่ระบุ')+'</div><div class="ic-det">'+(iEmail||'')+(iCard?'<br>บัตร: '+iCard:'')+'</div></div></div>'+
+      '<div class="body"><table>'+tHeadReceipt+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">ข้อมูลสำหรับโอนเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t14'){
-    html=
-    '<div class="inv t14">'+
-    '      <div class="top">'+
-    '        <div class="top-grid">'+
-    '          <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-divider"></div>'+
-    '          <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div><div class="lbl">โปรเจค / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
-    '        <div><div class="lbl">คู่สัญญา</div>'+
-    '          <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '          </div>'+
-    '        </div>'+
-    '        <div><div class="lbl">รายการงาน / บริการ</div><table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table></div>'+
-    '        <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div><div class="lbl">ข้อมูลบัญชีรับเงิน</div><div class="bank-box"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t14"><div class="top"><div class="top-grid">'+
+      '<div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-divider"></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่: <strong>'+invDate+'</strong><br>ชำระภายใน: <strong>'+invDue+'</strong></div></div></div>'+
+      '<div class="body">'+(proj?'<div><div class="lbl">โปรเจค / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
+      '<div><div class="lbl">คู่สัญญา</div><div class="parties">'+partyFrom+partyTo+'</div></div>'+
+      '<div><div class="lbl">รายการงาน / บริการ</div><table>'+tHead+'<tbody>'+tRows+'</tbody></table></div>'+
+      '<div style="display:flex;justify-content:flex-end"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div><div class="lbl">ข้อมูลบัญชีรับเงิน</div><div class="bank-box"><div class="bank-grid">'+bankGrid+'</div></div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t15'){
-    html=
-    '<div class="inv t15">'+
-    '      <div class="top">'+
-    '        <div class="top-right">'+
-    '          <div class="top-doc">ใบแจ้งหนี้</div>'+
-    '          <table class="top-meta-tbl"><tr><td>เลขที่:</td><td>'+(invNo)+'</td></tr><tr><td>วันที่ออก:</td><td>'+(invDate)+'</td></tr><tr><td>กำหนดชำระ:</td><td>'+(invDue)+'</td></tr>'+(proj?'<tr><td>แคมเปญ:</td><td>'+proj+'</td></tr>':'')+'</table>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="info-row">'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="ic-val">'+(iName)+'</div><div class="ic-det">'+((iPad||'').replace(/\n/g,' '))+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '        <div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+(CO.name)+'</div><div class="ic-det">'+(CO.addr.replace(/\n/g,' '))+'</div></div>'+
-    '        <div class="info-cell"><div class="ic-lbl">บัญชีธนาคาร</div><div class="ic-val">'+(bank||'–')+'</div><div class="ic-det">'+(bAcc||'–')+'<br>เลขบัญชี: '+(bNo||'–')+(bBr?' · '+bBr:'')+'</div></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        <div class="section-lbl">รายการแจ้งหนี้</div>'+
-    '        <table><thead><tr><th class="tn">ลำดับ</th><th class="td" style="text-align:left">รายละเอียดงาน/บริการ</th><th class="tq">จำนวน</th><th class="tp">ราคา/หน่วย</th><th class="ta">จำนวนเงิน</th></tr></thead><tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '        <div class="sig">'+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '        </div>'+
-    '      </div></div>';;
+    html='<div class="inv t15"><div class="top"><div class="top-right">'+
+      '<div class="top-doc">ใบแจ้งหนี้</div>'+
+      '<table class="top-meta-tbl"><tr><td>เลขที่:</td><td>'+invNo+'</td></tr><tr><td>วันที่ออก:</td><td>'+invDate+'</td></tr><tr><td>กำหนดชำระ:</td><td>'+invDue+'</td></tr>'+(proj?'<tr><td>แคมเปญ:</td><td>'+proj+'</td></tr>':'')+'</table></div></div>'+
+      '<div class="info-row">'+
+      '<div class="info-cell"><div class="ic-lbl">ผู้แจ้งหนี้</div><div class="ic-val">'+iName+'</div><div class="ic-det">'+(iPad||'').replace(/\n/g,' ')+(iPhone?' · '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
+      '<div class="info-cell"><div class="ic-lbl">ผู้จ่ายเงิน</div><div class="ic-val">'+CO.name+'</div><div class="ic-det">'+CO.addr.replace(/\n/g,' ')+'</div></div>'+
+      '<div class="info-cell"><div class="ic-lbl">บัญชีธนาคาร</div><div class="ic-val">'+(bank||'–')+'</div><div class="ic-det">'+(bAcc||'–')+'<br>เลขบัญชี: '+(bNo||'–')+(bBr?' · '+bBr:'')+'</div></div></div>'+
+      '<div class="body"><div class="section-lbl">รายการแจ้งหนี้</div>'+
+      '<table>'+tHeadReport+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      (note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t16'){
-    html=
-    '<div class="inv t16">'+
-    '      <div class="top">'+
-    '        <div><div class="top-doc-sub">· INVOICE · ใบแจ้งหนี้ ·</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่ออก: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        '+(proj?'<div><div class="stamp-lbl">แคมเปญ / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="stamp-lbl">ข้อมูลการชำระเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t16"><div class="top">'+
+      '<div><div class="top-doc-sub">· INVOICE · ใบแจ้งหนี้ ·</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่ออก: <strong>'+invDate+'</strong><br>ชำระภายใน: <strong>'+invDue+'</strong></div></div>'+
+      '<div class="body"><div class="parties">'+partyFrom+partyTo+'</div>'+
+      (proj?'<div><div class="stamp-lbl">แคมเปญ / Campaign</div><div style="font-size:.82rem;font-weight:600">'+proj+'</div></div>':'')+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="stamp-lbl">ข้อมูลการชำระเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">หมายเหตุ: '+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t17'){
-    html=
-    '<div class="inv t17">'+
-    '      <div class="top">'+
-    '        <div class="top-row">'+
-    '          <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '          <div class="top-meta">No. <strong>'+(invNo)+'</strong><br>Issued: <strong>'+(invDate)+'</strong><br>Due: <strong>'+(invDue)+'</strong></div>'+
-    '        </div>'+
-    '      </div>'+
-    '      <div class="wave"></div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div><div class="lbl">แคมเปญ / Project</div><div style="font-size:.85rem;font-weight:600">'+proj+'</div></div>':'')+
-    '        <div class="parties">'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class=\"uni-party-name\">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class=\"uni-party-det\">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '<div class=\"uni-party\"><div class=\"uni-party-label\">ผู้จ่ายเงิน</div><div class=\"uni-party-name\">'+(CO.name)+'</div><div class=\"uni-party-det\">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        </div>'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t17"><div class="top"><div class="top-row">'+
+      '<div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">No. <strong>'+invNo+'</strong><br>Issued: <strong>'+invDate+'</strong><br>Due: <strong>'+invDue+'</strong></div></div></div>'+
+      '<div class="wave"></div>'+
+      '<div class="body">'+(proj?'<div><div class="lbl">แคมเปญ / Project</div><div style="font-size:.85rem;font-weight:600">'+proj+'</div></div>':'')+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">ข้อมูลบัญชีธนาคาร</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else if(t==='t18'){
-    html=
-    '<div class="inv t18">'+
-    '      <div class="top">'+
-    '        <div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
-    '        <div class="top-meta">เลขที่: <strong>'+(invNo)+'</strong><br>วันที่: <strong>'+(invDate)+'</strong><br>ชำระภายใน: <strong>'+(invDue)+'</strong></div>'+
-    '      </div>'+
-    '      <div class="body">'+
-    '        '+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
-    '        <hr class="divider">'+
-    '        <div class="uni-party"><div class="uni-party-label">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="uni-party-name">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="uni-party-det">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '        <div class="uni-party"><div class="uni-party-label">ผู้จ่ายเงิน</div><div class="uni-party-name">'+(CO.name)+'</div><div class="uni-party-det">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '        <hr class="divider">'+
-    '        <div><div class="lbl">ผู้รับเงิน (อินฟลูเอนเซอร์)</div><div class="pdet">'+(infDetail)+'</div></div>'+
-    '        <hr class="divider">'+
-    '        <table>'+(tHead)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '        <div class="sum-area"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '        <div class="bank-box"><div class="lbl">บัญชีสำหรับโอนเงิน</div><div class="bank-grid">'+(bankGrid)+'</div></div>'+
-    '        '+(note?'<div class="note-box">'+note+'</div>':'')+
-    '<div class=\"sig-row-uni\">'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">'+(iName)+'</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e41\u0e08\u0e49\u0e07\u0e2b\u0e19\u0e35\u0e49</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e23\u0e31\u0e1a\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23</div></div></div>'+'<div class=\"sig-blk-uni\"><div class=\"sig-space\"></div><div class=\"sig-line-uni\"><div class=\"sig-name\">&nbsp;</div><div class=\"sig-role\">\u0e1c\u0e39\u0e49\u0e2d\u0e19\u0e38\u0e21\u0e31\u0e15\u0e34\u0e08\u0e48\u0e32\u0e22</div></div></div>'+'</div>'+
-    '      </div></div>';;
+    html='<div class="inv t18"><div class="top">'+
+      '<div><div class="top-doc-sub">Invoice · ใบแจ้งหนี้</div><div class="top-doc">ใบแจ้งหนี้</div></div>'+
+      '<div class="top-meta">เลขที่: <strong>'+invNo+'</strong><br>วันที่: <strong>'+invDate+'</strong><br>ชำระภายใน: <strong>'+invDue+'</strong></div></div>'+
+      '<div class="body">'+(proj?'<div class="lbl">แคมเปญ: '+proj+'</div>':'')+
+      '<hr class="divider">'+
+      '<div class="parties">'+partyFrom+partyTo+'</div>'+
+      '<hr class="divider">'+
+      '<table>'+tHead+'<tbody>'+tRows+'</tbody></table>'+
+      '<div class="sum-area"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div class="bank-box"><div class="lbl">บัญชีสำหรับโอนเงิน</div><div class="bank-grid">'+bankGrid+'</div></div>'+
+      (note?'<div class="note-box">'+note+'</div>':'')+
+      sigRow+'</div></div>';
   } else { // t20
-    html=
-    '<div class="inv t20">'+
-    '  <div class="top">'+
-    '    <div class="top-left"></div>'+
-    '    <div class="top-right">'+
-    '      <div class="top-doc">ใบแจ้งหนี้</div>'+
-    '      <div class="top-meta-grid">'+
-    '        <span class="mk">เลขที่:</span><span class="mv">'+(invNo)+'</span>'+
-    '        <span class="mk">วันที่ออก:</span><span class="mv">'+(invDate)+'</span>'+
-    '        <span class="mk">กำหนดชำระ:</span><span class="mv">'+(invDue)+'</span>'+
-    '        '+(proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
-    '      </div>'+
-    '    </div>'+
-    '  </div>'+
-    '  <div class="body">'+
-    '    <div><div class="section-title">ข้อมูลคู่สัญญา</div>'+
-    '      <div class="uni-parties">'+
-    '        <div class="uni-party"><div class="uni-party-label">ผู้แจ้งหนี้ (ผู้รับเงิน)</div><div class="uni-party-name">'+(iName)+(iNick?' ('+iNick+')':'')+'</div><div class="uni-party-det">'+(iPad?(iPad).replace(/\n/g,'<br>'):'')+(iPhone?'<br>โทร: '+iPhone:'')+(iEmail?'<br>'+iEmail:'')+(iCard?'<br>เลขบัตร: '+iCard:'')+'</div></div>'+
-    '        <div class="uni-party"><div class="uni-party-label">ผู้จ่ายเงิน</div><div class="uni-party-name">'+(CO.name)+'</div><div class="uni-party-det">'+(coAddr)+'<br>เลขผู้เสียภาษี: '+(CO.tax)+'</div></div>'+
-    '      </div>'+
-    '    </div>'+
-    '    <div><div class="section-title">รายการและราคา</div>'+
-    '      <table>'+(tHeadReport)+'<tbody>'+(tRows)+'</tbody></table>'+
-    '    </div>'+
-    '    <div style="display:flex;justify-content:flex-end"><div class="sum-box">'+(sumBox())+'</div></div>'+
-    '    <div><div class="section-title">ข้อมูลบัญชีธนาคาร</div><div class="section-content"><div class="bank-grid">'+(bankGrid)+'</div></div></div>'+
-    '    '+(note?'<div><div class="section-title">หมายเหตุ</div><div class="note-box">'+note+'</div></div>':'')+
-    '    <div class="sig-row-uni">'+
-    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">'+(iName)+'</div><div class="sig-role">ผู้แจ้งหนี้</div></div></div>'+
-    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้รับเอกสาร</div></div></div>'+
-    '      <div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้อนุมัติจ่าย</div></div></div>'+
-    '    </div>'+
-    '  </div></div>';
+    html='<div class="inv t20"><div class="top"><div class="top-left"></div>'+
+      '<div class="top-right"><div class="top-doc">ใบแจ้งหนี้</div>'+
+      '<div class="top-meta-grid">'+
+      '<span class="mk">เลขที่:</span><span class="mv">'+invNo+'</span>'+
+      '<span class="mk">วันที่ออก:</span><span class="mv">'+invDate+'</span>'+
+      '<span class="mk">กำหนดชำระ:</span><span class="mv">'+invDue+'</span>'+
+      (proj?'<span class="mk">แคมเปญ:</span><span class="mv">'+proj+'</span>':'')+
+      '</div></div></div>'+
+      '<div class="body">'+
+      '<div><div class="section-title">ข้อมูลคู่สัญญา</div>'+
+      '<div class="uni-parties">'+partyFrom+partyTo+'</div></div>'+
+      '<div><div class="section-title">รายการและราคา</div>'+
+      '<table>'+tHeadReport+'<tbody>'+tRows+'</tbody></table></div>'+
+      '<div style="display:flex;justify-content:flex-end"><div class="sum-box">'+sumBox()+'</div></div>'+
+      '<div><div class="section-title">ข้อมูลบัญชีธนาคาร</div><div class="section-content"><div class="bank-grid">'+bankGrid+'</div></div></div>'+
+      (note?'<div><div class="section-title">หมายเหตุ</div><div class="note-box">'+note+'</div></div>':'')+
+      sigRow+'</div></div>';
   }
+
   document.getElementById('invoiceWrap').innerHTML=html;
-  var s2p = document.getElementById('step2PreviewInner');
-  if (s2p) s2p.innerHTML = html;
+  var s2p=document.getElementById('step2PreviewInner');
+  if(s2p) s2p.innerHTML=html;
 }
 
-// Files
-function handleFiles(input,key){
-  [...input.files].forEach(f=>{
-    const r=new FileReader();
-    r.onload=e=>{files[key].push({name:f.name,size:f.size,type:f.type,data:e.target.result});renderPreviews(key);};
-    r.readAsDataURL(f);
-  });
-  input.value='';
-}
-function renderPreviews(key){
-  const w=document.getElementById('preview-'+key);
-  w.innerHTML=files[key].map((f,i)=>'<div class="chip">'+
-    (f.type.startsWith('image/')?'<img class="chip-th" src="'+f.data+'">':'<div class="chip-pdf">PDF</div>')+
-    '<div style="flex:1;min-width:0"><div class="chip-n">'+f.name+'</div><div class="chip-s">'+((f.size/1024).toFixed(1))+' KB</div></div>'+
-    '<button class="chip-rm" onclick="removeFile(\''+key+'\','+i+')">✕</button></div>').join('');
-}
-function removeFile(key,i){files[key].splice(i,1);renderPreviews(key);}
-
-// Reset
-function resetForm(){
-  if(!confirm('ล้างข้อมูลทั้งหมด?'))return;
-  document.querySelectorAll('.sidebar input,.sidebar select,.sidebar textarea').forEach(el=>el.value='');
-  document.getElementById('itemsBody').innerHTML='';
-  rowCount=0;files.id=[];files.book=[];files.other=[];
-  ['id','book','other'].forEach(k=>document.getElementById('preview-'+k).innerHTML='');
-  const today=new Date().toISOString().split('T')[0];
-  document.getElementById('invDate').value=today;
-  const due=new Date();due.setDate(due.getDate()+30);
-  document.getElementById('invDue').value=due.toISOString().split('T')[0];
-  const d=new Date();
-  addRow();addRow();calcTotal();renderInvoice();
-}
-
-// Export PDF
-async function exportPDF(){
-  const req=['infName','infPhone','infEmail','infAddr','bankName','bankAccName','bankAccNo','invNo','invDate'];
-  for(const id of req){const el=document.getElementById(id);if(!el?.value?.trim()){el?.focus();alert('กรุณากรอกข้อมูล: '+(el?.previousElementSibling?.textContent||id));return;}}
-  const{jsPDF}=window.jspdf;
-  const ov=document.getElementById('loadingOverlay');ov.classList.add('show');
-  try{
-    await new Promise(r=>setTimeout(r,150));
-    const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-    const W=210,M=10;
-    const el = document.getElementById('step2Panel').style.display !== 'none' ? document.getElementById('step2PreviewInner') : document.getElementById('invoiceWrap');
-    const cv=await html2canvas(el,{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false});
-    const img=cv.toDataURL('image/jpeg',.93);
-    const iW=W-M*2,iH=iW*(cv.height/cv.width),pH=297-M*2;
-    if(iH<=pH){pdf.addImage(img,'JPEG',M,M,iW,iH);}
-    else{
-      const n=Math.ceil(iH/pH);
-      for(let p=0;p<n;p++){
-        if(p>0)pdf.addPage();
-        const sy=(p*pH/iH)*cv.height,sh=Math.min((pH/iH)*cv.height,cv.height-sy);
-        const tc=document.createElement('canvas');tc.width=cv.width;tc.height=sh;
-        tc.getContext('2d').drawImage(cv,0,sy,cv.width,sh,0,0,cv.width,sh);
-        pdf.addImage(tc.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,Math.min(pH,(sh/cv.width)*iW));
-      }
-    }
-    const allF=[...files.id.map(f=>({...f,label:'บัตรประชาชน'})),...files.book.map(f=>({...f,label:'Book Bank'})),...files.other.map(f=>({...f,label:'เพิ่มเติม'}))];
-    for(const f of allF){
-      pdf.addPage();
-      pdf.setFontSize(10);pdf.setFont('helvetica','bold');pdf.text('เอกสารแนบ: '+f.label,M,M+5);
-      pdf.setFont('helvetica','normal');pdf.setFontSize(8);pdf.text(f.name,M,M+11);
-      pdf.line(M,M+13,W-M,M+13);
-      if(f.type.startsWith('image/')){
-        const img2=new Image();img2.src=f.data;await new Promise(r=>{img2.onload=r;});
-        const iW2=W-M*2,iH2=Math.min((img2.height/img2.width)*iW2,297-M*2-18);
-        pdf.addImage(f.data,'JPEG',M,M+16,iW2,iH2);
-      } else {
-        pdf.setFontSize(9);pdf.setTextColor(120);pdf.text('[ไฟล์ PDF — กรุณาดูแยกต่างหาก]',M,M+25);pdf.setTextColor(0);
-      }
-    }
-    const tplName=TPLS.find(x=>x.id===currentTpl)?.name.replace(/\s+/g,'-')||currentTpl;
-    pdf.save((v('invNo')||'invoice').replace(/\//g,'-')+'_'+(v('infName')||'inf').replace(/\s+/g,'_')+'_'+tplName+'.pdf');
-  }catch(e){alert('เกิดข้อผิดพลาด: '+e.message);}
-  finally{ov.classList.remove('show');}
-}
-
-// ── Signature pad ──
-var _sigDrawing = false;
-var _sigHasDraw = false;
-var _sigCanvas, _sigCtx;
-
-function initSigCanvas() {
-  _sigCanvas = document.getElementById('sigCanvas');
-  if (!_sigCanvas) return;
-  _sigCanvas.width = _sigCanvas.parentElement.clientWidth || 240;
-  _sigCtx = _sigCanvas.getContext('2d');
-  _sigCtx.strokeStyle = '#1a1a2e';
-  _sigCtx.lineWidth = 2;
-  _sigCtx.lineCap = 'round';
-  _sigCtx.lineJoin = 'round';
-
-  function getPos(e) {
-    var r = _sigCanvas.getBoundingClientRect();
-    var src = e.touches ? e.touches[0] : e;
-    return { x: (src.clientX - r.left) * (_sigCanvas.width / r.width), y: (src.clientY - r.top) * (_sigCanvas.height / r.height) };
-  }
-  _sigCanvas.addEventListener('mousedown', function(e){ _sigDrawing=true; var p=getPos(e); _sigCtx.beginPath(); _sigCtx.moveTo(p.x,p.y); });
-  _sigCanvas.addEventListener('mousemove', function(e){ if(!_sigDrawing) return; var p=getPos(e); _sigCtx.lineTo(p.x,p.y); _sigCtx.stroke(); _sigHasDraw=true; document.getElementById('sigCanvasHint').style.display='none'; });
-  _sigCanvas.addEventListener('mouseup', function(){ _sigDrawing=false; });
-  _sigCanvas.addEventListener('mouseleave', function(){ _sigDrawing=false; });
-  _sigCanvas.addEventListener('touchstart', function(e){ e.preventDefault(); _sigDrawing=true; var p=getPos(e); _sigCtx.beginPath(); _sigCtx.moveTo(p.x,p.y); },{passive:false});
-  _sigCanvas.addEventListener('touchmove', function(e){ e.preventDefault(); if(!_sigDrawing) return; var p=getPos(e); _sigCtx.lineTo(p.x,p.y); _sigCtx.stroke(); _sigHasDraw=true; document.getElementById('sigCanvasHint').style.display='none'; },{passive:false});
-  _sigCanvas.addEventListener('touchend', function(){ _sigDrawing=false; });
-}
-
-function switchSigTab(tab) {
-  var isDraw = tab === 'draw';
-  document.getElementById('sigDrawPanel').style.display = isDraw ? 'block' : 'none';
-  document.getElementById('sigUploadPanel').style.display = isDraw ? 'none' : 'block';
-  document.getElementById('sigTabDraw').style.cssText = isDraw
-    ? 'flex:1;padding:6px 10px;border-radius:6px;border:1.5px solid #4a90d9;background:#e8f4fd;color:#1a5a8a;font-family:Sarabun,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer'
-    : 'flex:1;padding:6px 10px;border-radius:6px;border:1.5px solid #dde3ea;background:#fff;color:#8a96a3;font-family:Sarabun,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer';
-  document.getElementById('sigTabUpload').style.cssText = isDraw
-    ? 'flex:1;padding:6px 10px;border-radius:6px;border:1.5px solid #dde3ea;background:#fff;color:#8a96a3;font-family:Sarabun,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer'
-    : 'flex:1;padding:6px 10px;border-radius:6px;border:1.5px solid #4a90d9;background:#e8f4fd;color:#1a5a8a;font-family:Sarabun,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer';
-  if (isDraw) setTimeout(initSigCanvas, 50);
-}
-
-function clearDrawSig() {
-  if (_sigCtx) _sigCtx.clearRect(0,0,_sigCanvas.width,_sigCanvas.height);
-  _sigHasDraw = false;
-  document.getElementById('sigCanvasHint').style.display = 'flex';
-}
-
-function useDrawSig() {
-  if (!_sigHasDraw) { alert('กรุณาเซ็นชื่อก่อนค่ะ'); return; }
-  var dataUrl = _sigCanvas.toDataURL('image/png');
-  _applySig(dataUrl);
-}
-
-// ── Post Evidence ──
-var postEvidences = [];
-
-function addPostEvidence() {
-  var idx = postEvidences.length;
-  postEvidences.push({ img: null, platform: '', date: '', link: '' });
-  renderPostEvidences();
-}
-
-function removePostEvidence(idx) {
-  postEvidences.splice(idx, 1);
-  renderPostEvidences();
-}
-
-function renderPostEvidences() {
-  var container = document.getElementById('postEvidenceList');
-  if (!container) return;
-  container.innerHTML = postEvidences.map(function(p, i) {
-    return '<div style="border:1px solid #dde3ea;border-radius:8px;padding:10px;margin-bottom:10px;background:#fafcfe">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-        '<span style="font-size:.7rem;font-weight:700;color:#555">โพสต์ที่ ' + (i+1) + '</span>' +
-        '<button onclick="removePostEvidence(' + i + ')" style="background:none;border:none;color:#e05050;cursor:pointer;font-size:.8rem">✕ ลบ</button>' +
-      '</div>' +
-      // Image upload
-      '<div class="uz" style="margin-bottom:8px;min-height:60px" onclick="document.getElementById('postImg' + i + '').click()">' +
-        '<input type="file" id="postImg' + i + '" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" onchange="handlePostImg(this,' + i + ')">' +
-        (p.img
-          ? '<img src="' + p.img + '" style="max-height:80px;max-width:100%;border-radius:4px;object-fit:cover">'
-          : '<div class="uz-i" style="font-size:16px">📸</div><div class="uz-t"><strong>คลิก</strong> แนบ screenshot</div>') +
-      '</div>' +
-      // Platform
-      '<div class="field" style="margin-bottom:6px">' +
-        '<label>แพลตฟอร์ม</label>' +
-        '<select id="platSel' + i + '" onchange="handlePlatformChange(' + i + ',this.value)" style="border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;margin-bottom:4px">' +
-          '<option value=""' + (!p.platform||['Instagram','TikTok','Facebook','YouTube','X (Twitter)'].indexOf(p.platform)===-1&&p.platform?'':(!p.platform?'selected':'')) + '>เลือก</option>' +
-          ['Instagram','TikTok','Facebook','YouTube','X (Twitter)'].map(function(pl){
-            return '<option value="' + pl + '"' + (p.platform===pl?' selected':'') + '>' + pl + '</option>';
-          }).join('') +
-          '<option value="other"' + (['Instagram','TikTok','Facebook','YouTube','X (Twitter)'].indexOf(p.platform)===-1&&p.platform?' selected':'') + '>อื่นๆ (พิมพ์เอง)</option>' +
-        '</select>' +
-        ((['Instagram','TikTok','Facebook','YouTube','X (Twitter)'].indexOf(p.platform)===-1 && p.platform)
-          ? '<input type="text" value="' + (p.platform||'') + '" placeholder="ระบุแพลตฟอร์ม" onchange="updatePostEvidence(' + i + ','platform',this.value)" style="border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%">'
-          : '<input type="text" id="platOther' + i + '" placeholder="ระบุแพลตฟอร์ม" onchange="updatePostEvidence(' + i + ','platform',this.value)" style="border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;display:' + (['Instagram','TikTok','Facebook','YouTube','X (Twitter)'].indexOf(p.platform)===-1&&p.platform?'block':'none') + '">') +
-      '</div>' +
-      // Date
-      '<div class="field" style="margin-bottom:6px">' +
-        '<label>วันที่โพสต์</label>' +
-        '<input type="date" value="' + (p.date||'') + '" onchange="updatePostEvidence(' + i + ','date',this.value)" style="border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%">' +
-      '</div>' +
-      // Link
-      '<div class="field">' +
-        '<label>ลิงก์โพสต์</label>' +
-        '<input type="url" value="' + (p.link||'') + '" placeholder="https://..." onchange="updatePostEvidence(' + i + ','link',this.value)" style="border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%">' +
-      '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function handlePostImg(input, idx) {
-  if (!input.files[0]) return;
-  var r = new FileReader();
-  r.onload = function(e) {
-    postEvidences[idx].img = e.target.result;
-    renderPostEvidences();
-  };
-  r.readAsDataURL(input.files[0]);
-}
-
-function handlePlatformChange(idx, val) {
-  var otherInput = document.getElementById('platOther' + idx);
-  if (val === 'other') {
-    if (otherInput) otherInput.style.display = 'block';
-    updatePostEvidence(idx, 'platform', '');
-  } else {
-    if (otherInput) otherInput.style.display = 'none';
-    updatePostEvidence(idx, 'platform', val);
-  }
-}
-function updatePostEvidence(idx, key, val) {
-  postEvidences[idx][key] = val;
-}
-
-function handleSig(input) {
-  if (!input.files[0]) return;
-  var r = new FileReader();
-  r.onload = function(e) { _applySig(e.target.result); };
-  r.readAsDataURL(input.files[0]);
-}
-
-function _applySig(dataUrl) {
-  sigData = dataUrl;
-  document.getElementById('sigImg').src = dataUrl;
-  document.getElementById('sigImg').style.display = 'block';
-  document.getElementById('sigPh').style.display = 'none';
-  document.getElementById('sigPreviewImg').src = dataUrl;
-  document.getElementById('sigPreviewWrap').style.display = 'block';
-  renderInvoice();
-}
-
-function clearAllSig() {
-  sigData = null;
-  document.getElementById('sigImg').style.display = 'none';
-  document.getElementById('sigPh').style.display = 'flex';
-  document.getElementById('sigFile').value = '';
-  document.getElementById('sigPreviewWrap').style.display = 'none';
-  clearDrawSig();
-  renderInvoice();
-}
-function clearSig() { clearAllSig(); }
-function handleFiles(input, key) {
-  for (var i = 0; i < input.files.length; i++) {
-    (function(f) {
-      var r = new FileReader();
-      r.onload = function(e) { files[key].push({name:f.name,size:f.size,type:f.type,data:e.target.result}); renderChips(key); };
+// ── FIX 2: Single handleFiles + renderChips (removed duplicate) ──
+function handleFiles(input, key){
+  for(var i=0; i<input.files.length; i++){
+    (function(f){
+      var r=new FileReader();
+      r.onload=function(e){ files[key].push({name:f.name,size:f.size,type:f.type,data:e.target.result}); renderChips(key); };
       r.readAsDataURL(f);
     })(input.files[i]);
   }
-  input.value = '';
+  input.value='';
 }
-function renderChips(key) {
-  var wrap = document.getElementById('preview-'+key);
-  wrap.innerHTML = '';
-  for (var i = 0; i < files[key].length; i++) {
-    (function(f, idx) {
-      var chip = document.createElement('div'); chip.className='chip';
+
+function renderChips(key){
+  var wrap=document.getElementById('preview-'+key);
+  if(!wrap) return;
+  wrap.innerHTML='';
+  for(var i=0; i<files[key].length; i++){
+    (function(f, idx){
+      var chip=document.createElement('div'); chip.className='chip';
       var thumb;
-      if (f.type.indexOf('image/')===0) { thumb=document.createElement('img'); thumb.src=f.data; thumb.className='chip-th'; }
-      else { thumb=document.createElement('div'); thumb.style.cssText='width:32px;height:32px;background:#fee8e7;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#c0392b;flex-shrink:0'; thumb.textContent='PDF'; }
+      if(f.type.indexOf('image/')===0){
+        thumb=document.createElement('img'); thumb.src=f.data; thumb.className='chip-th';
+      } else {
+        thumb=document.createElement('div');
+        thumb.style.cssText='width:32px;height:32px;background:#fee8e7;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#c0392b;flex-shrink:0';
+        thumb.textContent='PDF';
+      }
       var info=document.createElement('div'); info.style.cssText='flex:1;min-width:0';
       info.innerHTML='<div class="chip-n">'+f.name+'</div><div class="chip-s">'+((f.size/1024).toFixed(1))+' KB</div>';
-      var btn=document.createElement('button'); btn.className='chip-rm'; btn.textContent='x';
+      var btn=document.createElement('button'); btn.className='chip-rm'; btn.textContent='✕';
       btn.onclick=function(){ files[key].splice(idx,1); renderChips(key); };
       chip.appendChild(thumb); chip.appendChild(info); chip.appendChild(btn);
       wrap.appendChild(chip);
     })(files[key][i], i);
   }
 }
-function updateDue() {
-  var d = new Date(document.getElementById('invDate').value);
+
+function updateDue(){
+  var d=new Date(document.getElementById('invDate').value);
   d.setDate(d.getDate()+60);
-  document.getElementById('invDue').value = d.toISOString().split('T')[0];
+  document.getElementById('invDue').value=d.toISOString().split('T')[0];
 }
-function savePDF() {
-  if (!v('infName')) { alert('กรุณากรอกชื่อ-นามสกุลก่อนค่ะ'); return; }
-  var ov = document.getElementById('ov');
+
+// ── FIX 3: renderPostEvidences uses DOM methods (no inline quote issues) ──
+function addPostEvidence(){
+  postEvidences.push({img:null, platform:'', date:'', link:''});
+  renderPostEvidences();
+}
+
+function removePostEvidence(idx){
+  postEvidences.splice(idx,1);
+  renderPostEvidences();
+}
+
+function renderPostEvidences(){
+  var container=document.getElementById('postEvidenceList');
+  if(!container) return;
+  container.innerHTML='';
+  postEvidences.forEach(function(p,i){
+    var box=document.createElement('div');
+    box.style.cssText='border:1px solid #dde3ea;border-radius:8px;padding:10px;margin-bottom:10px;background:#fafcfe';
+
+    // Header
+    var hdr=document.createElement('div');
+    hdr.style.cssText='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px';
+    hdr.innerHTML='<span style="font-size:.7rem;font-weight:700;color:#555">โพสต์ที่ '+(i+1)+'</span>';
+    var rmBtn=document.createElement('button');
+    rmBtn.style.cssText='background:none;border:none;color:#e05050;cursor:pointer;font-size:.8rem';
+    rmBtn.textContent='✕ ลบ';
+    rmBtn.onclick=(function(idx){return function(){removePostEvidence(idx);};})(i);
+    hdr.appendChild(rmBtn); box.appendChild(hdr);
+
+    // Image upload area
+    var imgArea=document.createElement('div');
+    imgArea.style.cssText='border:2px dashed #dde3ea;border-radius:7px;padding:12px;text-align:center;cursor:pointer;position:relative;background:#fafcfe;margin-bottom:8px;min-height:60px;display:flex;align-items:center;justify-content:center';
+    var fileInp=document.createElement('input');
+    fileInp.type='file'; fileInp.accept='image/*';
+    fileInp.style.cssText='position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%';
+    fileInp.onchange=(function(idx){return function(){ handlePostImg(this,idx); };})(i);
+    imgArea.appendChild(fileInp);
+    if(p.img){
+      var img=document.createElement('img');
+      img.src=p.img; img.style.cssText='max-height:80px;max-width:100%;border-radius:4px;object-fit:cover';
+      imgArea.appendChild(img);
+    } else {
+      imgArea.innerHTML+='<div><div style="font-size:1.3rem;opacity:.45">📸</div><div style="font-size:.68rem;color:#8a96a3"><strong>คลิก</strong> แนบ screenshot</div></div>';
+    }
+    box.appendChild(imgArea);
+
+    // Platform select
+    var platLabel=document.createElement('label');
+    platLabel.style.cssText='font-size:.66rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:3px';
+    platLabel.textContent='แพลตฟอร์ม';
+    box.appendChild(platLabel);
+    var platSel=document.createElement('select');
+    platSel.style.cssText='border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;margin-bottom:6px;outline:none';
+    var platOptions=['','Instagram','TikTok','Facebook','YouTube','X (Twitter)','อื่นๆ'];
+    platOptions.forEach(function(pl){
+      var opt=document.createElement('option');
+      opt.value=pl; opt.textContent=pl||'เลือก';
+      if(p.platform===pl) opt.selected=true;
+      platSel.appendChild(opt);
+    });
+    platSel.onchange=(function(idx){return function(){ postEvidences[idx].platform=this.value; };})(i);
+    box.appendChild(platSel);
+
+    // Date
+    var dtLabel=document.createElement('label');
+    dtLabel.style.cssText='font-size:.66rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:3px';
+    dtLabel.textContent='วันที่โพสต์';
+    box.appendChild(dtLabel);
+    var dtInp=document.createElement('input');
+    dtInp.type='date'; dtInp.value=p.date||'';
+    dtInp.style.cssText='border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;margin-bottom:6px;outline:none';
+    dtInp.onchange=(function(idx){return function(){ postEvidences[idx].date=this.value; };})(i);
+    box.appendChild(dtInp);
+
+    // Link
+    var lkLabel=document.createElement('label');
+    lkLabel.style.cssText='font-size:.66rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:3px';
+    lkLabel.textContent='ลิงก์โพสต์';
+    box.appendChild(lkLabel);
+    var lkInp=document.createElement('input');
+    lkInp.type='url'; lkInp.value=p.link||''; lkInp.placeholder='https://...';
+    lkInp.style.cssText='border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;outline:none';
+    lkInp.onchange=(function(idx){return function(){ postEvidences[idx].link=this.value; };})(i);
+    box.appendChild(lkInp);
+
+    container.appendChild(box);
+  });
+}
+
+function handlePostImg(input, idx){
+  if(!input.files[0]) return;
+  var r=new FileReader();
+  r.onload=function(e){ postEvidences[idx].img=e.target.result; renderPostEvidences(); };
+  r.readAsDataURL(input.files[0]);
+}
+
+// Signature
+var _sigDrawing=false, _sigHasDraw=false, _sigCanvas, _sigCtx;
+
+function initSigCanvas(){
+  _sigCanvas=document.getElementById('sigCanvas');
+  if(!_sigCanvas) return;
+  _sigCanvas.width=_sigCanvas.parentElement.clientWidth||240;
+  _sigCtx=_sigCanvas.getContext('2d');
+  _sigCtx.strokeStyle='#1a1a2e'; _sigCtx.lineWidth=2; _sigCtx.lineCap='round'; _sigCtx.lineJoin='round';
+  function getPos(e){ var r=_sigCanvas.getBoundingClientRect(), src=e.touches?e.touches[0]:e; return{x:(src.clientX-r.left)*(_sigCanvas.width/r.width),y:(src.clientY-r.top)*(_sigCanvas.height/r.height)}; }
+  _sigCanvas.addEventListener('mousedown',function(e){ _sigDrawing=true; var p=getPos(e); _sigCtx.beginPath(); _sigCtx.moveTo(p.x,p.y); });
+  _sigCanvas.addEventListener('mousemove',function(e){ if(!_sigDrawing)return; var p=getPos(e); _sigCtx.lineTo(p.x,p.y); _sigCtx.stroke(); _sigHasDraw=true; document.getElementById('sigCanvasHint').style.display='none'; });
+  _sigCanvas.addEventListener('mouseup',function(){ _sigDrawing=false; });
+  _sigCanvas.addEventListener('mouseleave',function(){ _sigDrawing=false; });
+  _sigCanvas.addEventListener('touchstart',function(e){ e.preventDefault(); _sigDrawing=true; var p=getPos(e); _sigCtx.beginPath(); _sigCtx.moveTo(p.x,p.y); },{passive:false});
+  _sigCanvas.addEventListener('touchmove',function(e){ e.preventDefault(); if(!_sigDrawing)return; var p=getPos(e); _sigCtx.lineTo(p.x,p.y); _sigCtx.stroke(); _sigHasDraw=true; document.getElementById('sigCanvasHint').style.display='none'; },{passive:false});
+  _sigCanvas.addEventListener('touchend',function(){ _sigDrawing=false; });
+}
+
+function switchSigTab(tab){
+  var isDraw=tab==='draw';
+  document.getElementById('sigDrawPanel').style.display=isDraw?'block':'none';
+  document.getElementById('sigUploadPanel').style.display=isDraw?'none':'block';
+  var activeStyle='flex:1;padding:6px 10px;border-radius:6px;border:1.5px solid #4a90d9;background:#e8f4fd;color:#1a5a8a;font-family:Sarabun,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer';
+  var inactiveStyle='flex:1;padding:6px 10px;border-radius:6px;border:1.5px solid #dde3ea;background:#fff;color:#8a96a3;font-family:Sarabun,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer';
+  document.getElementById('sigTabDraw').style.cssText=isDraw?activeStyle:inactiveStyle;
+  document.getElementById('sigTabUpload').style.cssText=isDraw?inactiveStyle:activeStyle;
+  if(isDraw) setTimeout(initSigCanvas,50);
+}
+
+function clearDrawSig(){
+  if(_sigCtx) _sigCtx.clearRect(0,0,_sigCanvas.width,_sigCanvas.height);
+  _sigHasDraw=false;
+  document.getElementById('sigCanvasHint').style.display='flex';
+}
+
+function useDrawSig(){
+  if(!_sigHasDraw){ alert('กรุณาเซ็นชื่อก่อนค่ะ'); return; }
+  _applySig(_sigCanvas.toDataURL('image/png'));
+}
+
+function handleSig(input){
+  if(!input.files[0]) return;
+  var r=new FileReader();
+  r.onload=function(e){ _applySig(e.target.result); };
+  r.readAsDataURL(input.files[0]);
+}
+
+function _applySig(dataUrl){
+  sigData=dataUrl;
+  document.getElementById('sigImg').src=dataUrl;
+  document.getElementById('sigImg').style.display='block';
+  document.getElementById('sigPh').style.display='none';
+  document.getElementById('sigPreviewImg').src=dataUrl;
+  document.getElementById('sigPreviewWrap').style.display='block';
+  renderInvoice();
+}
+
+function clearAllSig(){
+  sigData=null;
+  document.getElementById('sigImg').style.display='none';
+  document.getElementById('sigPh').style.display='flex';
+  document.getElementById('sigFile').value='';
+  document.getElementById('sigPreviewWrap').style.display='none';
+  clearDrawSig(); renderInvoice();
+}
+
+// Zoom
+var _zoomLevel=1.0;
+function _applyZoom(){
+  var inner=document.getElementById('step2ZoomInner');
+  if(!inner) return;
+  inner.style.transform='scale('+_zoomLevel+')';
+  inner.style.transformOrigin='top center';
+  var lbl=document.getElementById('zoomLbl');
+  if(lbl) lbl.textContent=Math.round(_zoomLevel*100)+'%';
+}
+function changeZoom(delta){ _zoomLevel=Math.min(2,Math.max(0.3,_zoomLevel+delta)); _applyZoom(); }
+function resetZoom(){
+  var wrap=document.getElementById('step2ScrollWrap');
+  _zoomLevel=wrap?Math.min(1,(wrap.clientWidth-32)/794):0.45;
+  _applyZoom();
+}
+function isMobile(){ return window.innerWidth<=800; }
+
+function goToStep(n){
+  var mainWrap=document.querySelector('.main-wrap');
+  var step2Panel=document.getElementById('step2Panel');
+  var step2Prev=document.getElementById('step2PreviewWrap');
+  var btnNext=document.getElementById('btnNextToTemplate');
+  var mobNav=document.getElementById('mobNav');
+  var s1=document.getElementById('step1ind'), s2=document.getElementById('step2ind'), s2c=document.getElementById('step2circle');
+  if(n===1){
+    mainWrap.style.display='grid'; step2Panel.style.display='none';
+    if(step2Prev) step2Prev.style.display='none';
+    btnNext.style.display='inline-flex';
+    if(mobNav) mobNav.innerHTML='<button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>';
+    if(s1){ s1.style.color='#f0c040'; s1.querySelector('div').style.background='#f0c040'; s1.querySelector('div').style.color='#1a1a2e'; }
+    if(s2){ s2.style.color='rgba(255,255,255,.35)'; }
+    if(s2c){ s2c.style.background='rgba(255,255,255,.15)'; s2c.style.color='rgba(255,255,255,.4)'; }
+  } else {
+    mainWrap.style.display='none'; step2Panel.style.display='block';
+    if(step2Prev) step2Prev.style.display='block';
+    btnNext.style.display='none';
+    if(mobNav) mobNav.innerHTML='<button class="mob-nav-btn mob-nav-back" onclick="goToStep(1)">← แก้ไข</button><button class="mob-nav-btn mob-nav-save" onclick="savePDF()">⬇️ บันทึก PDF</button>';
+    if(s1){ s1.style.color='rgba(255,255,255,.45)'; s1.querySelector('div').style.background='rgba(255,255,255,.15)'; s1.querySelector('div').style.color='rgba(255,255,255,.4)'; }
+    if(s2){ s2.style.color='#f0c040'; }
+    if(s2c){ s2c.style.background='#f0c040'; s2c.style.color='#1a1a2e'; }
+    renderInvoice(); window.scrollTo(0,0);
+    if(isMobile()) setTimeout(resetZoom,100);
+  }
+}
+
+function savePDF(){
+  if(!v('infName')){ alert('กรุณากรอกชื่อ-นามสกุลก่อนค่ะ'); return; }
+  var ov=document.getElementById('ov');
   ov.classList.add('show');
-  document.getElementById('ovMsg').textContent = 'กำลังสร้าง PDF...';
-  var jsPDF = window.jspdf.jsPDF;
-  var pdf = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  document.getElementById('ovMsg').textContent='กำลังสร้าง PDF...';
+  var jsPDF=window.jspdf.jsPDF;
+  var pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210, M=10;
-  var captureEl = document.getElementById('step2Panel').style.display !== 'none' ? document.getElementById('step2PreviewInner') : document.getElementById('invoiceWrap');
+  var captureEl=document.getElementById('step2Panel').style.display!=='none'?document.getElementById('step2PreviewInner'):document.getElementById('invoiceWrap');
   html2canvas(captureEl,{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false}).then(function(cv){
     var iW=W-M*2, iH=iW*(cv.height/cv.width), pH=297-M*2;
     if(iH<=pH){ pdf.addImage(cv.toDataURL('image/jpeg',.93),'JPEG',M,M,iW,iH); }
-    else {
+    else{
       var n=Math.ceil(iH/pH);
       for(var p=0;p<n;p++){
         if(p>0) pdf.addPage();
@@ -1829,8 +1560,8 @@ function savePDF() {
       }
     }
     var allF=[];
-    for(var i=0;i<files.id.length;i++) allF.push({label:'บัตรประชาชน',data:files.id[i].data,name:files.id[i].name,type:files.id[i].type});
-    for(var i=0;i<files.book.length;i++) allF.push({label:'Book Bank',data:files.book[i].data,name:files.book[i].name,type:files.book[i].type});
+    files.id.forEach(function(f){ allF.push({label:'บัตรประชาชน',data:f.data,name:f.name,type:f.type}); });
+    files.book.forEach(function(f){ allF.push({label:'Book Bank',data:f.data,name:f.name,type:f.type}); });
     var chain=Promise.resolve();
     allF.forEach(function(f){
       chain=chain.then(function(){
@@ -1842,28 +1573,21 @@ function savePDF() {
         }
       });
     });
-    // เพิ่มหลักฐานโพสต์
-    postEvidences.forEach(function(pe, pi) {
-      if (!pe.img) return;
-      chain = chain.then(function() {
+    postEvidences.forEach(function(pe,pi){
+      if(!pe.img) return;
+      chain=chain.then(function(){
         pdf.addPage();
-        var y = M;
+        var y=M;
         pdf.setFontSize(11); pdf.setFont('helvetica','bold');
-        pdf.text('หลักฐานการโพสต์ #' + (pi+1), M, y+6); y+=10;
-        pdf.line(M, y, W-M, y); y+=6;
+        pdf.text('Post Evidence #'+(pi+1),M,y+6); y+=10;
+        pdf.line(M,y,W-M,y); y+=6;
         pdf.setFontSize(9); pdf.setFont('helvetica','normal');
-        if(pe.platform){ pdf.text('แพลตฟอร์ม: ' + pe.platform, M, y); y+=6; }
-        if(pe.date){ pdf.text('วันที่โพสต์: ' + pe.date, M, y); y+=6; }
-        if(pe.link){ pdf.text('ลิงก์: ' + pe.link, M, y); y+=8; }
+        if(pe.platform){ pdf.text('Platform: '+pe.platform,M,y); y+=6; }
+        if(pe.date){ pdf.text('Date: '+pe.date,M,y); y+=6; }
+        if(pe.link){ pdf.text('Link: '+pe.link,M,y); y+=8; }
         return new Promise(function(res){
-          var img = new Image();
-          img.src = pe.img;
-          img.onload = function(){
-            var maxW = W-M*2;
-            var imgH = Math.min((img.height/img.width)*maxW, 297-y-M);
-            pdf.addImage(pe.img,'JPEG',M,y,maxW,imgH);
-            res();
-          };
+          var img=new Image(); img.src=pe.img;
+          img.onload=function(){ var maxW=W-M*2; pdf.addImage(pe.img,'JPEG',M,y,maxW,Math.min((img.height/img.width)*maxW,297-y-M)); res(); };
         });
       });
     });
@@ -1876,111 +1600,33 @@ function savePDF() {
     document.getElementById('doneScreen').classList.add('show');
   }).catch(function(e){ ov.classList.remove('show'); alert('Error: '+e.message); });
 }
-// ── Zoom for mobile preview ──
-var _zoomLevel = 1.0;
 
-function _applyZoom() {
-  var inner = document.getElementById('step2ZoomInner');
-  if (!inner) return;
-  inner.style.transform = 'scale(' + _zoomLevel + ')';
-  inner.style.transformOrigin = 'top center';
-  // adjust container height so scroll works
-  var wrap = document.getElementById('step2ScrollWrap');
-  if (wrap) {
-    var previewH = (inner.scrollHeight || 1123) * _zoomLevel;
-    wrap.style.height = Math.min(window.innerHeight * 0.75, 600) + 'px';
-  }
-  var lbl = document.getElementById('zoomLbl');
-  if (lbl) lbl.textContent = Math.round(_zoomLevel * 100) + '%';
-}
-
-function changeZoom(delta) {
-  _zoomLevel = Math.min(2, Math.max(0.3, _zoomLevel + delta));
-  _applyZoom();
-}
-
-function resetZoom() {
-  // auto-fit to screen width
-  var wrap = document.getElementById('step2ScrollWrap');
-  if (wrap) {
-    var screenW = wrap.clientWidth - 32;
-    _zoomLevel = Math.min(1, screenW / 794);
-  } else {
-    _zoomLevel = 0.45;
-  }
-  _applyZoom();
-}
-
-function isMobile(){ return window.innerWidth <= 800; }
-
-function isMobile(){ return window.innerWidth <= 800; }
-
-function goToStep(n) {
-  var mainWrap = document.querySelector('.main-wrap');
-  var step2Panel = document.getElementById('step2Panel');
-  var step2Prev = document.getElementById('step2PreviewWrap');
-  var btnNext = document.getElementById('btnNextToTemplate');
-  var mobNav = document.getElementById('mobNav');
-  var s1 = document.getElementById('step1ind');
-  var s2 = document.getElementById('step2ind');
-  var s2c = document.getElementById('step2circle');
-
-  if (n === 1) {
-    mainWrap.style.display = 'grid';
-    step2Panel.style.display = 'none';
-    if (step2Prev) step2Prev.style.display = 'none';
-    btnNext.style.display = 'inline-flex';
-    // Mobile nav: show "next" button
-    if (mobNav) mobNav.innerHTML = '<button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>';
-    if(s1){ s1.style.color='#f0c040'; s1.querySelector('div').style.background='#f0c040'; s1.querySelector('div').style.color='#1a1a2e'; }
-    if(s2){ s2.style.color='rgba(255,255,255,.35)'; }
-    if(s2c){ s2c.style.background='rgba(255,255,255,.15)'; s2c.style.color='rgba(255,255,255,.4)'; }
-  } else {
-    mainWrap.style.display = 'none';
-    step2Panel.style.display = 'block';
-    if (step2Prev) step2Prev.style.display = 'block';
-    btnNext.style.display = 'none';
-    // Mobile nav: show "back" + "save PDF"
-    if (mobNav) mobNav.innerHTML =
-      '<button class="mob-nav-btn mob-nav-back" onclick="goToStep(1)">← แก้ไข</button>'+
-      '<button class="mob-nav-btn mob-nav-save" onclick="savePDF()">⬇️ บันทึก PDF</button>';
-    if(s1){ s1.style.color='rgba(255,255,255,.45)'; s1.querySelector('div').style.background='rgba(255,255,255,.15)'; s1.querySelector('div').style.color='rgba(255,255,255,.4)'; }
-    if(s2){ s2.style.color='#f0c040'; }
-    if(s2c){ s2c.style.background='#f0c040'; s2c.style.color='#1a1a2e'; }
-    renderInvoice();
-    window.scrollTo(0,0);
-    if (isMobile()) { setTimeout(resetZoom, 100); }
-  }
-}
+// Init
 (function(){
   var today=new Date().toISOString().split('T')[0];
   document.getElementById('invDate').value=today;
   var due=new Date(); due.setDate(due.getDate()+60);
   document.getElementById('invDue').value=due.toISOString().split('T')[0];
-  var d=new Date();
   var g=document.getElementById('tplGrid');
   TPLS.forEach(function(t,i){
     var b=document.createElement('button');
     b.className='tpl-btn'+(t.id===currentTpl?' active':'');
-    b.title=t.desc||'';
-    b.textContent=(i+1)+'. '+t.name;
-    b.onclick=(function(tid){ return function(){
+    b.title=t.desc||''; b.textContent=(i+1)+'. '+t.name;
+    b.onclick=(function(tid){return function(){
       currentTpl=tid;
-      var btns=document.querySelectorAll('.tpl-btn');
-      for(var j=0;j<btns.length;j++) btns[j].classList.toggle('active',TPLS[j].id===tid);
+      document.querySelectorAll('.tpl-btn').forEach(function(btn,j){ btn.classList.toggle('active',TPLS[j].id===tid); });
       renderInvoice();
-    }; })(t.id);
+    };})(t.id);
     g.appendChild(b);
   });
-  addRow(); addRow(); setTimeout(initSigCanvas, 300);
-  calcTotal();
-  renderInvoice();
+  addRow(); addRow();
+  setTimeout(initSigCanvas,300);
+  calcTotal(); renderInvoice();
 })();
 </script>
 
-<!-- Mobile bottom nav -->
 <div class="mob-nav" id="mobNav">
-  <button class="mob-nav-btn mob-nav-next" id="mobBtnNext" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>
+  <button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>
 </div>
 </body>
 </html>
