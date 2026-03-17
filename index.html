@@ -722,6 +722,39 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 }
 .upload-badge.show{display:inline-flex}
 
+/* ── Upload Summary Panel (Step 2) ── */
+#uploadSummary{
+  max-width:794px;margin:0 auto 12px;
+  background:#1a2535;border-radius:10px;
+  padding:12px 16px;display:none;
+}
+#uploadSummary.show{display:block}
+.us-title{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-bottom:10px}
+.us-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.us-section{background:rgba(255,255,255,.05);border-radius:7px;padding:9px 11px}
+.us-section-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.us-section-icon{font-size:.9rem}
+.us-section-label{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.04em}
+.us-section-count{margin-left:auto;background:rgba(255,255,255,.15);color:#fff;
+  font-size:.6rem;font-weight:800;padding:1px 6px;border-radius:10px}
+.us-section-count.green{background:#2d6a4f;color:#b7e4c7}
+.us-section-count.amber{background:#7c4f00;color:#ffd166}
+.us-thumbs{display:flex;gap:5px;flex-wrap:wrap}
+.us-thumb{width:40px;height:40px;border-radius:5px;object-fit:cover;border:1.5px solid rgba(255,255,255,.15)}
+.us-thumb-pdf{width:40px;height:40px;border-radius:5px;background:#fee8e7;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.5rem;font-weight:800;color:#c0392b;border:1.5px solid rgba(255,255,255,.1)}
+.us-empty{font-size:.68rem;color:rgba(255,255,255,.3);font-style:italic}
+.us-sig{max-height:36px;max-width:90px;object-fit:contain;
+  background:#fff;border-radius:4px;padding:2px 4px}
+.us-post-row{display:flex;gap:4px;flex-wrap:wrap}
+.us-post-thumb{position:relative}
+.us-post-thumb img{width:40px;height:40px;border-radius:5px;object-fit:cover;border:1.5px solid rgba(255,255,255,.15)}
+.us-post-thumb .us-post-num{position:absolute;top:-4px;left:-4px;background:#4a90d9;color:#fff;
+  font-size:.5rem;font-weight:800;width:14px;height:14px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center}
+
 /* ── PDF Options Modal ── */
 .pdf-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9998;align-items:center;justify-content:center;padding:16px}
 .pdf-modal-overlay.show{display:flex}
@@ -856,6 +889,12 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <button onclick="changeZoom(0.1)" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center">+</button>
     <button onclick="resetZoom()" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:.7rem;font-family:Sarabun,sans-serif;cursor:pointer;margin-left:4px">รีเซ็ต</button>
   </div>
+  <!-- Upload Summary Panel -->
+  <div id="uploadSummary">
+    <div class="us-title">📋 สรุปข้อมูลที่อัปโหลดทั้งหมด</div>
+    <div class="us-grid" id="usSummaryGrid"></div>
+  </div>
+
   <div id="step2ScrollWrap" style="overflow:auto;-webkit-overflow-scrolling:touch;padding:16px">
     <div id="step2ZoomInner" style="transform-origin:top center;transition:transform .2s">
       <div class="inv-wrap" id="step2PreviewInner" style="width:794px;margin:0 auto"></div>
@@ -1464,22 +1503,59 @@ function renderPostEvidences(){
     rmBtn.onclick=(function(idx){return function(){removePostEvidence(idx);};})(i);
     hdr.appendChild(rmBtn); box.appendChild(hdr);
 
-    // Image upload area
-    var imgArea=document.createElement('div');
-    imgArea.style.cssText='border:2px dashed #dde3ea;border-radius:7px;padding:12px;text-align:center;cursor:pointer;position:relative;background:#fafcfe;margin-bottom:8px;min-height:60px;display:flex;align-items:center;justify-content:center';
-    var fileInp=document.createElement('input');
-    fileInp.type='file'; fileInp.accept='image/*';
-    fileInp.style.cssText='position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%';
-    fileInp.onchange=(function(idx){return function(){ handlePostImg(this,idx); };})(i);
-    imgArea.appendChild(fileInp);
+    // Image upload area — chip style when has image, dashed zone when empty
     if(p.img){
-      var img=document.createElement('img');
-      img.src=p.img; img.style.cssText='max-height:80px;max-width:100%;border-radius:4px;object-fit:cover';
-      imgArea.appendChild(img);
+      // Show chip like ID card
+      var chip=document.createElement('div');
+      chip.style.cssText='display:flex;align-items:center;gap:8px;background:#f0f7ff;border:1px solid #d0e4f7;border-radius:6px;padding:6px 9px;margin-bottom:8px;position:relative';
+      // thumbnail
+      var chipThumb=document.createElement('img');
+      chipThumb.src=p.img;
+      chipThumb.style.cssText='width:48px;height:48px;object-fit:cover;border-radius:4px;flex-shrink:0;cursor:pointer';
+      chipThumb.title='คลิกเพื่อเปลี่ยนรูป';
+      // info
+      var chipInfo=document.createElement('div');
+      chipInfo.style.cssText='flex:1;min-width:0';
+      chipInfo.innerHTML='<div style="font-size:.7rem;font-weight:700;color:#1a1a2e;margin-bottom:2px">รูปโพสต์ #'+(i+1)+'</div>'+
+        '<div style="font-size:.65rem;color:#4a90d9;cursor:pointer">คลิกรูปหรือกดเปลี่ยนเพื่อสลับรูป</div>';
+      // change button
+      var changeBtn=document.createElement('label');
+      changeBtn.style.cssText='display:inline-flex;align-items:center;gap:4px;background:#4a90d9;color:#fff;border:none;border-radius:5px;padding:4px 9px;font-size:.68rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:Sarabun,sans-serif';
+      changeBtn.textContent='🔄 เปลี่ยน';
+      var changeInp=document.createElement('input');
+      changeInp.type='file'; changeInp.accept='image/*'; changeInp.style.display='none';
+      changeInp.onchange=(function(idx){return function(){ handlePostImg(this,idx); };})(i);
+      changeBtn.appendChild(changeInp);
+      // remove button
+      var rmImgBtn=document.createElement('button');
+      rmImgBtn.style.cssText='background:none;border:none;color:#c9d4dc;font-size:.85rem;cursor:pointer;padding:2px;flex-shrink:0;line-height:1';
+      rmImgBtn.textContent='✕';
+      rmImgBtn.title='ลบรูป';
+      rmImgBtn.onclick=(function(idx){return function(e){
+        e.stopPropagation();
+        postEvidences[idx].img=null;
+        renderPostEvidences();
+        updatePostBadge();
+        renderUploadSummary();
+      };})(i);
+
+      chip.appendChild(chipThumb);
+      chip.appendChild(chipInfo);
+      chip.appendChild(changeBtn);
+      chip.appendChild(rmImgBtn);
+      box.appendChild(chip);
     } else {
-      imgArea.innerHTML+='<div><div style="font-size:1.3rem;opacity:.45">📸</div><div style="font-size:.68rem;color:#8a96a3"><strong>คลิก</strong> แนบ screenshot</div></div>';
+      // Empty — dashed upload zone
+      var imgArea=document.createElement('div');
+      imgArea.style.cssText='border:2px dashed #dde3ea;border-radius:7px;padding:14px 12px;text-align:center;cursor:pointer;position:relative;background:#fafcfe;margin-bottom:8px;min-height:64px;display:flex;align-items:center;justify-content:center;gap:8px';
+      var fileInp=document.createElement('input');
+      fileInp.type='file'; fileInp.accept='image/*';
+      fileInp.style.cssText='position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%';
+      fileInp.onchange=(function(idx){return function(){ handlePostImg(this,idx); };})(i);
+      imgArea.appendChild(fileInp);
+      imgArea.innerHTML+='<div style="font-size:1.4rem;opacity:.35">📸</div><div style="font-size:.72rem;color:#8a96a3;line-height:1.4"><strong style="color:#4a90d9">คลิก</strong> หรือลากรูปมาวาง<br><span style="font-size:.65rem">screenshot โพสต์</span></div>';
+      box.appendChild(imgArea);
     }
-    box.appendChild(imgArea);
 
     // Platform select
     var platLabel=document.createElement('label');
@@ -1617,6 +1693,7 @@ function _applySig(dataUrl){
   document.getElementById('sigPreviewImg').src=dataUrl;
   document.getElementById('sigPreviewWrap').style.display='block';
   renderInvoice();
+  renderUploadSummary();
 }
 
 function clearAllSig(){
@@ -1625,7 +1702,7 @@ function clearAllSig(){
   document.getElementById('sigPh').style.display='flex';
   document.getElementById('sigFile').value='';
   document.getElementById('sigPreviewWrap').style.display='none';
-  clearDrawSig(); renderInvoice();
+  clearDrawSig(); renderInvoice(); renderUploadSummary();
 }
 
 // Zoom
@@ -1669,7 +1746,7 @@ function goToStep(n){
     if(s1){ s1.style.color='rgba(255,255,255,.45)'; s1.querySelector('div').style.background='rgba(255,255,255,.15)'; s1.querySelector('div').style.color='rgba(255,255,255,.4)'; }
     if(s2){ s2.style.color='#f0c040'; }
     if(s2c){ s2c.style.background='#f0c040'; s2c.style.color='#1a1a2e'; }
-    renderInvoice(); window.scrollTo(0,0);
+    renderInvoice(); renderUploadSummary(); window.scrollTo(0,0);
     if(isMobile()) setTimeout(resetZoom,100);
   }
 }
@@ -1953,6 +2030,95 @@ function confirmSavePDF(){
   if(!pages||pages.length===0){alert('กรุณาเลือกหน้าที่ต้องการ');return;}
   closePdfModal();
   savePDF({pages:pages,pageMap:window._pdfPageMap});
+}
+
+
+// ── Upload Summary Panel ──
+function renderUploadSummary(){
+  var panel=document.getElementById('uploadSummary');
+  var grid=document.getElementById('usSummaryGrid');
+  if(!panel||!grid) return;
+
+  var sections=[];
+
+  // Signature
+  var sigHtml='';
+  if(sigData){
+    sigHtml='<img class="us-sig" src="'+sigData+'">';
+  } else {
+    sigHtml='<span class="us-empty">ยังไม่มีลายเซ็น</span>';
+  }
+  sections.push({
+    icon:'✍️', label:'ลายเซ็น',
+    count: sigData?1:0, countLabel: sigData?'มีแล้ว':null,
+    body: sigHtml
+  });
+
+  // ID Card
+  var idThumbs=files.id.map(function(f){
+    return f.type.indexOf('image/')===0
+      ? '<img class="us-thumb" src="'+f.data+'" title="'+f.name+'">'
+      : '<div class="us-thumb-pdf">PDF</div>';
+  }).join('');
+  sections.push({
+    icon:'🪪', label:'บัตรประชาชน',
+    count:files.id.length,
+    body: files.id.length>0
+      ? '<div class="us-thumbs">'+idThumbs+'</div>'
+      : '<span class="us-empty">ยังไม่ได้แนบ</span>'
+  });
+
+  // Book Bank
+  var bookThumbs=files.book.map(function(f){
+    return f.type.indexOf('image/')===0
+      ? '<img class="us-thumb" src="'+f.data+'" title="'+f.name+'">'
+      : '<div class="us-thumb-pdf">PDF</div>';
+  }).join('');
+  sections.push({
+    icon:'🏦', label:'Book Bank',
+    count:files.book.length,
+    body: files.book.length>0
+      ? '<div class="us-thumbs">'+bookThumbs+'</div>'
+      : '<span class="us-empty">ยังไม่ได้แนบ</span>'
+  });
+
+  // Post Evidence
+  var postsWithImg=postEvidences.filter(function(p){return !!p.img;});
+  var postThumbs=postEvidences.map(function(p,i){
+    if(!p.img) return '<div class="us-post-thumb"><div class="us-thumb-pdf" style="background:#2a2a3e;color:rgba(255,255,255,.3);font-size:.55rem">?</div><div class="us-post-num">'+(i+1)+'</div></div>';
+    return '<div class="us-post-thumb"><img src="'+p.img+'" title="โพสต์ #'+(i+1)+(p.platform?' · '+p.platform:'')+'"><div class="us-post-num">'+(i+1)+'</div></div>';
+  }).join('');
+  sections.push({
+    icon:'📸', label:'หลักฐานโพสต์',
+    count:postsWithImg.length,
+    countLabel: postEvidences.length>0 ? (postsWithImg.length+'/'+postEvidences.length) : null,
+    amber: postsWithImg.length < postEvidences.length && postEvidences.length>0,
+    body: postEvidences.length>0
+      ? '<div class="us-post-row">'+postThumbs+'</div>'
+      : '<span class="us-empty">ยังไม่ได้เพิ่ม</span>'
+  });
+
+  // Build HTML
+  grid.innerHTML = sections.map(function(s){
+    var countBadge='';
+    if(s.countLabel){
+      var cls=s.amber?'amber':(s.count>0?'green':'');
+      countBadge='<span class="us-section-count '+cls+'">'+s.countLabel+'</span>';
+    } else if(s.count>0){
+      countBadge='<span class="us-section-count green">'+s.count+'</span>';
+    }
+    return '<div class="us-section">'+
+      '<div class="us-section-head">'+
+        '<span class="us-section-icon">'+s.icon+'</span>'+
+        '<span class="us-section-label">'+s.label+'</span>'+
+        countBadge+
+      '</div>'+
+      s.body+
+    '</div>';
+  }).join('');
+
+  // Show panel only when on step 2
+  panel.classList.add('show');
 }
 
 
