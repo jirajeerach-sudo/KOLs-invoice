@@ -145,6 +145,33 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
   #step2ZoomInner{transform:none !important}
 }
 
+/* Force desktop layout inside captureTarget regardless of screen size */
+#captureTarget .inv,
+#captureTarget .inv *{
+  /* reset any mobile overrides */
+}
+#captureTarget table{display:table !important}
+#captureTarget thead{display:table-header-group !important}
+#captureTarget tbody{display:table-row-group !important;flex-direction:unset !important;gap:unset !important}
+#captureTarget tr{
+  display:table-row !important;
+  grid-template-columns:unset !important;
+  grid-template-rows:unset !important;
+  background:unset !important;
+  border:none !important;
+  padding:unset !important;
+  border-radius:unset !important;
+}
+#captureTarget td{
+  display:table-cell !important;
+  position:static !important;
+  padding:7px 10px !important;
+  border-bottom:1px solid #e8ecf0 !important;
+}
+#captureTarget td::before{display:none !important}
+#captureTarget .uni-parties{display:grid !important;grid-template-columns:1fr 1fr !important}
+#captureTarget .sig-row-uni{display:flex !important;flex-direction:row !important}
+
 /* Mobile bottom nav */
 .mob-nav{
   display:none;
@@ -1902,10 +1929,9 @@ function savePDF(opts){
   var jsPDF=window.jspdf.jsPDF;
   var pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210, M=10;
-  // Always capture from the hidden element that is always 794px and never scaled
+  // Capture from hidden 794px div — pass windowWidth=1200 so media queries use desktop layout
   var captureEl=document.getElementById('captureTarget');
-  if(!captureEl || !captureEl.innerHTML){
-    // fallback
+  if(!captureEl || !captureEl.innerHTML.trim()){
     captureEl=document.getElementById('step2Panel').style.display!=='none'
       ? document.getElementById('step2PreviewInner')
       : document.getElementById('invoiceWrap');
@@ -1924,7 +1950,28 @@ function savePDF(opts){
   // ── 1. Invoice page ──
   if(pagesToRender.some(function(p){return p.type==='invoice';})){
     chain=chain.then(function(){
-      return html2canvas(captureEl,{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false})
+      return document.fonts.ready.then(function(){
+          return html2canvas(captureEl,{
+            scale:2,
+            useCORS:true,
+            allowTaint:true,
+            backgroundColor:'#ffffff',
+            logging:false,
+            windowWidth:794,
+            windowHeight:1123,
+            onclone:function(doc){
+              var el=doc.getElementById('captureTarget');
+              if(el){
+                el.style.position='static';
+                el.style.left='auto';
+                el.style.visibility='visible';
+                el.style.opacity='1';
+                el.parentElement.style.height='auto';
+                el.parentElement.style.overflow='visible';
+              }
+            }
+          });
+        })
         .then(function(cv){
           if(!firstPage) pdf.addPage();
           firstPage=false;
@@ -2052,6 +2099,12 @@ function savePDF(opts){
   }
 
   chain.then(function(){
+    // Hide captureTarget again after rendering
+    if(captureWrapper){
+      captureWrapper.style.height='0';
+      captureWrapper.style.overflow='hidden';
+      captureWrapper.style.top='0';
+    }
     var name=(v('infName')||'KOL').replace(/\s+/g,'-');
     var camp=(v('invProject')||'invoice').replace(/\s+/g,'_');
     var fileName='INV_'+name+'_'+camp+'_'+new Date().toISOString().slice(0,10)+'.pdf';
@@ -2074,6 +2127,7 @@ function savePDF(opts){
       if(navigator.canShare({files:[testFile]})){
         // Can share files — show share button
         if(doneMsg) doneMsg.textContent='กดแชร์เพื่อส่งผ่าน Line, อีเมล หรือแอปอื่นๆ ได้เลยค่ะ';
+        if(dlBtn){ dlBtn.style.display='block'; dlBtn.textContent='📂 เปิด PDF (บันทึกใน Files)'; }
         if(shareBtn) shareBtn.style.display='block';
         if(dlBtn) dlBtn.style.display='block';
       } else {
@@ -2108,7 +2162,6 @@ function sharePDF(){
     text: 'ใบแจ้งหนี้ '+name,
     files: [file]
   }).catch(function(e){
-    // User cancelled or error — fallback to download
     if(e.name!=='AbortError') downloadPDF();
   });
 }
@@ -2117,12 +2170,47 @@ function downloadPDF(){
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
   if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
-  var url=URL.createObjectURL(blob);
-  var a=document.createElement('a');
-  a.href=url; a.download=name;
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a);
-  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+
+  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  if(isIOS){
+    // iOS Safari: open PDF in new tab — user can tap Share → Save to Files / Print
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var dataUrl=e.target.result;
+      // Try opening in new tab with data URL
+      var win=window.open('','_blank');
+      if(win){
+        win.document.write(
+          '<html><head><title>'+name+'</title>'+
+          '<meta name="viewport" content="width=device-width,initial-scale=1">'+
+          '<style>body{margin:0;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;color:#fff;gap:16px}'+
+          'p{font-size:14px;opacity:.7;text-align:center;padding:0 20px}'+
+          'a{display:inline-block;padding:12px 24px;background:#06c755;color:#fff;border-radius:10px;text-decoration:none;font-size:15px;font-weight:700}'+
+          'embed{width:100vw;height:85vh;border:none}</style></head>'+
+          '<body>'+
+          '<embed src="'+dataUrl+'" type="application/pdf">'+
+          '<p>กด Share แล้วเลือก "บันทึกใน Files" หรือ "พิมพ์" เพื่อบันทึก PDF</p>'+
+          '<a href="'+dataUrl+'" download="'+name+'">กดค้างเพื่อบันทึก PDF</a>'+
+          '</body></html>'
+        );
+        win.document.close();
+      } else {
+        // Popup blocked — fallback: show PDF directly
+        var url=URL.createObjectURL(blob);
+        window.location.href=url;
+      }
+    };
+    reader.readAsDataURL(blob);
+  } else {
+    // Android / Desktop: standard download
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url; a.download=name;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  }
 }
 
 
@@ -2374,11 +2462,12 @@ function handleOtherSelect(selId, inputId){
 </div>
 
 <!-- Hidden capture target — always 794px, never zoomed, used for PDF rendering -->
+<!-- Hidden capture target — always 794px, never scaled -->
 <div id="captureTarget" style="
   position:fixed;left:-9999px;top:0;
-  width:794px;overflow:visible;
+  width:794px;min-width:794px;
+  background:#fff;overflow:visible;
   pointer-events:none;z-index:-1;
-  background:#fff;
 "></div>
 
 </body>
