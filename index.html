@@ -1496,7 +1496,10 @@ function renderPostEvidences(){
     // Header
     var hdr=document.createElement('div');
     hdr.style.cssText='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px';
-    hdr.innerHTML='<span style="font-size:.7rem;font-weight:700;color:#555">โพสต์ที่ '+(i+1)+'</span>';
+    var statusDot = p.img
+      ? '<span style="display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:700;color:#2d6a4f;background:#d8f3dc;border-radius:20px;padding:2px 7px;margin-left:6px">✓ มีรูปแล้ว</span>'
+      : '<span style="display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:700;color:#9a6030;background:#fff3cd;border-radius:20px;padding:2px 7px;margin-left:6px">! ยังไม่มีรูป</span>';
+    hdr.innerHTML='<span style="font-size:.7rem;font-weight:700;color:#555;display:flex;align-items:center">โพสต์ที่ '+(i+1)+statusDot+'</span>';
     var rmBtn=document.createElement('button');
     rmBtn.style.cssText='background:none;border:none;color:#e05050;cursor:pointer;font-size:.8rem';
     rmBtn.textContent='✕ ลบ';
@@ -1621,13 +1624,24 @@ function renderPostEvidences(){
 }
 
 function updatePostBadge(){
-  var total=postEvidences.filter(function(p){return !!p.img;}).length;
+  var withImg=postEvidences.filter(function(p){return !!p.img;}).length;
+  var total=postEvidences.length;
   var badge=document.getElementById('badgePost');
   if(!badge) return;
-  // show total posts added (with or without img)
-  var totalAdded=postEvidences.length;
-  badge.textContent=totalAdded>0?(total+'/'+totalAdded):0;
-  badge.classList.toggle('show', totalAdded>0);
+  if(total===0){
+    badge.textContent='0';
+    badge.classList.remove('show');
+    return;
+  }
+  // amber when not all have images, green when all done
+  badge.textContent=withImg+'/'+total;
+  badge.classList.add('show');
+  badge.style.background=withImg===total
+    ? 'rgba(255,255,255,0.25)'   // all done - white-ish
+    : 'rgba(255,165,0,0.5)';     // amber - some missing
+  badge.style.border=withImg===total
+    ? '1.5px solid rgba(255,255,255,0.4)'
+    : '1.5px solid rgba(255,165,0,0.7)';
 }
 
 function handlePostImg(input, idx){
