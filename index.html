@@ -768,10 +768,37 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 .ov.show{display:flex}
 .spin{width:44px;height:44px;border:3px solid rgba(255,255,255,.2);border-top-color:#f4b8bf;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.done-screen{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center}
+.done-screen{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0;
+}
 .done-screen.show{display:flex}
-.done-box{background:#fff;border-radius:16px;padding:36px 28px;text-align:center;max-width:380px;margin:20px}
-.done-btn{display:block;width:100%;padding:12px;border:none;border-radius:8px;font-family:Sarabun,sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:8px}
+.done-box{
+  background:#fff;
+  border-radius:20px 20px 0 0;
+  padding:24px 20px calc(24px + env(safe-area-inset-bottom));
+  width:100%;
+  max-width:480px;
+  text-align:center;
+  box-shadow:0 -4px 30px rgba(0,0,0,.15);
+}
+@media(min-width:500px){
+  .done-screen{align-items:center}
+  .done-box{border-radius:16px;padding:28px 24px;max-width:380px;margin:20px}
+}
+.done-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:14px 16px;
+  border:none;border-radius:10px;
+  font-family:Sarabun,sans-serif;font-size:.92rem;font-weight:700;
+  cursor:pointer;margin-bottom:10px;
+  transition:opacity .15s;
+}
+.done-btn:active{opacity:.8}
 .done-btn.primary{background:linear-gradient(135deg,#c0515a,#e07880);color:#fff}
 .sig-area{border:2px dashed #dde3ea;border-radius:7px;padding:14px;background:#fafcfe;position:relative;min-height:80px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer}
 .sig-area:hover{border-color:#c0515a}
@@ -857,16 +884,24 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 <div class="ov" id="ov"><div class="spin"></div><div style="font-size:.9rem;font-weight:600" id="ovMsg">กำลังสร้าง PDF...</div></div>
 <div class="done-screen" id="doneScreen">
   <div class="done-box">
-    <div style="font-size:3rem">✅</div>
-    <h2 style="color:#2e7d32;margin:10px 0 8px;font-size:1.1rem">สร้าง PDF เรียบร้อย!</h2>
-    <p style="color:#666;font-size:.85rem;line-height:1.6;margin-bottom:16px" id="doneMsg">กำลังเตรียมไฟล์...</p>
-    <button class="done-btn" id="doneShareBtn" onclick="sharePDF()" style="display:none;background:linear-gradient(135deg,#06c755,#00a040);color:#fff;margin-bottom:8px;font-size:.9rem">
-      📤 แชร์ไฟล์ PDF (Line / อีเมล / อื่นๆ)
+    <!-- drag handle (mobile) -->
+    <div style="width:36px;height:4px;background:#dde3ea;border-radius:2px;margin:0 auto 18px"></div>
+    <div style="font-size:2.4rem;margin-bottom:8px">✅</div>
+    <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:6px">สร้าง PDF เรียบร้อย!</div>
+    <div style="font-size:.82rem;color:#8a96a3;line-height:1.6;margin-bottom:20px" id="doneMsg">กำลังเตรียมไฟล์...</div>
+    <button class="done-btn" id="doneShareBtn" onclick="sharePDF()"
+      style="display:none;background:#06c755;color:#fff;font-size:.95rem">
+      📤 แชร์ไปที่ Line / อีเมล / แอปอื่น
     </button>
-    <button class="done-btn" id="doneDownloadBtn" onclick="downloadPDF()" style="display:none;background:#4a90d9;color:#fff;margin-bottom:8px">
+    <button class="done-btn" id="doneDownloadBtn" onclick="downloadPDF()"
+      style="display:none;background:#4a90d9;color:#fff">
       ⬇️ ดาวน์โหลด PDF
     </button>
-    <button class="done-btn" onclick="document.getElementById('doneScreen').classList.remove('show')" style="background:#f0f2f5;color:#666;border:1px solid #dde3ea">ปิด</button>
+    <button class="done-btn"
+      onclick="document.getElementById('doneScreen').classList.remove('show')"
+      style="background:#f4f6f8;color:#666;border:1.5px solid #e0e4ea;margin-bottom:0">
+      ปิด
+    </button>
   </div>
 </div>
 
@@ -1500,6 +1535,8 @@ function renderInvoice(){
   document.getElementById('invoiceWrap').innerHTML=html;
   var s2p=document.getElementById('step2PreviewInner');
   if(s2p) s2p.innerHTML=html;
+  var ct=document.getElementById('captureTarget');
+  if(ct) ct.innerHTML=html;
 }
 
 // ── FIX 2: Single handleFiles + renderChips (removed duplicate) ──
@@ -1865,9 +1902,14 @@ function savePDF(opts){
   var jsPDF=window.jspdf.jsPDF;
   var pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210, M=10;
-  var captureEl=document.getElementById('step2Panel').style.display!=='none'
-    ? document.getElementById('step2PreviewInner')
-    : document.getElementById('invoiceWrap');
+  // Always capture from the hidden element that is always 794px and never scaled
+  var captureEl=document.getElementById('captureTarget');
+  if(!captureEl || !captureEl.innerHTML){
+    // fallback
+    captureEl=document.getElementById('step2Panel').style.display!=='none'
+      ? document.getElementById('step2PreviewInner')
+      : document.getElementById('invoiceWrap');
+  }
 
   // Resolve page map + selected pages
   var pageMap=opts.pageMap||buildPageMap();
@@ -2330,5 +2372,14 @@ function handleOtherSelect(selId, inputId){
 <div class="mob-nav" id="mobNav">
   <button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>
 </div>
+
+<!-- Hidden capture target — always 794px, never zoomed, used for PDF rendering -->
+<div id="captureTarget" style="
+  position:fixed;left:-9999px;top:0;
+  width:794px;overflow:visible;
+  pointer-events:none;z-index:-1;
+  background:#fff;
+"></div>
+
 </body>
 </html>
