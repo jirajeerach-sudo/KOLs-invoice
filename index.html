@@ -47,9 +47,85 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
   .field label{font-size:.7rem}
   .fr{grid-template-columns:1fr 1fr;gap:8px}
   .itbl thead th{padding:8px 6px;font-size:.65rem}
-  .itbl tbody td{padding:7px 6px;font-size:.8rem}
-  .cq,.cp{display:none}
-  .itbl input{font-size:.85rem;padding:4px 2px}
+  /* Items table — mobile: stack layout per row */
+  .itbl{display:block}
+  .itbl thead{display:none}
+  .itbl tbody{display:flex;flex-direction:column;gap:8px}
+  .itbl tbody tr{
+    display:grid;
+    grid-template-columns:18px 1fr 1fr;
+    grid-template-rows:auto auto;
+    gap:4px 6px;
+    background:#f9fafc;
+    border:1px solid #e8ecf2;
+    border-radius:8px;
+    padding:8px 9px;
+    position:relative;
+  }
+  /* # number — top-left */
+  .itbl tbody td.cn{
+    grid-column:1;grid-row:1;
+    align-self:center;font-size:.7rem;color:#bbb;
+    padding:0;border:none;
+  }
+  /* รายการ desc — spans top row */
+  .itbl tbody td.cd{
+    grid-column:2/4;grid-row:1;
+    padding:0;border:none;
+  }
+  .itbl tbody td.cd input{
+    font-size:.9rem;padding:5px 8px;
+    border:1.5px solid #dde3ea;border-radius:6px;
+    background:#fff;width:100%;
+  }
+  /* จำนวน — bottom-left */
+  .itbl tbody td.cq{
+    display:table-cell !important;
+    grid-column:2;grid-row:2;
+    padding:0;border:none;
+    position:relative;
+  }
+  .itbl tbody td.cq::before{
+    content:'จำนวน';
+    display:block;font-size:.6rem;font-weight:700;
+    color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .itbl tbody td.cq input{
+    font-size:.88rem;padding:5px 8px;
+    border:1.5px solid #dde3ea;border-radius:6px;
+    background:#fff;width:100%;text-align:left;
+  }
+  /* ราคา — bottom-right */
+  .itbl tbody td.cp{
+    display:table-cell !important;
+    grid-column:3;grid-row:2;
+    padding:0;border:none;
+    position:relative;
+  }
+  .itbl tbody td.cp::before{
+    content:'ราคา/หน่วย';
+    display:block;font-size:.6rem;font-weight:700;
+    color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .itbl tbody td.cp input{
+    font-size:.88rem;padding:5px 8px;
+    border:1.5px solid #dde3ea;border-radius:6px;
+    background:#fff;width:100%;
+  }
+  /* รวม — inline label */
+  .itbl tbody td.ct{
+    position:absolute;top:8px;right:36px;
+    font-size:.78rem;font-weight:700;color:#2e7db5;
+    padding:0;border:none;
+  }
+  /* ลบ */
+  .itbl tbody td.cx{
+    position:absolute;top:6px;right:6px;
+    padding:0;border:none;
+  }
+  .itbl input{font-size:.88rem}
   .sum-s{padding:10px 12px}
   .sum-sr{font-size:.8rem}
   .sum-tot{padding:10px 12px}
