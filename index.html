@@ -705,6 +705,23 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 /* ── A4 sizing ── */
 .inv{width:794px !important;min-height:1123px !important;box-sizing:border-box;margin:0 auto}
 
+/* ── Upload Badge ── */
+.fc-head{position:relative}
+.upload-badge{
+  display:none;
+  align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.25);
+  color:#fff;
+  font-size:.62rem;font-weight:800;
+  min-width:18px;height:18px;
+  border-radius:20px;
+  padding:0 5px;
+  margin-left:auto;
+  letter-spacing:.01em;
+  border:1.5px solid rgba(255,255,255,0.4);
+}
+.upload-badge.show{display:inline-flex}
+
 /* ── PDF Options Modal ── */
 .pdf-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9998;align-items:center;justify-content:center;padding:16px}
 .pdf-modal-overlay.show{display:flex}
@@ -907,7 +924,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
       </div>
     </div>
     <div class="fc">
-      <div class="fc-head" style="background:#8a4a1a;color:#fff">📎 เอกสารแนบ</div>
+      <div class="fc-head" style="background:#8a4a1a;color:#fff">📎 เอกสารแนบ<span class="upload-badge" id="badgeAttach">0</span></div>
       <div class="fc-body">
         <div style="font-size:.68rem;color:#8a96a3;font-weight:700;margin-bottom:5px">🪪 บัตรประชาชน</div>
         <div class="uz"><input type="file" accept="image/*,.pdf" multiple onchange="handleFiles(this,'id')"><div class="uz-i">🪪</div><div class="uz-t"><strong>คลิก/ลาก</strong></div></div>
@@ -918,7 +935,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
       </div>
     </div>
     <div class="fc">
-      <div class="fc-head" style="background:#1a6b3a;color:#fff">📸 หลักฐานการโพสต์</div>
+      <div class="fc-head" style="background:#1a6b3a;color:#fff">📸 หลักฐานการโพสต์<span class="upload-badge" id="badgePost">0</span></div>
       <div class="fc-body">
         <div style="font-size:.72rem;color:#8a96a3;margin-bottom:10px">แนบ screenshot + ข้อมูลแต่ละโพสต์ เพื่อใช้เป็นหลักฐาน</div>
         <div id="postEvidenceList"></div>
@@ -1110,8 +1127,11 @@ function renderInvoice(){
     '<div class="uni-party-name">'+CO.name+'</div>'+
     '<div class="uni-party-det">'+coAddr+'<br>เลขผู้เสียภาษี: '+CO.tax+'</div></div>';
 
+  var sigImgHtml=sigData
+    ? '<img src="'+sigData+'" style="max-height:44px;max-width:120px;object-fit:contain;display:block;margin:0 auto 2px">'
+    : '';
   var sigRow='<div class="sig-row-uni">'+
-    '<div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">'+iName+'</div><div class="sig-role">ผู้แจ้งหนี้</div></div></div>'+
+    '<div class="sig-blk-uni"><div class="sig-space" style="display:flex;align-items:flex-end;justify-content:center;min-height:44px">'+sigImgHtml+'</div><div class="sig-line-uni"><div class="sig-name">'+iName+'</div><div class="sig-role">ผู้แจ้งหนี้</div></div></div>'+
     '<div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้รับเอกสาร</div></div></div>'+
     '<div class="sig-blk-uni"><div class="sig-space"></div><div class="sig-line-uni"><div class="sig-name">&nbsp;</div><div class="sig-role">ผู้อนุมัติจ่าย</div></div></div>'+
     '</div>';
@@ -1396,6 +1416,15 @@ function renderChips(key){
       wrap.appendChild(chip);
     })(files[key][i], i);
   }
+  updateAttachBadge();
+}
+
+function updateAttachBadge(){
+  var total=files.id.length+files.book.length;
+  var badge=document.getElementById('badgeAttach');
+  if(!badge) return;
+  badge.textContent=total;
+  badge.classList.toggle('show', total>0);
 }
 
 function updateDue(){
@@ -1408,11 +1437,13 @@ function updateDue(){
 function addPostEvidence(){
   postEvidences.push({img:null, platform:'', date:'', link:''});
   renderPostEvidences();
+  updatePostBadge();
 }
 
 function removePostEvidence(idx){
   postEvidences.splice(idx,1);
   renderPostEvidences();
+  updatePostBadge();
 }
 
 function renderPostEvidences(){
@@ -1510,12 +1541,23 @@ function renderPostEvidences(){
 
     container.appendChild(box);
   });
+  updatePostBadge();
+}
+
+function updatePostBadge(){
+  var total=postEvidences.filter(function(p){return !!p.img;}).length;
+  var badge=document.getElementById('badgePost');
+  if(!badge) return;
+  // show total posts added (with or without img)
+  var totalAdded=postEvidences.length;
+  badge.textContent=totalAdded>0?(total+'/'+totalAdded):0;
+  badge.classList.toggle('show', totalAdded>0);
 }
 
 function handlePostImg(input, idx){
   if(!input.files[0]) return;
   var r=new FileReader();
-  r.onload=function(e){ postEvidences[idx].img=e.target.result; renderPostEvidences(); };
+  r.onload=function(e){ postEvidences[idx].img=e.target.result; renderPostEvidences(); updatePostBadge(); };
   r.readAsDataURL(input.files[0]);
 }
 
