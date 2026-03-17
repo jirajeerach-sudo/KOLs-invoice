@@ -792,7 +792,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <div class="fr">
           <div class="field"><label>ชื่อเล่น</label><input id="infNick" placeholder="ชื่อเล่น" oninput="renderInvoice()"></div>
           <div class="field"><label>แพลตฟอร์ม</label>
-            <select id="infPlatform" onchange="renderInvoice()"><option value="">เลือก</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Facebook</option><option>X (Twitter)</option><option>อื่นๆ</option></select>
+            <select id="infPlatform" onchange="handleOtherSelect('infPlatform','infPlatformOther');renderInvoice()"><option value="">เลือก</option><option>Instagram</option><option>TikTok</option><option>YouTube</option><option>Facebook</option><option>X (Twitter)</option><option value="อื่นๆ">อื่นๆ</option></select>
+            <input id="infPlatformOther" placeholder="ระบุแพลตฟอร์ม..." style="display:none;margin-top:5px;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none" oninput="renderInvoice()">
           </div>
         </div>
         <div class="fr">
@@ -807,7 +808,8 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
       <div class="fc-head" style="background:#1a6b4a;color:#fff">💳 บัญชีธนาคาร</div>
       <div class="fc-body">
         <div class="field"><label>ธนาคาร <span class="req">*</span></label>
-          <select id="bankName" onchange="renderInvoice()"><option value="">-- เลือก --</option><option>ธนาคารกรุงเทพ (BBL)</option><option>ธนาคารกสิกรไทย (KBANK)</option><option>ธนาคารไทยพาณิชย์ (SCB)</option><option>ธนาคารกรุงไทย (KTB)</option><option>ธนาคารกรุงศรีอยุธยา (BAY)</option><option>ธนาคารทหารไทยธนชาต (TTB)</option><option>ธนาคารออมสิน</option><option>อื่นๆ</option></select>
+          <select id="bankName" onchange="handleOtherSelect('bankName','bankNameOther');renderInvoice()"><option value="">-- เลือก --</option><option>ธนาคารกรุงเทพ (BBL)</option><option>ธนาคารกสิกรไทย (KBANK)</option><option>ธนาคารไทยพาณิชย์ (SCB)</option><option>ธนาคารกรุงไทย (KTB)</option><option>ธนาคารกรุงศรีอยุธยา (BAY)</option><option>ธนาคารทหารไทยธนชาต (TTB)</option><option>ธนาคารเกียรตินาคินภัทร (KKP)</option><option>ธนาคารซีไอเอ็มบีไทย (CIMBT)</option><option>ธนาคารทิสโก้ (TISCO)</option><option>ธนาคารยูโอบี (UOB)</option><option>ธนาคารแลนด์ แอนด์ เฮ้าส์ (LH Bank)</option><option>ธนาคารไอซีบีซี (ไทย)</option><option>ธนาคารไทยเครดิตเพื่อรายย่อย (TCD)</option><option>ธนาคารออมสิน</option><option>ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร (ธ.ก.ส.)</option><option>ธนาคารอาคารสงเคราะห์ (ธอส.)</option><option>ธนาคารอิสลามแห่งประเทศไทย</option><option>ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย (EXIM Bank)</option><option>ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย (SME D Bank)</option><option value="อื่นๆ">อื่นๆ</option></select>
+          <input id="bankNameOther" placeholder="ระบุชื่อธนาคาร..." style="display:none;margin-top:5px;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none" oninput="renderInvoice()">
         </div>
         <div class="fr">
           <div class="field"><label>ชื่อบัญชี <span class="req">*</span></label><input id="bankAccName" placeholder="ชื่อบัญชี" oninput="renderInvoice()"></div>
@@ -996,7 +998,7 @@ function renderInvoice(){
   var iNick=v('infNick'), iPad=v('infAddr'), iPhone=v('infPhone');
   var iEmail=v('infEmail'), iCard=v('infCardNo');
   var proj=v('invProject'), note=v('invNote');
-  var bank=v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
+  var bank=v('bankName')==='อื่นๆ'?v('bankNameOther'):v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
   var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(v('invDue'));
   var coAddr=CO.addr.replace(/\n/g,'<br>');
 
@@ -1382,14 +1384,33 @@ function renderPostEvidences(){
     var platSel=document.createElement('select');
     platSel.style.cssText='border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;margin-bottom:6px;outline:none';
     var platOptions=['','Instagram','TikTok','Facebook','YouTube','X (Twitter)','อื่นๆ'];
+    var knownPlatforms=['','Instagram','TikTok','Facebook','YouTube','X (Twitter)','อื่นๆ'];
+    var isOther = p.platform && knownPlatforms.indexOf(p.platform)===-1;
     platOptions.forEach(function(pl){
       var opt=document.createElement('option');
       opt.value=pl; opt.textContent=pl||'เลือก';
-      if(p.platform===pl) opt.selected=true;
+      if(isOther ? pl==='อื่นๆ' : p.platform===pl) opt.selected=true;
       platSel.appendChild(opt);
     });
-    platSel.onchange=(function(idx){return function(){ postEvidences[idx].platform=this.value; };})(i);
+    // Other input
+    var platOtherInp=document.createElement('input');
+    platOtherInp.type='text'; platOtherInp.placeholder='ระบุแพลตฟอร์ม...';
+    platOtherInp.style.cssText='border:1.5px solid #dde3ea;border-radius:6px;padding:7px 10px;font-size:.82rem;font-family:Sarabun,sans-serif;width:100%;margin-bottom:6px;outline:none;display:'+(isOther?'block':'none');
+    platOtherInp.value=isOther?p.platform:'';
+    platOtherInp.oninput=(function(idx){return function(){ postEvidences[idx].platform=this.value; };})(i);
+    platSel.onchange=(function(idx, otherInp){return function(){
+      if(this.value==='อื่นๆ'){
+        otherInp.style.display='block';
+        otherInp.focus();
+        postEvidences[idx].platform='';
+      } else {
+        otherInp.style.display='none';
+        otherInp.value='';
+        postEvidences[idx].platform=this.value;
+      }
+    };})(i, platOtherInp);
     box.appendChild(platSel);
+    box.appendChild(platOtherInp);
 
     // Date
     var dtLabel=document.createElement('label');
@@ -1573,24 +1594,84 @@ function savePDF(){
         }
       });
     });
-    postEvidences.forEach(function(pe,pi){
-      if(!pe.img) return;
+    // Post evidence: 2x2 grid per page (4 posts per page)
+    var validPosts=postEvidences.filter(function(pe){ return !!pe.img; });
+    if(validPosts.length>0){
       chain=chain.then(function(){
-        pdf.addPage();
-        var y=M;
-        pdf.setFontSize(11); pdf.setFont('helvetica','bold');
-        pdf.text('Post Evidence #'+(pi+1),M,y+6); y+=10;
-        pdf.line(M,y,W-M,y); y+=6;
-        pdf.setFontSize(9); pdf.setFont('helvetica','normal');
-        if(pe.platform){ pdf.text('Platform: '+pe.platform,M,y); y+=6; }
-        if(pe.date){ pdf.text('Date: '+pe.date,M,y); y+=6; }
-        if(pe.link){ pdf.text('Link: '+pe.link,M,y); y+=8; }
-        return new Promise(function(res){
-          var img=new Image(); img.src=pe.img;
-          img.onload=function(){ var maxW=W-M*2; pdf.addImage(pe.img,'JPEG',M,y,maxW,Math.min((img.height/img.width)*maxW,297-y-M)); res(); };
-        });
+        var COLS=2,ROWS=2,PER_PAGE=4;
+        var pM=10,hdrH=14,gap=4;
+        var cW=(W-pM*2-gap*(COLS-1))/COLS;
+        var cH=(297-pM*2-hdrH-gap*(ROWS-1))/ROWS;
+        var imgMaxH=cH-24;
+        var totalPages=Math.ceil(validPosts.length/PER_PAGE);
+
+        function drawPostPage(items,pgNum){
+          return new Promise(function(resolve){
+            var loads=items.map(function(pe){
+              return new Promise(function(res){
+                var im=new Image(); im.src=pe.img;
+                im.onload=function(){ res(im); };
+                im.onerror=function(){ res(null); };
+              });
+            });
+            Promise.all(loads).then(function(imgs){
+              // header
+              pdf.setFontSize(9); pdf.setFont('helvetica','bold'); pdf.setTextColor(60,60,60);
+              pdf.text('\u0e2b\u0e25\u0e31\u0e01\u0e10\u0e32\u0e19\u0e01\u0e32\u0e23\u0e42\u0e1e\u0e2a\u0e15\u0e4c / Post Evidence',pM,pM+5);
+              pdf.setFontSize(7); pdf.setFont('helvetica','normal');
+              pdf.text('\u0e2b\u0e19\u0e49\u0e32 '+pgNum+'/'+totalPages,W-pM,pM+5,{align:'right'});
+              pdf.setDrawColor(200,200,200);
+              pdf.line(pM,pM+7,W-pM,pM+7);
+              pdf.setTextColor(0,0,0);
+
+              items.forEach(function(pe,idx){
+                var col=idx%COLS, row=Math.floor(idx/COLS);
+                var cx=pM+col*(cW+gap);
+                var cy=pM+hdrH+row*(cH+gap);
+                // cell bg + border
+                pdf.setDrawColor(210,210,210); pdf.setFillColor(252,252,252);
+                pdf.roundedRect(cx,cy,cW,cH,2,2,'FD');
+
+                var im=imgs[idx];
+                var infoY=cy+cH-20;
+                if(im){
+                  var pad=3, maxIW=cW-pad*2, maxIH=imgMaxH;
+                  var ratio=im.naturalWidth/im.naturalHeight;
+                  var iw2,ih2;
+                  if(ratio>=maxIW/maxIH){ iw2=maxIW; ih2=iw2/ratio; }
+                  else { ih2=maxIH; iw2=ih2*ratio; }
+                  var ix=cx+pad+(maxIW-iw2)/2, iy=cy+pad;
+                  pdf.addImage(pe.img,'JPEG',ix,iy,iw2,ih2);
+                  infoY=Math.min(cy+pad+ih2+2, cy+cH-20);
+                }
+                // post number + platform
+                var postNum=validPosts.indexOf(pe)+1;
+                pdf.setFontSize(7); pdf.setFont('helvetica','bold'); pdf.setTextColor(40,40,40);
+                var title='#'+postNum+(pe.platform?' - '+pe.platform:'');
+                pdf.text(title,cx+3,infoY+6,{maxWidth:cW-6});
+                // date + link
+                pdf.setFontSize(6); pdf.setFont('helvetica','normal'); pdf.setTextColor(100,100,100);
+                if(pe.date) pdf.text(pe.date,cx+3,infoY+11,{maxWidth:cW-6});
+                if(pe.link) pdf.text(pe.link,cx+3,infoY+16,{maxWidth:cW-6});
+                pdf.setTextColor(0,0,0);
+              });
+              resolve();
+            });
+          });
+        }
+
+        var pgChain=Promise.resolve();
+        for(var pg=0;pg<totalPages;pg++){
+          (function(p){
+            pgChain=pgChain.then(function(){
+              pdf.addPage();
+              return drawPostPage(validPosts.slice(p*PER_PAGE,(p+1)*PER_PAGE),p+1);
+            });
+          })(pg);
+        }
+        return pgChain;
       });
-    });
+    }
     return chain.then(function(){ return pdf; });
   }).then(function(pdf){
     var name=(v('infName')||'KOL').replace(/\s+/g,'-');
@@ -1599,6 +1680,20 @@ function savePDF(){
     ov.classList.remove('show');
     document.getElementById('doneScreen').classList.add('show');
   }).catch(function(e){ ov.classList.remove('show'); alert('Error: '+e.message); });
+}
+
+// Handle อื่นๆ select -> show/hide text input
+function handleOtherSelect(selId, inputId){
+  var sel=document.getElementById(selId);
+  var inp=document.getElementById(inputId);
+  if(!sel||!inp) return;
+  if(sel.value==='อื่นๆ'){
+    inp.style.display='block';
+    inp.focus();
+  } else {
+    inp.style.display='none';
+    inp.value='';
+  }
 }
 
 // Init
