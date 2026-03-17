@@ -916,17 +916,23 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <div style="font-size:2.4rem;margin-bottom:8px">✅</div>
     <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:6px">สร้าง PDF เรียบร้อย!</div>
     <div style="font-size:.82rem;color:#8a96a3;line-height:1.6;margin-bottom:20px" id="doneMsg">กำลังเตรียมไฟล์...</div>
+    <!-- ปุ่มส่งไลน์โดยตรง (mobile only) -->
+    <button class="done-btn" id="doneLineBtn" onclick="shareToLine()"
+      style="display:none;background:#06c755;color:#fff;font-size:.95rem;font-family:Sarabun,sans-serif">
+      <span style="font-size:1.1rem">💬</span> ส่งให้ทีม KONVY ทาง Line
+    </button>
+    <!-- ปุ่มแชร์ทั่วไป -->
     <button class="done-btn" id="doneShareBtn" onclick="sharePDF()"
-      style="display:none;background:#06c755;color:#fff;font-size:.95rem">
-      📤 แชร์ไปที่ Line / อีเมล / แอปอื่น
+      style="display:none;background:#555;color:#fff;font-size:.88rem;font-family:Sarabun,sans-serif">
+      📤 แชร์ไปแอปอื่น (อีเมล / Files...)
     </button>
     <button class="done-btn" id="doneDownloadBtn" onclick="downloadPDF()"
-      style="display:none;background:#4a90d9;color:#fff">
+      style="display:none;background:#4a90d9;color:#fff;font-family:Sarabun,sans-serif">
       ⬇️ ดาวน์โหลด PDF
     </button>
     <button class="done-btn"
       onclick="document.getElementById('doneScreen').classList.remove('show')"
-      style="background:#f4f6f8;color:#666;border:1.5px solid #e0e4ea;margin-bottom:0">
+      style="background:#f4f6f8;color:#666;border:1.5px solid #e0e4ea;margin-bottom:0;font-family:Sarabun,sans-serif">
       ปิด
     </button>
   </div>
@@ -1929,9 +1935,9 @@ function savePDF(opts){
   var jsPDF=window.jspdf.jsPDF;
   var pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210, M=10;
-  // Capture from hidden 794px div — pass windowWidth=1200 so media queries use desktop layout
+  // Use hidden 794px captureTarget for PDF — onclone makes it visible during capture
   var captureEl=document.getElementById('captureTarget');
-  if(!captureEl || !captureEl.innerHTML.trim()){
+  if(!captureEl || !captureEl.innerHTML || !captureEl.innerHTML.trim()){
     captureEl=document.getElementById('step2Panel').style.display!=='none'
       ? document.getElementById('step2PreviewInner')
       : document.getElementById('invoiceWrap');
@@ -2099,12 +2105,6 @@ function savePDF(opts){
   }
 
   chain.then(function(){
-    // Hide captureTarget again after rendering
-    if(captureWrapper){
-      captureWrapper.style.height='0';
-      captureWrapper.style.overflow='hidden';
-      captureWrapper.style.top='0';
-    }
     var name=(v('infName')||'KOL').replace(/\s+/g,'-');
     var camp=(v('invProject')||'invoice').replace(/\s+/g,'_');
     var fileName='INV_'+name+'_'+camp+'_'+new Date().toISOString().slice(0,10)+'.pdf';
@@ -2121,26 +2121,26 @@ function savePDF(opts){
     var shareBtn=document.getElementById('doneShareBtn');
     var dlBtn=document.getElementById('doneDownloadBtn');
 
-    if(navigator.share && navigator.canShare){
-      // Mobile with Web Share API — try share first
-      var testFile=new File([pdfBlob], fileName, {type:'application/pdf'});
-      if(navigator.canShare({files:[testFile]})){
-        // Can share files — show share button
-        if(doneMsg) doneMsg.textContent='กดแชร์เพื่อส่งผ่าน Line, อีเมล หรือแอปอื่นๆ ได้เลยค่ะ';
-        if(dlBtn){ dlBtn.style.display='block'; dlBtn.textContent='📂 เปิด PDF (บันทึกใน Files)'; }
-        if(shareBtn) shareBtn.style.display='block';
-        if(dlBtn) dlBtn.style.display='block';
-      } else {
-        // Share API exists but can't share files — auto download
-        pdf.save(fileName);
-        if(doneMsg) doneMsg.textContent='ไฟล์ถูก download แล้วค่ะ';
-        if(dlBtn) dlBtn.style.display='block';
+    var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+    var isAndroid=/Android/.test(navigator.userAgent);
+    var isMobileDevice=isIOS||isAndroid;
+    var lineBtn=document.getElementById('doneLineBtn');
+
+    if(isMobileDevice){
+      // มือถือ — แสดงปุ่มไลน์ + แชร์ + ดาวน์โหลด
+      if(lineBtn) lineBtn.style.display='block';
+      if(shareBtn) shareBtn.style.display='block';
+      if(dlBtn){
+        dlBtn.style.display='block';
+        dlBtn.textContent=isIOS?'📂 เปิด PDF ใน Safari':'⬇️ ดาวน์โหลด PDF';
       }
+      if(doneMsg) doneMsg.textContent='กดปุ่มสีเขียวเพื่อส่งให้ทีม KONVY ทาง Line ได้เลยค่ะ';
     } else {
-      // Desktop or no share API — auto download
+      // PC / Desktop — download อัตโนมัติ + แสดงปุ่ม
       pdf.save(fileName);
-      if(doneMsg) doneMsg.textContent='ไฟล์ถูก download ลงเครื่องแล้วค่ะ กรุณาส่งให้ทีม KONVY ผ่าน Line หรืออีเมลด้วยนะคะ';
+      if(doneMsg) doneMsg.textContent='ดาวน์โหลดไฟล์เรียบร้อยค่ะ';
       if(dlBtn) dlBtn.style.display='block';
+      if(shareBtn) shareBtn.style.display='block';
     }
 
     document.getElementById('doneScreen').classList.add('show');
@@ -2152,6 +2152,52 @@ function savePDF(opts){
 
 
 // ── Share / Download helpers ──
+function shareToLine(){
+  var blob=window._lastPdfBlob;
+  var name=window._lastPdfName||'invoice.pdf';
+  if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
+
+  // ลอง Web Share API ก่อน — iOS/Android จะเปิด share sheet ให้เลือก Line ได้
+  if(navigator.share){
+    var file=new File([blob], name, {type:'application/pdf'});
+    var shareData={
+      title:'ใบแจ้งหนี้ KONVY KOL',
+      text:'ส่งใบแจ้งหนี้ให้ทีม KONVY ค่ะ',
+      files:[file]
+    };
+    // ลอง share with file ก่อน
+    var canShareFile=false;
+    try{ canShareFile=navigator.canShare&&navigator.canShare(shareData); }catch(e){}
+
+    if(canShareFile){
+      navigator.share(shareData).catch(function(e){
+        if(e.name!=='AbortError') shareLineTextFallback(name);
+      });
+    } else {
+      // share แบบไม่มีไฟล์ — ข้อความ + link
+      navigator.share({
+        title:'ใบแจ้งหนี้ KONVY KOL',
+        text:'ใบแจ้งหนี้: '+name+'
+กรุณาตรวจสอบและยืนยันการรับเอกสารด้วยนะคะ'
+      }).then(function(){
+        // แนะนำให้ download ด้วย
+        downloadPDF();
+      }).catch(function(e){
+        if(e.name!=='AbortError') shareLineTextFallback(name);
+      });
+    }
+  } else {
+    shareLineTextFallback(name);
+  }
+}
+
+function shareLineTextFallback(name){
+  // เปิด Line app โดยตรงด้วย URL scheme พร้อมข้อความ
+  var text=encodeURIComponent('ส่งใบแจ้งหนี้ KONVY KOL: '+name+'
+กรุณาดาวน์โหลดและส่งไฟล์ PDF ให้ทีม KONVY ด้วยนะคะ');
+  window.location.href='line://msg/text/'+text;
+}
+
 function sharePDF(){
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
