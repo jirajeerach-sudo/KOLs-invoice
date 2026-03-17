@@ -858,9 +858,15 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 <div class="done-screen" id="doneScreen">
   <div class="done-box">
     <div style="font-size:3rem">✅</div>
-    <h2 style="color:#2e7d32;margin:10px 0 8px;font-size:1.1rem">บันทึก PDF เรียบร้อย!</h2>
-    <p style="color:#666;font-size:.85rem;line-height:1.6;margin-bottom:16px">ไฟล์ถูก download ลงเครื่องแล้วค่ะ<br>กรุณาส่งให้ทีม KONVY ผ่าน Line หรืออีเมลด้วยนะคะ</p>
-    <button class="done-btn primary" onclick="document.getElementById('doneScreen').classList.remove('show')">ปิด</button>
+    <h2 style="color:#2e7d32;margin:10px 0 8px;font-size:1.1rem">สร้าง PDF เรียบร้อย!</h2>
+    <p style="color:#666;font-size:.85rem;line-height:1.6;margin-bottom:16px" id="doneMsg">กำลังเตรียมไฟล์...</p>
+    <button class="done-btn" id="doneShareBtn" onclick="sharePDF()" style="display:none;background:linear-gradient(135deg,#06c755,#00a040);color:#fff;margin-bottom:8px;font-size:.9rem">
+      📤 แชร์ไฟล์ PDF (Line / อีเมล / อื่นๆ)
+    </button>
+    <button class="done-btn" id="doneDownloadBtn" onclick="downloadPDF()" style="display:none;background:#4a90d9;color:#fff;margin-bottom:8px">
+      ⬇️ ดาวน์โหลด PDF
+    </button>
+    <button class="done-btn" onclick="document.getElementById('doneScreen').classList.remove('show')" style="background:#f0f2f5;color:#666;border:1px solid #dde3ea">ปิด</button>
   </div>
 </div>
 
@@ -2006,13 +2012,75 @@ function savePDF(opts){
   chain.then(function(){
     var name=(v('infName')||'KOL').replace(/\s+/g,'-');
     var camp=(v('invProject')||'invoice').replace(/\s+/g,'_');
-    pdf.save('INV_'+name+'_'+camp+'_'+new Date().toISOString().slice(0,10)+'.pdf');
+    var fileName='INV_'+name+'_'+camp+'_'+new Date().toISOString().slice(0,10)+'.pdf';
+
+    // Store blob globally for share/download
+    var pdfBlob=pdf.output('blob');
+    window._lastPdfBlob=pdfBlob;
+    window._lastPdfName=fileName;
+
     ov.classList.remove('show');
+
+    // Show done screen
+    var doneMsg=document.getElementById('doneMsg');
+    var shareBtn=document.getElementById('doneShareBtn');
+    var dlBtn=document.getElementById('doneDownloadBtn');
+
+    if(navigator.share && navigator.canShare){
+      // Mobile with Web Share API — try share first
+      var testFile=new File([pdfBlob], fileName, {type:'application/pdf'});
+      if(navigator.canShare({files:[testFile]})){
+        // Can share files — show share button
+        if(doneMsg) doneMsg.textContent='กดแชร์เพื่อส่งผ่าน Line, อีเมล หรือแอปอื่นๆ ได้เลยค่ะ';
+        if(shareBtn) shareBtn.style.display='block';
+        if(dlBtn) dlBtn.style.display='block';
+      } else {
+        // Share API exists but can't share files — auto download
+        pdf.save(fileName);
+        if(doneMsg) doneMsg.textContent='ไฟล์ถูก download แล้วค่ะ';
+        if(dlBtn) dlBtn.style.display='block';
+      }
+    } else {
+      // Desktop or no share API — auto download
+      pdf.save(fileName);
+      if(doneMsg) doneMsg.textContent='ไฟล์ถูก download ลงเครื่องแล้วค่ะ กรุณาส่งให้ทีม KONVY ผ่าน Line หรืออีเมลด้วยนะคะ';
+      if(dlBtn) dlBtn.style.display='block';
+    }
+
     document.getElementById('doneScreen').classList.add('show');
   }).catch(function(e){
     ov.classList.remove('show');
     alert('Error: '+e.message);
   });
+}
+
+
+// ── Share / Download helpers ──
+function sharePDF(){
+  var blob=window._lastPdfBlob;
+  var name=window._lastPdfName||'invoice.pdf';
+  if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
+  var file=new File([blob], name, {type:'application/pdf'});
+  navigator.share({
+    title: 'ใบแจ้งหนี้ KONVY KOL',
+    text: 'ใบแจ้งหนี้ '+name,
+    files: [file]
+  }).catch(function(e){
+    // User cancelled or error — fallback to download
+    if(e.name!=='AbortError') downloadPDF();
+  });
+}
+
+function downloadPDF(){
+  var blob=window._lastPdfBlob;
+  var name=window._lastPdfName||'invoice.pdf';
+  if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url; a.download=name;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
 }
 
 
