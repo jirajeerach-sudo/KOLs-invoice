@@ -1057,13 +1057,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
       <div class="fc-body">
         <div class="field"><label>เลขที่ใบแจ้งหนี้</label><input id="invNo" placeholder="กรอกเลขที่ใบแจ้งหนี้ เช่น INV-001" oninput="renderInvoice()"></div>
         <div class="fr">
-          <div class="field"><label>วันที่ออก</label>
-            <input type="date" id="invDateRaw" onchange="updateInvDate();updateDue();renderInvoice()" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none">
-            <div id="invDate" onclick="document.getElementById('invDateRaw').showPicker?document.getElementById('invDateRaw').showPicker():document.getElementById('invDateRaw').click()"
-              style="border:1.5px solid #dde3ea;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;color:#1a1a2e;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:36px">
-              <span id="invDateDisplay">–</span><span style="color:#8a96a3;font-size:.8rem">📅</span>
-            </div>
-          </div>
+          <div class="field"><label>วันที่ออก</label><input type="date" id="invDate" onchange="updateDue();renderInvoice()"></div>
           <div class="field"><label>กำหนดชำระ (+60 วัน)</label><input type="date" id="invDue" onchange="renderInvoice()"></div>
         </div>
         <div class="field"><label>ชื่อแคมเปญ</label><input id="invProject" placeholder="ชื่อแคมเปญ" oninput="renderInvoice()"></div>
@@ -1310,7 +1304,7 @@ function renderInvoice(){
   var iEmail=v('infEmail'), iCard=v('infCardNo');
   var proj=v('invProject'), note=v('invNote');
   var bank=v('bankName')==='อื่นๆ'?v('bankNameOther'):v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
-  var invNo=v('invNo')||'–', invDate=fmtDate(window._invDateRaw||''), invDue=fmtDate(window._invDueRaw||'');
+  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(window._invDueRaw||'');
   var coAddr=CO.addr.replace(/\n/g,'<br>');
 
   var infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
@@ -1647,13 +1641,6 @@ function updateAttachBadge(){
   if(!badge) return;
   badge.textContent=total;
   badge.classList.toggle('show', total>0);
-}
-
-function updateInvDate(){
-  var raw=document.getElementById('invDateRaw').value;
-  window._invDateRaw=raw;
-  var el=document.getElementById('invDateDisplay');
-  if(el) el.textContent=fmtDate(raw)||'–';
 }
 
 function updateDue(){
@@ -2519,10 +2506,7 @@ function handleOtherSelect(selId, inputId){
 // Init
 (function(){
   var today=new Date().toISOString().split('T')[0];
-  window._invDateRaw=today;
-  document.getElementById('invDateRaw').value=today;
-  var dispEl=document.getElementById('invDateDisplay');
-  if(dispEl) dispEl.textContent=fmtDate(today);
+  document.getElementById('invDate').value=today;
   var due=new Date(); due.setDate(due.getDate()+60);
   document.getElementById('invDue').value=due.toISOString().split('T')[0];
   var g=document.getElementById('tplGrid');
