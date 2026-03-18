@@ -914,7 +914,12 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <div style="width:36px;height:4px;background:#dde3ea;border-radius:2px;margin:0 auto 16px"></div>
     <div style="font-size:2.4rem;margin-bottom:8px">✅</div>
     <div style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:6px">สร้าง PDF เรียบร้อย!</div>
-    <div style="font-size:.82rem;color:#8a96a3;line-height:1.6;margin-bottom:20px" id="doneMsg">เตรียมไฟล์แล้วค่ะ</div>
+    <div style="font-size:.82rem;color:#8a96a3;line-height:1.6;margin-bottom:14px" id="doneMsg">เตรียมไฟล์แล้วค่ะ</div>
+    <div id="lineBrowserWarn" style="display:none;background:#fff8e1;border:1.5px solid #ffc107;border-radius:10px;padding:12px 14px;margin-bottom:14px;text-align:left">
+      <div style="font-size:.85rem;font-weight:700;color:#7a5c00;margin-bottom:5px">⚠️ เปิดผ่าน LINE Browser</div>
+      <div style="font-size:.78rem;color:#7a5c00;line-height:1.6;margin-bottom:10px">LINE browser ไม่รองรับการดาวน์โหลดไฟล์ค่ะ กรุณากด ··· แล้วเลือก "เปิดในเบราว์เซอร์" หรือกดปุ่มด้านล่าง</div>
+      <button onclick="openInBrowser()" style="width:100%;background:#06c755;color:#fff;border:none;border-radius:8px;padding:11px;font-family:Sarabun,sans-serif;font-size:.9rem;font-weight:700;cursor:pointer">🌐 เปิดใน Safari / Chrome</button>
+    </div>
     <button class="done-btn" id="doneShareBtn" onclick="doShare()"
       style="display:none;background:#06c755;color:#fff;font-size:1rem;font-family:Sarabun,sans-serif">
       📤 แชร์ PDF (Line / อีเมล / บันทึก)
@@ -2126,13 +2131,17 @@ function savePDF(opts){
     var shareBtn=document.getElementById('doneShareBtn');
     var dlBtn=document.getElementById('doneDownloadBtn');
 
-    if(isIOS||isAndroid){
-      // มือถือ — แสดงปุ่มแชร์
-      if(shareBtn){ shareBtn.style.display='block'; }
+    var isLineBrowser=/Line\//.test(ua);
+
+    if(isLineBrowser){
+      var lw=document.getElementById('lineBrowserWarn');
+      if(lw) lw.style.display='block';
+      if(doneMsg) doneMsg.textContent='กรุณาเปิดในเบราว์เซอร์หลักเพื่อดาวน์โหลดค่ะ';
+    } else if(isIOS||isAndroid){
+      if(shareBtn) shareBtn.style.display='block';
       if(dlBtn){ dlBtn.style.display='block'; dlBtn.textContent=isIOS?'📂 เปิด PDF':'⬇️ ดาวน์โหลด'; }
       if(doneMsg) doneMsg.textContent='กดปุ่มสีเขียวเพื่อแชร์ PDF ผ่าน Line หรือแอปอื่นได้เลยค่ะ';
     } else {
-      // Desktop — download อัตโนมัติ
       pdf.save(fileName);
       if(dlBtn) dlBtn.style.display='block';
       if(doneMsg) doneMsg.textContent='ดาวน์โหลดไฟล์เรียบร้อยค่ะ';
@@ -2148,43 +2157,42 @@ function savePDF(opts){
 
 // ── Share / Download helpers ──
 
-// ฟังก์ชันหลัก — กดแล้ว share sheet ขึ้นทันที
+function openInBrowser(){
+  // พยายามเปิด URL ใน external browser (ใช้ได้กับบางแอป)
+  var url=window.location.href;
+  // สำหรับ LINE บน Android
+  window.open(url,'_system');
+  // Fallback: แจ้งให้ user เปิดเอง
+  setTimeout(function(){
+    alert('กด ··· (สามจุด) มุมขวาบน แล้วเลือก "เปิดในเบราว์เซอร์ภายนอก" ค่ะ');
+  }, 400);
+}
+
 function doShare(){
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
-  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+  if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
 
-  if(!blob){
-    alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่');
+  if(!navigator.share){
+    downloadPDF();
     return;
   }
 
-  if(navigator.share){
-    // ลอง share พร้อมไฟล์ก่อน
-    var file=new File([blob], name, {type:'application/pdf'});
-    var canFile=false;
-    try{ canFile=!!navigator.canShare&&navigator.canShare({files:[file]}); }catch(e){}
+  var file=new File([blob], name, {type:'application/pdf'});
 
-    if(canFile){
-      // share sheet ขึ้นพร้อมไฟล์ PDF — เลือก Line ได้เลย
-      navigator.share({
-        title:'ใบแจ้งหนี้ KONVY KOL',
-        files:[file]
-      }).catch(function(e){
-        if(e.name!=='AbortError') downloadPDF();
-      });
-    } else {
-      // share sheet ขึ้นไม่มีไฟล์ — แนบ download ตามหลัง
-      navigator.share({
-        title:'ใบแจ้งหนี้ KONVY KOL',
-        text:'ใบแจ้งหนี้: '+name
-      }).then(function(){ downloadPDF(); })
-        .catch(function(e){ if(e.name!=='AbortError') downloadPDF(); });
-    }
-  } else {
-    // ไม่มี share API — download ตรง
-    downloadPDF();
-  }
+  // ลอง share พร้อมไฟล์ตรงๆ เลย (ทั้ง iOS และ Android รองรับ)
+  navigator.share({
+    title:'ใบแจ้งหนี้ KONVY KOL',
+    files:[file]
+  }).catch(function(err){
+    if(err.name==='AbortError') return; // ผู้ใช้กด cancel
+    // Fallback: share แบบไม่มีไฟล์ แล้ว download แยก
+    navigator.share({
+      title:'ใบแจ้งหนี้ KONVY KOL',
+      text:'ใบแจ้งหนี้: '+name
+    }).then(function(){ downloadPDF(); })
+      .catch(function(){ downloadPDF(); });
+  });
 }
 
 
