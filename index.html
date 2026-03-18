@@ -2103,45 +2103,41 @@ function savePDF(opts){
   }
 
   chain.then(function(){
+    var ua=navigator.userAgent;
+    var isIOS=/iPad|iPhone|iPod/.test(ua)&&!window.MSStream;
+    var isAndroid=/Android/.test(ua);
+    var isLineBrowser=/Line\//.test(ua);
+
     var name=(v('infName')||'KOL').replace(/\s+/g,'-');
     var camp=(v('invProject')||'invoice').replace(/\s+/g,'_');
     var fileName='INV_'+name+'_'+camp+'_'+new Date().toISOString().slice(0,10)+'.pdf';
 
-    var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
-
-    if(isIOS){
-      // iOS: เก็บ data URI แล้วเปิด PDF viewer ทันที
-      var dataUri=pdf.output('datauristring');
-      window._lastPdfDataUri=dataUri;
-      window._lastPdfName=fileName;
-      window._lastPdfBlob=pdf.output('blob');
-    } else {
-      // Android/PC: เก็บ blob ไว้
-      window._lastPdfBlob=pdf.output('blob');
-      window._lastPdfDataUri=null;
-    }
-    window._lastPdfName=fileName;
+    // เก็บทั้ง blob และ dataUri เสมอ
+    window._lastPdfBlob = pdf.output('blob');
+    window._lastPdfDataUri = isIOS ? pdf.output('datauristring') : null;
+    window._lastPdfName = fileName;
 
     ov.classList.remove('show');
 
-    var isAndroid=/Android/.test(navigator.userAgent);
-    var isMobile=isIOS||isAndroid;
     var doneMsg=document.getElementById('doneMsg');
-    var lineBtn=document.getElementById('doneLineBtn');
     var shareBtn=document.getElementById('doneShareBtn');
     var dlBtn=document.getElementById('doneDownloadBtn');
+    var lineWarn=document.getElementById('lineBrowserWarn');
 
-    var isLineBrowser=/Line\//.test(ua);
+    // ซ่อนทุกปุ่มก่อน reset
+    if(shareBtn) shareBtn.style.display='none';
+    if(dlBtn) dlBtn.style.display='none';
+    if(lineWarn) lineWarn.style.display='none';
 
     if(isLineBrowser){
-      var lw=document.getElementById('lineBrowserWarn');
-      if(lw) lw.style.display='block';
-      if(doneMsg) doneMsg.textContent='กรุณาเปิดในเบราว์เซอร์หลักเพื่อดาวน์โหลดค่ะ';
+      if(lineWarn) lineWarn.style.display='block';
+      if(doneMsg) doneMsg.textContent='LINE browser ไม่รองรับการดาวน์โหลด กรุณาเปิดใน Safari หรือ Chrome ค่ะ';
     } else if(isIOS||isAndroid){
       if(shareBtn) shareBtn.style.display='block';
       if(dlBtn){ dlBtn.style.display='block'; dlBtn.textContent=isIOS?'📂 เปิด PDF':'⬇️ ดาวน์โหลด'; }
       if(doneMsg) doneMsg.textContent='กดปุ่มสีเขียวเพื่อแชร์ PDF ผ่าน Line หรือแอปอื่นได้เลยค่ะ';
     } else {
+      // Desktop — download อัตโนมัติ
       pdf.save(fileName);
       if(dlBtn) dlBtn.style.display='block';
       if(doneMsg) doneMsg.textContent='ดาวน์โหลดไฟล์เรียบร้อยค่ะ';
@@ -2150,61 +2146,56 @@ function savePDF(opts){
     document.getElementById('doneScreen').classList.add('show');
   }).catch(function(e){
     ov.classList.remove('show');
-    alert('Error: '+e.message);
+    alert('เกิดข้อผิดพลาด: '+e.message);
   });
 }
 
 
-// ── Share / Download helpers ──
+// ── Share / Download ──
 
 function openInBrowser(){
-  // พยายามเปิด URL ใน external browser (ใช้ได้กับบางแอป)
-  var url=window.location.href;
-  // สำหรับ LINE บน Android
-  window.open(url,'_system');
-  // Fallback: แจ้งให้ user เปิดเอง
+  // LINE: ให้ user เปิดใน browser ภายนอก
+  window.open(window.location.href, '_system');
   setTimeout(function(){
-    alert('กด ··· (สามจุด) มุมขวาบน แล้วเลือก "เปิดในเบราว์เซอร์ภายนอก" ค่ะ');
-  }, 400);
+    alert('กด ··· (สามจุด) แล้วเลือก "เปิดในเบราว์เซอร์ภายนอก" ค่ะ');
+  }, 500);
 }
 
+// ปุ่ม 📤 แชร์ — เรียกตรงจาก onclick (user gesture สำคัญมาก)
 function doShare(){
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
+  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+
   if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
 
-  if(!navigator.share){
-    downloadPDF();
-    return;
+  // iOS: เปิด PDF overlay ก่อน แล้วให้กด Share จาก overlay
+  if(isIOS){
+    var dataUri=window._lastPdfDataUri;
+    if(dataUri){ openPDFiOS(dataUri, name); return; }
   }
 
-  var file=new File([blob], name, {type:'application/pdf'});
-
-  // ลอง share พร้อมไฟล์ตรงๆ เลย (ทั้ง iOS และ Android รองรับ)
-  navigator.share({
-    title:'ใบแจ้งหนี้ KONVY KOL',
-    files:[file]
-  }).catch(function(err){
-    if(err.name==='AbortError') return; // ผู้ใช้กด cancel
-    // Fallback: share แบบไม่มีไฟล์ แล้ว download แยก
-    navigator.share({
-      title:'ใบแจ้งหนี้ KONVY KOL',
-      text:'ใบแจ้งหนี้: '+name
-    }).then(function(){ downloadPDF(); })
-      .catch(function(){ downloadPDF(); });
-  });
+  // Android + iOS fallback: ใช้ Web Share API
+  if(navigator.share){
+    var file=new File([blob], name, {type:'application/pdf'});
+    navigator.share({title:'ใบแจ้งหนี้ KONVY KOL', files:[file]})
+      .catch(function(err){
+        if(err.name==='AbortError') return;
+        // Android บางรุ่น share file ไม่ได้ — download แทน
+        downloadPDF();
+      });
+  } else {
+    downloadPDF();
+  }
 }
-
-
 
 function openPDFiOS(dataUri, name){
   window._iosPdfDataUri=dataUri;
-  window._iosPdfName=name;
   var overlay=document.getElementById('iosPdfOverlay');
   var frame=document.getElementById('iosPdfFrame');
   var title=document.getElementById('iosPdfTitle');
   if(!overlay||!frame) return;
-  if(title) title.textContent=name;
+  if(title) title.textContent=name||'ใบแจ้งหนี้';
   frame.src=dataUri;
   overlay.style.display='flex';
   document.body.style.overflow='hidden';
@@ -2216,37 +2207,25 @@ function closeIOSPdf(){
   document.body.style.overflow='';
 }
 
+// ปุ่ม Share ใน iOS overlay — เรียกตรง = user gesture
 function iosSharePdf(){
-  // เรียกตรงจาก onclick — iOS ถือว่าเป็น user gesture
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
   if(!blob){ alert('ไม่พบไฟล์ กรุณาสร้าง PDF ใหม่'); return; }
+  if(!navigator.share){ downloadPDF(); return; }
   var file=new File([blob], name, {type:'application/pdf'});
-  var canFile=false;
-  try{ canFile=navigator.canShare&&navigator.canShare({files:[file]}); }catch(e){}
-  if(navigator.share){
-    navigator.share(canFile?{title:'ใบแจ้งหนี้',files:[file]}:{title:'ใบแจ้งหนี้',text:name})
-      .catch(function(){});
-  }
+  navigator.share({title:'ใบแจ้งหนี้ KONVY KOL', files:[file]})
+    .catch(function(err){ if(err.name!=='AbortError') downloadPDF(); });
 }
 
-function shareToLine(){
-  // เรียกตรงจาก onclick ทันที
-  iosSharePdf();
-}
-
-function sharePDF(){
-  iosSharePdf();
-}
+function sharePDF(){ doShare(); }
+function shareToLine(){ doShare(); }
 
 function downloadPDF(){
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
   var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
-  if(isIOS){
-    var dataUri=window._lastPdfDataUri;
-    if(dataUri){ openPDFiOS(dataUri, name); return; }
-  }
+  if(isIOS&&window._lastPdfDataUri){ openPDFiOS(window._lastPdfDataUri, name); return; }
   if(!blob){ alert('ไม่พบไฟล์ PDF'); return; }
   var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
