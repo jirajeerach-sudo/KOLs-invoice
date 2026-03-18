@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KONVY KOL — ใบแจ้งหนี้</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&family=Kanit:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --pink:#e8707a;
+  --pink-dark:#c0515a;
+  --gold:#f0c040;
+  --dark:#0f1923;
+  --dark2:#1a2535;
+}
+
+body{
+  font-family:'Sarabun',sans-serif;
+  background:var(--dark);
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 20px 40px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Background pattern */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(232,112,122,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(240,192,64,.08) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.grid-bg{
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;
+}
+
+.wrap{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:420px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+}
+
+/* Logo / Brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:32px;
+  animation:fadeDown .6s ease both;
+}
+.brand-icon{
+  width:44px;height:44px;
+  background:linear-gradient(135deg,var(--pink-dark),var(--pink));
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  box-shadow:0 4px 20px rgba(232,112,122,.4);
+}
+.brand-name{
+  font-family:'Kanit',sans-serif;
+  font-size:1.1rem;
+  font-weight:800;
+  letter-spacing:.05em;
+  color:#fff;
+}
+.brand-name span{
+  color:var(--gold);
+}
+
+/* Hero card */
+.hero{
+  width:100%;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:24px;
+  padding:32px 28px 28px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+  animation:fadeUp .6s .1s ease both;
+  margin-bottom:16px;
+}
+
+.hero-emoji{
+  font-size:3.2rem;
+  margin-bottom:14px;
+  display:block;
+  filter:drop-shadow(0 4px 16px rgba(232,112,122,.5));
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+.hero-title{
+  font-family:'Kanit',sans-serif;
+  font-size:1.6rem;
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:8px;
+  background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,.7) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-sub{
+  font-size:.88rem;
+  color:rgba(255,255,255,.5);
+  line-height:1.6;
+  margin-bottom:28px;
+}
+
+/* Main CTA button */
+.btn-main{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  padding:18px 20px;
+  background:linear-gradient(135deg,var(--pink-dark),var(--pink));
+  border:none;
+  border-radius:14px;
+  color:#fff;
+  font-family:'Kanit',sans-serif;
+  font-size:1.15rem;
+  font-weight:700;
+  cursor:pointer;
+  letter-spacing:.03em;
+  box-shadow:0 8px 32px rgba(192,81,90,.45);
+  transition:transform .15s,box-shadow .15s;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+}
+.btn-main::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  border-radius:14px;
+}
+.btn-main:active{
+  transform:scale(.97);
+  box-shadow:0 4px 16px rgba(192,81,90,.4);
+}
+.btn-main-icon{font-size:1.3rem}
+.btn-main-arrow{
+  margin-left:auto;
+  font-size:1.1rem;
+  opacity:.8;
+}
+
+/* Steps */
+.steps{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:18px 20px;
+  animation:fadeUp .6s .2s ease both;
+  margin-bottom:16px;
+}
+.steps-title{
+  font-size:.65rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  margin-bottom:14px;
+}
+.step{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.step:last-child{border:none;padding-bottom:0}
+.step-num{
+  width:26px;height:26px;
+  border-radius:50%;
+  background:rgba(232,112,122,.15);
+  border:1px solid rgba(232,112,122,.3);
+  color:var(--pink);
+  font-size:.72rem;
+  font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.step-text{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.4}
+.step-text strong{color:#fff;font-weight:700}
+
+/* Warning box for LINE browser */
+#lineBrowserNotice{
+  display:none;
+  width:100%;
+  background:rgba(240,192,64,.08);
+  border:1px solid rgba(240,192,64,.25);
+  border-radius:14px;
+  padding:14px 16px;
+  animation:fadeUp .4s ease both;
+  margin-bottom:16px;
+}
+.notice-title{
+  font-size:.8rem;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:4px;
+  display:flex;align-items:center;gap:6px;
+}
+.notice-text{
+  font-size:.76rem;
+  color:rgba(255,255,255,.55);
+  line-height:1.6;
+}
+
+/* Footer */
+.footer{
+  font-size:.7rem;
+  color:rgba(255,255,255,.2);
+  text-align:center;
+  margin-top:8px;
+  animation:fadeUp .6s .3s ease both;
+}
+
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Pulse ring on button */
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(232,112,122,.5)}
+  70%{box-shadow:0 0 0 14px rgba(232,112,122,0)}
+  100%{box-shadow:0 0 0 0 rgba(232,112,122,0)}
+}
+.btn-main{animation:pulse 2.5s 1s infinite}
+.btn-main:active{animation:none}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<div class="wrap">
+
+  <div class="brand">
+    <div class="brand-icon">🧾</div>
+    <div class="brand-name">KONVY <span>KOL</span></div>
+  </div>
+
+  <!-- LINE browser notice -->
+  <div id="lineBrowserNotice">
+    <div class="notice-title">💡 เพื่อประสบการณ์ที่ดีที่สุด</div>
+    <div class="notice-text">กดปุ่มด้านล่างเพื่อเปิดในเบราว์เซอร์ จะสามารถบันทึกและแชร์ PDF ได้ทุกแอปค่ะ</div>
+  </div>
+
+  <div class="hero">
+    <span class="hero-emoji">📋</span>
+    <div class="hero-title">สร้างใบแจ้งหนี้<br>KONVY KOL</div>
+    <div class="hero-sub">กรอกข้อมูล เลือกแบบ แล้วส่ง PDF<br>ให้ทีม KONVY ได้เลยค่ะ</div>
+
+    <a class="btn-main" id="mainBtn" href="#" onclick="openApp(event)">
+      <span class="btn-main-icon">✏️</span>
+      <span>สร้างใบแจ้งหนี้</span>
+      <span class="btn-main-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="steps">
+    <div class="steps-title">ขั้นตอน</div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>กรอกข้อมูล</strong> ชื่อ บัญชีธนาคาร รายการ</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>เลือกแบบ</strong> มี 18 สไตล์ให้เลือก</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>บันทึก PDF</strong> แล้วส่งให้ทีม KONVY ได้เลย</div>
+    </div>
+  </div>
+
+  <div class="footer">© KONVY International · KOL Invoice System</div>
+
+</div>
+
+<script>
+// ตรวจจับว่าเปิดผ่าน LINE browser หรือเปล่า
+var ua = navigator.userAgent;
+var isLineBrowser = /Line\/[0-9]/.test(ua);
+var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+var isAndroid = /Android/.test(ua);
+
+// URL ของ invoice app (ไฟล์ index.html อยู่ใน repo เดียวกัน)
+var appUrl = window.location.href.replace('landing.html', 'index.html')
+              .replace(/\/$/, '') 
+              .split('?')[0]
+              .replace('landing.html','') + 'index.html';
+
+// ถ้าเปิดผ่าน LINE browser แสดง notice
+if(isLineBrowser){
+  document.getElementById('lineBrowserNotice').style.display = 'block';
+}
+
+function openApp(e){
+  e.preventDefault();
+
+  if(isAndroid && isLineBrowser){
+    // Android LINE: ใช้ intent scheme เปิด Chrome
+    var intentUrl = 'intent://' + appUrl.replace(/^https?:\/\//, '') +
+      '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' +
+      encodeURIComponent(appUrl) + ';end';
+    window.location.href = intentUrl;
+
+  } else if(isIOS && isLineBrowser){
+    // iOS LINE: เปิดใน Safari ผ่าน x-safari-https scheme
+    var safariUrl = appUrl.replace('https://', 'x-safari-https://');
+    window.location.href = safariUrl;
+    // fallback
+    setTimeout(function(){
+      window.location.href = appUrl;
+    }, 1000);
+
+  } else {
+    // Safari / Chrome ปกติ — เปิดหน้า app เลย
+    window.location.href = appUrl;
+  }
+}
+</script>
+</body>
+</html>
