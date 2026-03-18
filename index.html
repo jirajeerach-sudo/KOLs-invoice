@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ใบแจ้งหนี้ KONVY KOL</title>
+<title>ใบแจ้งหนี้ KOL — Tiara Media</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -47,13 +47,13 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
   .field label{font-size:.7rem}
   .fr{grid-template-columns:1fr 1fr;gap:8px}
   .itbl thead th{padding:8px 6px;font-size:.65rem}
-  /* Items table — mobile: stack layout per row */
+  /* Items table — mobile: จำนวน / ราคา / รวม แถวเดียวกัน */
   .itbl{display:block}
   .itbl thead{display:none}
   .itbl tbody{display:flex;flex-direction:column;gap:8px}
   .itbl tbody tr{
     display:grid;
-    grid-template-columns:18px 1fr 1fr;
+    grid-template-columns:18px 1fr;
     grid-template-rows:auto auto;
     gap:4px 6px;
     background:#f9fafc;
@@ -62,15 +62,15 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     padding:8px 9px;
     position:relative;
   }
-  /* # number — top-left */
+  /* # number */
   .itbl tbody td.cn{
     grid-column:1;grid-row:1;
     align-self:center;font-size:.7rem;color:#bbb;
     padding:0;border:none;
   }
-  /* รายการ desc — spans top row */
+  /* รายการ desc */
   .itbl tbody td.cd{
-    grid-column:2/4;grid-row:1;
+    grid-column:2;grid-row:1;
     padding:0;border:none;
   }
   .itbl tbody td.cd input{
@@ -78,52 +78,35 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     border:1.5px solid #dde3ea;border-radius:6px;
     background:#fff;width:100%;
   }
-  /* จำนวน — bottom-left */
+  /* แถวล่าง: จำนวน / ราคา / รวม — ทั้ง 3 ในแถวเดียว */
   .itbl tbody td.cq{
     display:table-cell !important;
-    grid-column:2;grid-row:2;
+    grid-column:1/3;grid-row:2;
     padding:0;border:none;
-    position:relative;
+    display:flex !important;
+    align-items:flex-end;
+    gap:6px;
   }
-  .itbl tbody td.cq::before{
-    content:'จำนวน';
-    display:block;font-size:.6rem;font-weight:700;
-    color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;
-    margin-bottom:2px;
-  }
-  .itbl tbody td.cq input{
-    font-size:.88rem;padding:5px 8px;
-    border:1.5px solid #dde3ea;border-radius:6px;
-    background:#fff;width:100%;text-align:left;
-  }
-  /* ราคา — bottom-right */
+  /* ซ่อน before label ของ cq เพราะจะใช้ layout ใหม่ */
+  .itbl tbody td.cq::before{ display:none; }
+  /* ซ่อน cp และ ct เพราะรวมใน cq แล้ว */
   .itbl tbody td.cp{
-    display:table-cell !important;
-    grid-column:3;grid-row:2;
-    padding:0;border:none;
-    position:relative;
+    display:none !important;
   }
-  .itbl tbody td.cp::before{
-    content:'ราคา/หน่วย';
-    display:block;font-size:.6rem;font-weight:700;
-    color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;
-    margin-bottom:2px;
-  }
-  .itbl tbody td.cp input{
-    font-size:.88rem;padding:5px 8px;
-    border:1.5px solid #dde3ea;border-radius:6px;
-    background:#fff;width:100%;
-  }
-  /* รวม — inline label */
   .itbl tbody td.ct{
-    position:absolute;top:8px;right:36px;
-    font-size:.78rem;font-weight:700;color:#2e7db5;
-    padding:0;border:none;
+    display:none !important;
   }
   /* ลบ */
   .itbl tbody td.cx{
     position:absolute;top:6px;right:6px;
     padding:0;border:none;
+  }
+  /* input สำหรับ cq (จำนวน) */
+  .itbl tbody td.cq input{
+    font-size:.88rem;padding:5px 8px;
+    border:1.5px solid #dde3ea;border-radius:6px;
+    background:#fff;text-align:center;
+    width:72px;flex-shrink:0;
   }
   .itbl input{font-size:.88rem}
   .sum-s{padding:10px 12px}
@@ -993,9 +976,9 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 <div class="picker-bar">
   <div class="picker-inner">
     <div class="picker-top">
-      <div class="picker-logo">🧾 ใบแจ้งหนี้ KONVY KOL <span>กรอกข้อมูล &#8594; เลือกแบบ &#8594; บันทึก PDF</span></div>
+      <div class="picker-logo">🧾 ใบแจ้งหนี้ Tiara Media KOL <span>กรอกข้อมูล &#8594; เลือกแบบ &#8594; บันทึก PDF</span></div>
       <div class="picker-actions" id="topActions">
-        <button class="btn-act" id="btnNextToTemplate" onclick="goToStep(2)" style="background:#4a90d9;color:#fff">ถัดไป: เลือกแบบ →</button>
+        <button class="btn-act" id="btnNextToTemplate" onclick="goToStep(2)" style="background:#4a90d9;color:#fff">ถัดไป: พรีวิว →</button>
       </div>
     </div>
     <div id="stepBar" style="display:flex;align-items:center;gap:8px;margin-top:8px">
@@ -1058,7 +1041,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <div class="field"><label>เลขที่ใบแจ้งหนี้</label><input id="invNo" placeholder="กรอกเลขที่ใบแจ้งหนี้ เช่น INV-001" oninput="renderInvoice()"></div>
         <div class="fr">
           <div class="field"><label>วันที่ออก</label><input type="date" id="invDate" onchange="updateDue();renderInvoice()"></div>
-          <div class="field"><label>กำหนดชำระ (+60 วัน)</label><input type="date" id="invDue" onchange="renderInvoice()"></div>
+          <div class="field"><label>กำหนดชำระ (+60 วัน)</label><div id="invDueDisplay" style="padding:8px 11px;border:1.5px solid #dde3ea;border-radius:6px;font-size:.85rem;font-family:Sarabun,sans-serif;color:#1a1a2e;background:#f4f7fa;min-height:36px">—</div><input type="hidden" id="invDue"></div>
         </div>
         <div class="field"><label>ชื่อแคมเปญ</label><input id="invProject" placeholder="ชื่อแคมเปญ" oninput="renderInvoice()"></div>
       </div>
@@ -1099,7 +1082,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <div class="fc">
       <div class="fc-head" style="background:#5a3a8a;color:#fff">📦 รายการค่าตอบแทน</div>
       <div class="fc-body">
-        <div id="itemsBody"></div>
+        <table class="itbl"><thead><tr><th class="cn">#</th><th class="cd">รายการ</th><th class="cq">จำนวน</th><th class="cp">ราคา</th><th class="ct">รวม</th><th class="cx"></th></tr></thead><tbody id="itemsBody"></tbody></table>
         <button class="btn-ar" type="button" onclick="addRow()">+ เพิ่มรายการ</button>
         <div class="sum-s">
           <div class="sum-sr"><span class="sum-sl">ยอดรวม</span><span class="sum-sv" id="sumSub">฿0.00</span></div>
@@ -1168,7 +1151,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 </div>
 
 <script>
-const CO={name:'บริษัท คอนวี่ อินเตอร์เนชั่นแนล จำกัด',addr:'689 อาคารภิรัชทาวน์เวอร์ แอ๊ดเอ็มควอเทียร์ ชั้นที่ 21,22 ห้องเลขที่ 2101-2109, 2211 ถนนสุขุมวิท แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพมหานคร 10110',tax:'0105554129276'};
+const CO={name:'บริษัท เทียร่า มีเดีย (ไทยแลนด์) จำกัด (สำนักงานใหญ่)',addr:'62 หมู่บ้าน พระปิ่น 3 หมู่ที่ 12 ตำบลบางแม่นาง อำเภอบางใหญ่ จ.นนทบุรี 11140',tax:'0105567250702'};
 const TPLS=[
   {id:'t1',name:'Classic Centered',desc:'หัวข้อกลาง / แถบสีเข้ม'},
   {id:'t2',name:'Red Stripe Bold',desc:'แถบแนวตั้ง / พื้นขาว-ชมพู'},
@@ -1189,7 +1172,7 @@ const TPLS=[
   {id:'t18',name:'Earthy Warm',desc:'น้ำตาลทอง / อบอุ่น'},
   {id:'t20',name:'Official Document',desc:'ตราประทับ / ลายเซ็น 3 จุด'},
 ];
-let currentTpl='t1', rowCount=0, sigData=null;
+let currentTpl='t4', rowCount=0, sigData=null;
 const files={id:[],book:[]};
 var postEvidences=[];
 
@@ -1198,79 +1181,95 @@ function addRow(){
   rowCount++;
   var rc=rowCount;
   var tb=document.getElementById('itemsBody');
+  var tr=document.createElement('tr');
+  tr.id='row'+rc;
 
-  var card=document.createElement('div');
-  card.id='row'+rc;
-  card.style.cssText='background:#f9fafc;border:1px solid #e8ecf2;border-radius:8px;padding:10px 12px;margin-bottom:8px';
+  // #
+  var tdN=document.createElement('td'); tdN.className='cn'; tdN.textContent=tb.rows.length+1; tr.appendChild(tdN);
+  // desc
+  var tdD=document.createElement('td'); tdD.className='cd';
+  var inpD=document.createElement('input'); inpD.placeholder='รายการ'; inpD.style.width='100%';
+  inpD.addEventListener('input',renderInvoice); tdD.appendChild(inpD); tr.appendChild(tdD);
+  // qty
+  var tdQ=document.createElement('td'); tdQ.className='cq';
+  var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='จำนวน'; inpQ.min='0'; inpQ.style.width='100%'; inpQ.style.textAlign='center';
+  // qty + price + total — ทั้งหมดอยู่ใน cq cell เดียว แถวเดียว
+  var tdQ=document.createElement('td'); tdQ.className='cq';
 
-  // บรรทัดบน: # + รายการ + ✕
-  var top=document.createElement('div');
-  top.style.cssText='display:flex;align-items:center;gap:8px;margin-bottom:8px';
-  var num=document.createElement('span');
-  num.className='item-num';
-  num.style.cssText='font-size:.72rem;color:#bbb;flex-shrink:0;width:16px';
-  num.textContent=tb.children.length+1;
-  var inpD=document.createElement('input');
-  inpD.placeholder='รายการ';
-  inpD.style.cssText='flex:1;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 10px;font-family:Sarabun,sans-serif;font-size:.9rem;outline:none;background:#fff';
-  inpD.addEventListener('input',renderInvoice);
-  var btnDel=document.createElement('button');
-  btnDel.type='button'; btnDel.textContent='✕';
-  btnDel.style.cssText='background:none;border:none;cursor:pointer;color:#c9d4dc;font-size:.85rem;flex-shrink:0;padding:2px';
-  btnDel.addEventListener('click',(function(rid){return function(){delRow(rid);};}('row'+rc)));
-  top.appendChild(num); top.appendChild(inpD); top.appendChild(btnDel);
-
-  // บรรทัดล่าง: จำนวน / ราคาต่อหน่วย / รวม
-  var bot=document.createElement('div');
-  bot.style.cssText='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end';
+  // wrapper flex row
+  var qRow=document.createElement('div');
+  qRow.style.cssText='display:flex;align-items:flex-end;gap:6px;width:100%';
 
   // จำนวน
-  var wQ=document.createElement('div');
-  var lQ=document.createElement('div'); lQ.style.cssText='font-size:.62rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px'; lQ.textContent='จำนวน';
-  var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='0'; inpQ.min='0';
-  inpQ.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 10px;font-family:Sarabun,sans-serif;font-size:.9rem;text-align:center;outline:none;background:#fff';
+  var qWrap=document.createElement('div'); qWrap.style.cssText='display:flex;flex-direction:column;flex:1;min-width:64px;max-width:90px';
+  var qLbl=document.createElement('span'); qLbl.textContent='จำนวน'; qLbl.style.cssText='font-size:.6rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px';
+  var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='จำนวน'; inpQ.min='0'; inpQ.style.cssText='width:100%;padding:6px 8px;border:1.5px solid #dde3ea;border-radius:6px;font-family:Sarabun,sans-serif;font-size:.9rem;text-align:center;outline:none;background:#fff';
   inpQ.addEventListener('input',function(){calcTotal();renderInvoice();});
-  wQ.appendChild(lQ); wQ.appendChild(inpQ);
+  qWrap.appendChild(qLbl); qWrap.appendChild(inpQ);
 
   // ราคา/หน่วย
-  var wP=document.createElement('div');
-  var lP=document.createElement('div'); lP.style.cssText='font-size:.62rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px'; lP.textContent='ราคา/หน่วย';
-  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01';
-  inpP.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 10px;font-family:Sarabun,sans-serif;font-size:.9rem;text-align:right;outline:none;background:#fff';
+  var pWrap=document.createElement('div'); pWrap.style.cssText='display:flex;flex-direction:column;flex:1.4;min-width:80px';
+  var pLbl=document.createElement('span'); pLbl.textContent='ราคา/หน่วย'; pLbl.style.cssText='font-size:.6rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px';
+  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01'; inpP.style.cssText='width:100%;padding:6px 8px;border:1.5px solid #dde3ea;border-radius:6px;font-family:Sarabun,sans-serif;font-size:.9rem;text-align:right;outline:none;background:#fff';
   inpP.addEventListener('input',function(){calcTotal();renderInvoice();});
-  wP.appendChild(lP); wP.appendChild(inpP);
+  pWrap.appendChild(pLbl); pWrap.appendChild(inpP);
 
   // รวม
-  var wT=document.createElement('div');
-  var lT=document.createElement('div'); lT.style.cssText='font-size:.62rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px'; lT.textContent='รวม';
-  var valT=document.createElement('div'); valT.id='rtv'+rc;
-  valT.style.cssText='font-size:1rem;font-weight:700;color:#2e7db5;padding:8px 0 8px 4px';
-  valT.textContent='฿0.00';
-  wT.appendChild(lT); wT.appendChild(valT);
+  var tWrap=document.createElement('div'); tWrap.style.cssText='display:flex;flex-direction:column;flex:1.2;min-width:72px;align-items:flex-end';
+  var tLbl=document.createElement('span'); tLbl.textContent='รวม'; tLbl.style.cssText='font-size:.6rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px';
+  var tVal=document.createElement('div'); tVal.id='rt'+rc; tVal.textContent='฿0'; tVal.style.cssText='font-size:.9rem;font-weight:700;color:#2e7db5;padding:6px 0;line-height:1.4;white-space:nowrap';
+  tWrap.appendChild(tLbl); tWrap.appendChild(tVal);
 
-  bot.appendChild(wQ); bot.appendChild(wP); bot.appendChild(wT);
-  card.appendChild(top); card.appendChild(bot);
-  tb.appendChild(card);
+  qRow.appendChild(qWrap); qRow.appendChild(pWrap); qRow.appendChild(tWrap);
+  tdQ.appendChild(qRow); tr.appendChild(tdQ);
+
+  // td placeholder สำหรับ cp และ ct (ซ่อนใน mobile, ใช้ใน desktop calcTotal)
+  var tdP=document.createElement('td'); tdP.className='cp';
+  tdP.appendChild(inpP.cloneNode()); // desktop ใช้ inpP ตรงๆ
+  // แต่เราใส่ inpP จริงใน qRow แล้ว ดังนั้น tdP จะว่าง แค่ placeholder
+  tdP.style.display='none'; tdP.appendChild(document.createElement('span')); tr.appendChild(tdP);
+  var tdT=document.createElement('td'); tdT.className='ct'; tdT.style.display='none'; tr.appendChild(tdT);
+  // delete
+  var tdX=document.createElement('td'); tdX.className='cx';
+  var btnDel=document.createElement('button'); btnDel.className='btn-dr'; btnDel.type='button'; btnDel.textContent='✕';
+  btnDel.addEventListener('click',(function(id){return function(){delRow(id);};}('row'+rc)));
+  tdX.appendChild(btnDel); tr.appendChild(tdX);
+
+  tb.appendChild(tr);
   renum(); calcTotal(); renderInvoice();
 }
 
 function delRow(id){var el=document.getElementById(id);if(el)el.remove();renum();calcTotal();renderInvoice();}
-function renum(){var cards=document.getElementById('itemsBody').children;for(var i=0;i<cards.length;i++){var nm=cards[i].querySelector('.item-num');if(nm)nm.textContent=i+1;}}
+function renum(){var rows=document.getElementById('itemsBody').rows;for(var i=0;i<rows.length;i++)rows[i].cells[0].textContent=i+1;}
 function fmt(n){return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function fmtDate(d){if(!d)return'–';var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var p=d.split('-');return p[2]+' / '+months[parseInt(p[1])-1]+' / '+p[0];}
-function v(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim();}
+function fmtDate(d){
+  if(!d) return'–';
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var p=d.split('-');
+  return p[2]+' / '+months[parseInt(p[1])-1]+' / '+p[0];
+}
+function updateDue(){
+  var d=new Date(document.getElementById('invDate').value);
+  if(isNaN(d)) return;
+  d.setDate(d.getDate()+60);
+  var iso=d.toISOString().split('T')[0];
+  document.getElementById('invDue').value=iso;
+  var el=document.getElementById('invDueDisplay');
+  if(el) el.textContent=fmtDate(iso);
+}function v(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim();}
 
 function calcTotal(){
   var sub=0;
-  var cards=document.getElementById('itemsBody').children;
-  for(var i=0;i<cards.length;i++){
-    var inps=cards[i].querySelectorAll('input');
-    var q=inps[1]?parseFloat(inps[1].value)||0:0;
-    var p=inps[2]?parseFloat(inps[2].value)||0:0;
+  var rows=document.getElementById('itemsBody').rows;
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
+    var inps=r.cells[2].querySelectorAll('input');
+    var q=parseFloat(inps[0]?inps[0].value:0)||0;
+    var p=parseFloat(inps[1]?inps[1].value:0)||0;
     var t=q*p; sub+=t;
-    var rid=cards[i].id.replace('row','');
-    var valEl=document.getElementById('rtv'+rid);
-    if(valEl) valEl.textContent='฿'+fmt(t);
+    var id=r.id.replace('row','');
+    var td=document.getElementById('rt'+id);
+    if(td) td.textContent='฿'+fmt(t);
   }
   var whtPct=parseFloat(document.getElementById('whtSel').value)||0;
   var vatPct=parseFloat(document.getElementById('vatSel').value)||0;
@@ -1283,13 +1282,14 @@ function calcTotal(){
 }
 
 function getItems(){
-  var cards=document.getElementById('itemsBody').children, items=[];
-  for(var i=0;i<cards.length;i++){
-    var inps=cards[i].querySelectorAll('input');
+  var rows=document.getElementById('itemsBody').rows, items=[];
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
+    var inps=r.cells[2].querySelectorAll('input');
     items.push({
-      desc:inps[0]?inps[0].value||'':'',
-      qty:inps[1]?parseFloat(inps[1].value)||0:0,
-      price:inps[2]?parseFloat(inps[2].value)||0:0
+      desc:r.cells[1].querySelector('input').value||'',
+      qty:parseFloat(inps[0]?inps[0].value:0)||0,
+      price:parseFloat(inps[1]?inps[1].value:0)||0
     });
   }
   return items;
@@ -1304,7 +1304,7 @@ function renderInvoice(){
   var iEmail=v('infEmail'), iCard=v('infCardNo');
   var proj=v('invProject'), note=v('invNote');
   var bank=v('bankName')==='อื่นๆ'?v('bankNameOther'):v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
-  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(window._invDueRaw||'');
+  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(v('invDue'));
   var coAddr=CO.addr.replace(/\n/g,'<br>');
 
   var infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
@@ -1643,12 +1643,6 @@ function updateAttachBadge(){
   badge.classList.toggle('show', total>0);
 }
 
-function updateDue(){
-  var d=new Date(document.getElementById('invDate').value);
-  d.setDate(d.getDate()+60);
-  document.getElementById('invDue').value=d.toISOString().split('T')[0];
-}
-
 // ── FIX 3: renderPostEvidences uses DOM methods (no inline quote issues) ──
 function addPostEvidence(){
   postEvidences.push({img:null, platform:'', date:'', link:''});
@@ -1934,7 +1928,7 @@ function goToStep(n){
     mainWrap.style.display='grid'; step2Panel.style.display='none';
     if(step2Prev) step2Prev.style.display='none';
     btnNext.style.display='inline-flex';
-    if(mobNav) mobNav.innerHTML='<button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>';
+    if(mobNav) mobNav.innerHTML='<button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: พรีวิว →</button>';
     if(s1){ s1.style.color='#f0c040'; s1.querySelector('div').style.background='#f0c040'; s1.querySelector('div').style.color='#1a1a2e'; }
     if(s2){ s2.style.color='rgba(255,255,255,.35)'; }
     if(s2c){ s2c.style.background='rgba(255,255,255,.15)'; s2c.style.color='rgba(255,255,255,.4)'; }
@@ -2508,19 +2502,16 @@ function handleOtherSelect(selId, inputId){
   var today=new Date().toISOString().split('T')[0];
   document.getElementById('invDate').value=today;
   var due=new Date(); due.setDate(due.getDate()+60);
-  document.getElementById('invDue').value=due.toISOString().split('T')[0];
+  var dueIso=due.toISOString().split('T')[0];
+  document.getElementById('invDue').value=dueIso;
+  var dd=document.getElementById('invDueDisplay');
+  if(dd) dd.textContent=fmtDate(dueIso);
+  // Tiara Media: lock to t4 only
+  currentTpl='t4';
   var g=document.getElementById('tplGrid');
-  TPLS.forEach(function(t,i){
-    var b=document.createElement('button');
-    b.className='tpl-btn'+(t.id===currentTpl?' active':'');
-    b.title=t.desc||''; b.textContent=(i+1)+'. '+t.name;
-    b.onclick=(function(tid){return function(){
-      currentTpl=tid;
-      document.querySelectorAll('.tpl-btn').forEach(function(btn,j){ btn.classList.toggle('active',TPLS[j].id===tid); });
-      renderInvoice();
-    };})(t.id);
-    g.appendChild(b);
-  });
+  if(g){ g.style.display='none'; }
+  var gl=document.querySelector('.picker-grid-label');
+  if(gl){ gl.style.display='none'; }
   addRow(); addRow();
   setTimeout(initSigCanvas,300);
   calcTotal(); renderInvoice();
@@ -2528,7 +2519,7 @@ function handleOtherSelect(selId, inputId){
 </script>
 
 <div class="mob-nav" id="mobNav">
-  <button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: เลือกแบบ →</button>
+  <button class="mob-nav-btn mob-nav-next" onclick="goToStep(2)">ถัดไป: พรีวิว →</button>
 </div>
 
 <!-- iOS PDF Viewer Overlay -->
