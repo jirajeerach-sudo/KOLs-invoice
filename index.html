@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ใบแจ้งหนี้ KONVY KOL</title>
+<title>ใบแจ้งหนี้ KOL — Tiara Media</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -993,7 +993,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 <div class="picker-bar">
   <div class="picker-inner">
     <div class="picker-top">
-      <div class="picker-logo">🧾 ใบแจ้งหนี้ KONVY KOL <span>กรอกข้อมูล &#8594; เลือกแบบ &#8594; บันทึก PDF</span></div>
+      <div class="picker-logo">🧾 ใบแจ้งหนี้ Tiara Media KOL <span>กรอกข้อมูล &#8594; เลือกแบบ &#8594; บันทึก PDF</span></div>
       <div class="picker-actions" id="topActions">
         <button class="btn-act" id="btnNextToTemplate" onclick="goToStep(2)" style="background:#4a90d9;color:#fff">ถัดไป: เลือกแบบ →</button>
       </div>
@@ -1058,9 +1058,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <div class="field"><label>เลขที่ใบแจ้งหนี้</label><input id="invNo" placeholder="กรอกเลขที่ใบแจ้งหนี้ เช่น INV-001" oninput="renderInvoice()"></div>
         <div class="fr">
           <div class="field"><label>วันที่ออก</label><input type="date" id="invDate" onchange="updateDue();renderInvoice()"></div>
-          <div class="field"><label>กำหนดชำระ (+60 วัน)</label>
-            <div id="invDue" style="border:1.5px solid #e0e4ea;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;color:#1a1a2e;background:#f4f6f8;min-height:36px;pointer-events:none;user-select:none">–</div>
-          </div>
+          <div class="field"><label>กำหนดชำระ (+60 วัน)</label><div id="invDueDisplay" style="padding:8px 11px;border:1.5px solid #dde3ea;border-radius:6px;font-size:.85rem;font-family:Sarabun,sans-serif;color:#1a1a2e;background:#f4f7fa;min-height:36px">—</div><input type="hidden" id="invDue"></div>
         </div>
         <div class="field"><label>ชื่อแคมเปญ</label><input id="invProject" placeholder="ชื่อแคมเปญ" oninput="renderInvoice()"></div>
       </div>
@@ -1170,7 +1168,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
 </div>
 
 <script>
-const CO={name:'บริษัท คอนวี่ อินเตอร์เนชั่นแนล จำกัด',addr:'689 อาคารภิรัชทาวน์เวอร์ แอ๊ดเอ็มควอเทียร์ ชั้นที่ 21,22 ห้องเลขที่ 2101-2109, 2211 ถนนสุขุมวิท แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพมหานคร 10110',tax:'0105554129276'};
+const CO={name:'บริษัท เทียร่า มีเดีย (ไทยแลนด์) จำกัด (สำนักงานใหญ่)',addr:'62 หมู่บ้าน พระปิ่น 3 หมู่ที่ 12 ตำบลบางแม่นาง อำเภอบางใหญ่ จ.นนทบุรี 11140',tax:'0105567250702'};
 const TPLS=[
   {id:'t1',name:'Classic Centered',desc:'หัวข้อกลาง / แถบสีเข้ม'},
   {id:'t2',name:'Red Stripe Bold',desc:'แถบแนวตั้ง / พื้นขาว-ชมพู'},
@@ -1191,7 +1189,7 @@ const TPLS=[
   {id:'t18',name:'Earthy Warm',desc:'น้ำตาลทอง / อบอุ่น'},
   {id:'t20',name:'Official Document',desc:'ตราประทับ / ลายเซ็น 3 จุด'},
 ];
-let currentTpl='t1', rowCount=0, sigData=null;
+let currentTpl='t4', rowCount=0, sigData=null;
 const files={id:[],book:[]};
 var postEvidences=[];
 
@@ -1306,7 +1304,7 @@ function renderInvoice(){
   var iEmail=v('infEmail'), iCard=v('infCardNo');
   var proj=v('invProject'), note=v('invNote');
   var bank=v('bankName')==='อื่นๆ'?v('bankNameOther'):v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
-  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(window._invDueRaw||'');
+  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(v('invDue')||window._invDueRaw||'');
   var coAddr=CO.addr.replace(/\n/g,'<br>');
 
   var infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
@@ -1646,9 +1644,19 @@ function updateAttachBadge(){
 }
 
 function updateDue(){
-  var d=new Date(document.getElementById('invDate').value);
+  var raw=document.getElementById('invDate').value;
+  if(!raw) return;
+  // parse YYYY-MM-DD manually (iOS safe)
+  var parts=raw.split('-');
+  var d=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]));
+  if(isNaN(d.getTime())) return;
   d.setDate(d.getDate()+60);
-  document.getElementById('invDue').value=d.toISOString().split('T')[0];
+  var y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  var iso=y+'-'+m+'-'+day;
+  document.getElementById('invDue').value=iso;
+  window._invDueRaw=iso;
+  var el=document.getElementById('invDueDisplay');
+  if(el) el.textContent=fmtDate(iso);
 }
 
 // ── FIX 3: renderPostEvidences uses DOM methods (no inline quote issues) ──
@@ -2509,20 +2517,20 @@ function handleOtherSelect(selId, inputId){
 (function(){
   var today=new Date().toISOString().split('T')[0];
   document.getElementById('invDate').value=today;
-  var due=new Date(); due.setDate(due.getDate()+60);
-  document.getElementById('invDue').value=due.toISOString().split('T')[0];
+  var tn=today.split('-');
+  var due=new Date(parseInt(tn[0]),parseInt(tn[1])-1,parseInt(tn[2]));
+  due.setDate(due.getDate()+60);
+  var dy=due.getFullYear(), dm=String(due.getMonth()+1).padStart(2,'0'), dd2=String(due.getDate()).padStart(2,'0');
+  var dueIso=dy+'-'+dm+'-'+dd2;
+  document.getElementById('invDue').value=dueIso;
+  window._invDueRaw=dueIso;
+  var dd=document.getElementById('invDueDisplay');
+  if(dd) dd.textContent=fmtDate(dueIso);
+  currentTpl='t4';
   var g=document.getElementById('tplGrid');
-  TPLS.forEach(function(t,i){
-    var b=document.createElement('button');
-    b.className='tpl-btn'+(t.id===currentTpl?' active':'');
-    b.title=t.desc||''; b.textContent=(i+1)+'. '+t.name;
-    b.onclick=(function(tid){return function(){
-      currentTpl=tid;
-      document.querySelectorAll('.tpl-btn').forEach(function(btn,j){ btn.classList.toggle('active',TPLS[j].id===tid); });
-      renderInvoice();
-    };})(t.id);
-    g.appendChild(b);
-  });
+  if(g){ g.style.display='none'; }
+  var gl=document.querySelector('.picker-grid-label');
+  if(gl){ gl.style.display='none'; }
   addRow(); addRow();
   setTimeout(initSigCanvas,300);
   calcTotal(); renderInvoice();
