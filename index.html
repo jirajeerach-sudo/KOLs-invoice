@@ -922,7 +922,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     </div>
     <button class="done-btn" id="doneShareBtn" onclick="doShare()"
       style="display:none;background:#06c755;color:#fff;font-size:1rem;font-family:Sarabun,sans-serif">
-      📤 แชร์ PDF (Line / อีเมล / บันทึก)
+      📤 ส่ง PDF ไปที่ Line / อีเมล / บันทึก
     </button>
     <button class="done-btn" id="doneDownloadBtn" onclick="downloadPDF()"
       style="display:none;background:#4a90d9;color:#fff;font-family:Sarabun,sans-serif">
@@ -2161,32 +2161,31 @@ function openInBrowser(){
   }, 500);
 }
 
-// ปุ่ม 📤 แชร์ — เรียกตรงจาก onclick (user gesture สำคัญมาก)
+// ปุ่ม 📤 แชร์ — กดครั้งเดียว share sheet ขึ้นพร้อม PDF ทันที
 function doShare(){
   var blob=window._lastPdfBlob;
   var name=window._lastPdfName||'invoice.pdf';
-  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
-
   if(!blob){ alert('ไม่พบไฟล์ PDF กรุณาสร้างใหม่'); return; }
 
-  // iOS: เปิด PDF overlay ก่อน แล้วให้กด Share จาก overlay
-  if(isIOS){
-    var dataUri=window._lastPdfDataUri;
-    if(dataUri){ openPDFiOS(dataUri, name); return; }
-  }
+  if(!navigator.share){ downloadPDF(); return; }
 
-  // Android + iOS fallback: ใช้ Web Share API
-  if(navigator.share){
-    var file=new File([blob], name, {type:'application/pdf'});
-    navigator.share({title:'ใบแจ้งหนี้ KONVY KOL', files:[file]})
-      .catch(function(err){
-        if(err.name==='AbortError') return;
-        // Android บางรุ่น share file ไม่ได้ — download แทน
-        downloadPDF();
-      });
-  } else {
-    downloadPDF();
-  }
+  // สร้าง File object จาก blob — ทั้ง iOS Safari 15.1+ และ Android Chrome รองรับ
+  var file=new File([blob], name, {type:'application/pdf'});
+
+  // share พร้อมไฟล์ตรงๆ — share sheet ขึ้น เลือก LINE ได้เลย
+  navigator.share({
+    title: 'ใบแจ้งหนี้ KONVY KOL',
+    files: [file]
+  }).catch(function(err){
+    if(err.name==='AbortError') return; // user กด cancel เอง
+    // ถ้า share ไฟล์ไม่ได้ (เช่น browser เก่า) — เปิด PDF viewer แทน
+    var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+    if(isIOS && window._lastPdfDataUri){
+      openPDFiOS(window._lastPdfDataUri, name);
+    } else {
+      downloadPDF();
+    }
+  });
 }
 
 function openPDFiOS(dataUri, name){
