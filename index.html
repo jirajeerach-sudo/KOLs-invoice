@@ -1057,7 +1057,13 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
       <div class="fc-body">
         <div class="field"><label>เลขที่ใบแจ้งหนี้</label><input id="invNo" placeholder="กรอกเลขที่ใบแจ้งหนี้ เช่น INV-001" oninput="renderInvoice()"></div>
         <div class="fr">
-          <div class="field"><label>วันที่ออก</label><input type="date" id="invDate" onchange="updateDue();renderInvoice()"></div>
+          <div class="field"><label>วันที่ออก</label>
+            <input type="date" id="invDateRaw" onchange="updateInvDate();updateDue();renderInvoice()" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none">
+            <div id="invDate" onclick="document.getElementById('invDateRaw').showPicker?document.getElementById('invDateRaw').showPicker():document.getElementById('invDateRaw').click()"
+              style="border:1.5px solid #dde3ea;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;color:#1a1a2e;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:36px">
+              <span id="invDateDisplay">–</span><span style="color:#8a96a3;font-size:.8rem">📅</span>
+            </div>
+          </div>
           <div class="field"><label>กำหนดชำระ (+60 วัน)</label><input type="date" id="invDue" onchange="renderInvoice()"></div>
         </div>
         <div class="field"><label>ชื่อแคมเปญ</label><input id="invProject" placeholder="ชื่อแคมเปญ" oninput="renderInvoice()"></div>
@@ -1099,7 +1105,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <div class="fc">
       <div class="fc-head" style="background:#5a3a8a;color:#fff">📦 รายการค่าตอบแทน</div>
       <div class="fc-body">
-        <table class="itbl"><thead><tr><th class="cn">#</th><th class="cd" colspan="3" style="text-align:left">รายการ / จำนวน / ราคา</th><th class="cx"></th></tr></thead><tbody id="itemsBody"></tbody></table>
+        <div id="itemsBody"></div>
         <button class="btn-ar" type="button" onclick="addRow()">+ เพิ่มรายการ</button>
         <div class="sum-s">
           <div class="sum-sr"><span class="sum-sl">ยอดรวม</span><span class="sum-sv" id="sumSub">฿0.00</span></div>
@@ -1198,66 +1204,77 @@ function addRow(){
   rowCount++;
   var rc=rowCount;
   var tb=document.getElementById('itemsBody');
-  var tr=document.createElement('tr');
-  tr.id='row'+rc;
 
-  // Row 1: # + รายการ (เต็มแถว) + ปุ่มลบ
-  var tdN=document.createElement('td'); tdN.className='cn'; tdN.textContent=tb.rows.length/2+1; tr.appendChild(tdN);
-  var tdD=document.createElement('td'); tdD.className='cd'; tdD.colSpan=3;
-  var inpD=document.createElement('input'); inpD.placeholder='รายการ';
-  inpD.style.cssText='width:100%;border:none;border-bottom:1.5px solid #dde3ea;background:transparent;font-family:Sarabun,sans-serif;font-size:.88rem;padding:4px 2px;outline:none';
-  inpD.addEventListener('input',renderInvoice); tdD.appendChild(inpD); tr.appendChild(tdD);
-  var tdX=document.createElement('td'); tdX.className='cx';
-  var btnDel=document.createElement('button'); btnDel.className='btn-dr'; btnDel.type='button'; btnDel.textContent='✕';
-  btnDel.addEventListener('click',(function(rid){return function(){delRow(rid);};})(('row'+rc)));
-  tdX.appendChild(btnDel); tr.appendChild(tdX);
+  var card=document.createElement('div');
+  card.id='row'+rc;
+  card.style.cssText='background:#f9fafc;border:1px solid #e8ecf2;border-radius:8px;padding:10px 12px;margin-bottom:8px';
 
-  // Row 2: จำนวน / ราคา / รวม
-  var tr2=document.createElement('tr'); tr2.id='row'+rc+'b';
-  var tdN2=document.createElement('td'); tdN2.className='cn'; tr2.appendChild(tdN2);
+  // บรรทัดบน: # + รายการ + ✕
+  var top=document.createElement('div');
+  top.style.cssText='display:flex;align-items:center;gap:8px;margin-bottom:8px';
+  var num=document.createElement('span');
+  num.className='item-num';
+  num.style.cssText='font-size:.72rem;color:#bbb;flex-shrink:0;width:16px';
+  num.textContent=tb.children.length+1;
+  var inpD=document.createElement('input');
+  inpD.placeholder='รายการ';
+  inpD.style.cssText='flex:1;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 10px;font-family:Sarabun,sans-serif;font-size:.9rem;outline:none;background:#fff';
+  inpD.addEventListener('input',renderInvoice);
+  var btnDel=document.createElement('button');
+  btnDel.type='button'; btnDel.textContent='✕';
+  btnDel.style.cssText='background:none;border:none;cursor:pointer;color:#c9d4dc;font-size:.85rem;flex-shrink:0;padding:2px';
+  btnDel.addEventListener('click',(function(rid){return function(){delRow(rid);};}('row'+rc)));
+  top.appendChild(num); top.appendChild(inpD); top.appendChild(btnDel);
+
+  // บรรทัดล่าง: จำนวน / ราคาต่อหน่วย / รวม
+  var bot=document.createElement('div');
+  bot.style.cssText='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end';
+
   // จำนวน
-  var tdQ=document.createElement('td'); tdQ.className='cq';
-  var lblQ=document.createElement('div'); lblQ.style.cssText='font-size:.58rem;color:#8a96a3;font-weight:700;letter-spacing:.04em;margin-bottom:2px'; lblQ.textContent='จำนวน'; tdQ.appendChild(lblQ);
+  var wQ=document.createElement('div');
+  var lQ=document.createElement('div'); lQ.style.cssText='font-size:.62rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px'; lQ.textContent='จำนวน';
   var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='0'; inpQ.min='0';
-  inpQ.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:5px;padding:5px 6px;font-family:Sarabun,sans-serif;font-size:.85rem;text-align:center;outline:none';
-  inpQ.addEventListener('input',function(){calcTotal();renderInvoice();}); tdQ.appendChild(inpQ); tr2.appendChild(tdQ);
-  // ราคา/หน่วย
-  var tdP=document.createElement('td'); tdP.className='cp';
-  var lblP=document.createElement('div'); lblP.style.cssText='font-size:.58rem;color:#8a96a3;font-weight:700;letter-spacing:.04em;margin-bottom:2px'; lblP.textContent='ราคา/หน่วย'; tdP.appendChild(lblP);
-  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01';
-  inpP.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:5px;padding:5px 6px;font-family:Sarabun,sans-serif;font-size:.85rem;text-align:right;outline:none';
-  inpP.addEventListener('input',function(){calcTotal();renderInvoice();}); tdP.appendChild(inpP); tr2.appendChild(tdP);
-  // รวม
-  var tdT=document.createElement('td'); tdT.className='ct';
-  var lblT=document.createElement('div'); lblT.style.cssText='font-size:.58rem;color:#8a96a3;font-weight:700;letter-spacing:.04em;margin-bottom:2px'; lblT.textContent='รวม'; tdT.appendChild(lblT);
-  var valT=document.createElement('div'); valT.id='rtv'+rc;
-  valT.style.cssText='font-size:.85rem;font-weight:700;color:#2e7db5'; valT.textContent='฿0'; tdT.appendChild(valT);
-  tr2.appendChild(tdT);
-  var tdX2=document.createElement('td'); tdX2.className='cx'; tr2.appendChild(tdX2);
+  inpQ.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 10px;font-family:Sarabun,sans-serif;font-size:.9rem;text-align:center;outline:none;background:#fff';
+  inpQ.addEventListener('input',function(){calcTotal();renderInvoice();});
+  wQ.appendChild(lQ); wQ.appendChild(inpQ);
 
-  tb.appendChild(tr);
-  tb.appendChild(tr2);
+  // ราคา/หน่วย
+  var wP=document.createElement('div');
+  var lP=document.createElement('div'); lP.style.cssText='font-size:.62rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px'; lP.textContent='ราคา/หน่วย';
+  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01';
+  inpP.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:6px;padding:8px 10px;font-family:Sarabun,sans-serif;font-size:.9rem;text-align:right;outline:none;background:#fff';
+  inpP.addEventListener('input',function(){calcTotal();renderInvoice();});
+  wP.appendChild(lP); wP.appendChild(inpP);
+
+  // รวม
+  var wT=document.createElement('div');
+  var lT=document.createElement('div'); lT.style.cssText='font-size:.62rem;font-weight:700;color:#8a96a3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px'; lT.textContent='รวม';
+  var valT=document.createElement('div'); valT.id='rtv'+rc;
+  valT.style.cssText='font-size:1rem;font-weight:700;color:#2e7db5;padding:8px 0 8px 4px';
+  valT.textContent='฿0.00';
+  wT.appendChild(lT); wT.appendChild(valT);
+
+  bot.appendChild(wQ); bot.appendChild(wP); bot.appendChild(wT);
+  card.appendChild(top); card.appendChild(bot);
+  tb.appendChild(card);
   renum(); calcTotal(); renderInvoice();
 }
 
-function delRow(id){var el=document.getElementById(id);if(el)el.remove();var el2=document.getElementById(id+'b');if(el2)el2.remove();renum();calcTotal();renderInvoice();}
-function renum(){var rows=document.getElementById('itemsBody').rows;var n=1;for(var i=0;i<rows.length;i+=2){if(rows[i])rows[i].cells[0].textContent=n++;}}
+function delRow(id){var el=document.getElementById(id);if(el)el.remove();renum();calcTotal();renderInvoice();}
+function renum(){var cards=document.getElementById('itemsBody').children;for(var i=0;i<cards.length;i++){var nm=cards[i].querySelector('.item-num');if(nm)nm.textContent=i+1;}}
 function fmt(n){return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function fmtDate(d){if(!d)return'–';var p=d.split('-');return p[2]+'/'+p[1]+'/'+(parseInt(p[0])+543);}
+function fmtDate(d){if(!d)return'–';var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];var p=d.split('-');return p[2]+' / '+months[parseInt(p[1])-1]+' / '+p[0];}
 function v(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim();}
 
 function calcTotal(){
   var sub=0;
-  var rows=document.getElementById('itemsBody').rows;
-  for(var i=0;i<rows.length;i+=2){
-    var r1=rows[i], r2=rows[i+1];
-    if(!r1||!r2) break;
-    var qtyInp=r2.cells[1]?r2.cells[1].querySelector('input'):null;
-    var priceInp=r2.cells[2]?r2.cells[2].querySelector('input'):null;
-    var q=qtyInp?parseFloat(qtyInp.value)||0:0;
-    var p=priceInp?parseFloat(priceInp.value)||0:0;
+  var cards=document.getElementById('itemsBody').children;
+  for(var i=0;i<cards.length;i++){
+    var inps=cards[i].querySelectorAll('input');
+    var q=inps[1]?parseFloat(inps[1].value)||0:0;
+    var p=inps[2]?parseFloat(inps[2].value)||0:0;
     var t=q*p; sub+=t;
-    var rid=r1.id.replace('row','');
+    var rid=cards[i].id.replace('row','');
     var valEl=document.getElementById('rtv'+rid);
     if(valEl) valEl.textContent='฿'+fmt(t);
   }
@@ -1272,17 +1289,13 @@ function calcTotal(){
 }
 
 function getItems(){
-  var rows=document.getElementById('itemsBody').rows, items=[];
-  for(var i=0;i<rows.length;i+=2){
-    var r1=rows[i], r2=rows[i+1];
-    if(!r1||!r2) break;
-    var descInp=r1.cells[1]?r1.cells[1].querySelector('input'):null;
-    var qtyInp=r2.cells[1]?r2.cells[1].querySelector('input'):null;
-    var priceInp=r2.cells[2]?r2.cells[2].querySelector('input'):null;
+  var cards=document.getElementById('itemsBody').children, items=[];
+  for(var i=0;i<cards.length;i++){
+    var inps=cards[i].querySelectorAll('input');
     items.push({
-      desc:descInp?descInp.value||'':'',
-      qty:qtyInp?parseFloat(qtyInp.value)||0:0,
-      price:priceInp?parseFloat(priceInp.value)||0:0
+      desc:inps[0]?inps[0].value||'':'',
+      qty:inps[1]?parseFloat(inps[1].value)||0:0,
+      price:inps[2]?parseFloat(inps[2].value)||0:0
     });
   }
   return items;
@@ -1297,7 +1310,7 @@ function renderInvoice(){
   var iEmail=v('infEmail'), iCard=v('infCardNo');
   var proj=v('invProject'), note=v('invNote');
   var bank=v('bankName')==='อื่นๆ'?v('bankNameOther'):v('bankName'), bAcc=v('bankAccName'), bNo=v('bankAccNo'), bBr=v('bankBranch');
-  var invNo=v('invNo')||'–', invDate=fmtDate(v('invDate')), invDue=fmtDate(v('invDue'));
+  var invNo=v('invNo')||'–', invDate=fmtDate(window._invDateRaw||''), invDue=fmtDate(window._invDueRaw||'');
   var coAddr=CO.addr.replace(/\n/g,'<br>');
 
   var infDetail='<strong>'+iName+'</strong>'+(iNick?' ('+iNick+')':'')+
@@ -1634,6 +1647,13 @@ function updateAttachBadge(){
   if(!badge) return;
   badge.textContent=total;
   badge.classList.toggle('show', total>0);
+}
+
+function updateInvDate(){
+  var raw=document.getElementById('invDateRaw').value;
+  window._invDateRaw=raw;
+  var el=document.getElementById('invDateDisplay');
+  if(el) el.textContent=fmtDate(raw)||'–';
 }
 
 function updateDue(){
@@ -2499,7 +2519,10 @@ function handleOtherSelect(selId, inputId){
 // Init
 (function(){
   var today=new Date().toISOString().split('T')[0];
-  document.getElementById('invDate').value=today;
+  window._invDateRaw=today;
+  document.getElementById('invDateRaw').value=today;
+  var dispEl=document.getElementById('invDateDisplay');
+  if(dispEl) dispEl.textContent=fmtDate(today);
   var due=new Date(); due.setDate(due.getDate()+60);
   document.getElementById('invDue').value=due.toISOString().split('T')[0];
   var g=document.getElementById('tplGrid');
