@@ -2106,7 +2106,7 @@ function savePDF(opts){
     var ua=navigator.userAgent;
     var isIOS=/iPad|iPhone|iPod/.test(ua)&&!window.MSStream;
     var isAndroid=/Android/.test(ua);
-    var isLineBrowser=/Line\//.test(ua);
+    var isLineBrowser=/Line\/[0-9]/.test(ua);
 
     var name=(v('infName')||'KOL').replace(/\s+/g,'-');
     var camp=(v('invProject')||'invoice').replace(/\s+/g,'_');
@@ -2154,11 +2154,33 @@ function savePDF(opts){
 // ── Share / Download ──
 
 function openInBrowser(){
-  // LINE: ให้ user เปิดใน browser ภายนอก
-  window.open(window.location.href, '_system');
-  setTimeout(function(){
-    alert('กด ··· (สามจุด) แล้วเลือก "เปิดในเบราว์เซอร์ภายนอก" ค่ะ');
-  }, 500);
+  var url = window.location.href;
+  var ua = navigator.userAgent;
+  var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var isAndroid = /Android/.test(ua);
+
+  if(isAndroid){
+    // Android: ใช้ intent:// scheme บังคับเปิดใน Chrome
+    var intentUrl = 'intent://' + url.replace(/^https?:\/\//, '') +
+      '#Intent;scheme=https;package=com.android.chrome;end';
+    window.location.href = intentUrl;
+    // fallback ถ้าไม่มี Chrome
+    setTimeout(function(){
+      window.location.href = url;
+    }, 1500);
+  } else if(isIOS){
+    // iOS: ลอง x-safari scheme ก่อน
+    window.location.href = 'x-web-search://?';
+    setTimeout(function(){
+      // fallback: เปิด safari โดยตรง
+      window.open(url, '_blank');
+      setTimeout(function(){
+        alert('กด ··· มุมขวาล่าง แล้วเลือก "เปิดใน Safari" ค่ะ');
+      }, 500);
+    }, 500);
+  } else {
+    window.open(url, '_blank');
+  }
 }
 
 // ปุ่ม 📤 แชร์ — กดครั้งเดียว share sheet ขึ้นพร้อม PDF ทันที
