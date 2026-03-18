@@ -322,11 +322,8 @@ var isLineBrowser = /Line\/[0-9]/.test(ua);
 var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
 var isAndroid = /Android/.test(ua);
 
-// URL ของ invoice app (ไฟล์ index.html อยู่ใน repo เดียวกัน)
-var appUrl = window.location.href.replace('landing.html', 'index.html')
-              .replace(/\/$/, '') 
-              .split('?')[0]
-              .replace('landing.html','') + 'index.html';
+// URL ของ invoice app
+var appUrl = window.location.href.replace('landing.html', 'index.html');
 
 // ถ้าเปิดผ่าน LINE browser แสดง notice
 if(isLineBrowser){
