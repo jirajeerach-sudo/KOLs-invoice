@@ -1099,7 +1099,7 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
     <div class="fc">
       <div class="fc-head" style="background:#5a3a8a;color:#fff">📦 รายการค่าตอบแทน</div>
       <div class="fc-body">
-        <table class="itbl"><thead><tr><th class="cn">#</th><th class="cd">รายการ</th><th class="cq">จำนวน</th><th class="cp">ราคา</th><th class="ct">รวม</th><th class="cx"></th></tr></thead><tbody id="itemsBody"></tbody></table>
+        <table class="itbl"><thead><tr><th class="cn">#</th><th class="cd" colspan="3" style="text-align:left">รายการ / จำนวน / ราคา</th><th class="cx"></th></tr></thead><tbody id="itemsBody"></tbody></table>
         <button class="btn-ar" type="button" onclick="addRow()">+ เพิ่มรายการ</button>
         <div class="sum-s">
           <div class="sum-sr"><span class="sum-sl">ยอดรวม</span><span class="sum-sv" id="sumSub">฿0.00</span></div>
@@ -1201,34 +1201,47 @@ function addRow(){
   var tr=document.createElement('tr');
   tr.id='row'+rc;
 
-  // #
-  var tdN=document.createElement('td'); tdN.className='cn'; tdN.textContent=tb.rows.length+1; tr.appendChild(tdN);
-  // desc
-  var tdD=document.createElement('td'); tdD.className='cd';
-  var inpD=document.createElement('input'); inpD.placeholder='รายการ'; inpD.style.width='100%';
+  // Row 1: # + รายการ (เต็มแถว) + ปุ่มลบ
+  var tdN=document.createElement('td'); tdN.className='cn'; tdN.textContent=tb.rows.length/2+1; tr.appendChild(tdN);
+  var tdD=document.createElement('td'); tdD.className='cd'; tdD.colSpan=3;
+  var inpD=document.createElement('input'); inpD.placeholder='รายการ';
+  inpD.style.cssText='width:100%;border:none;border-bottom:1.5px solid #dde3ea;background:transparent;font-family:Sarabun,sans-serif;font-size:.88rem;padding:4px 2px;outline:none';
   inpD.addEventListener('input',renderInvoice); tdD.appendChild(inpD); tr.appendChild(tdD);
-  // qty
-  var tdQ=document.createElement('td'); tdQ.className='cq';
-  var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='จำนวน'; inpQ.min='0'; inpQ.style.width='100%'; inpQ.style.textAlign='center';
-  inpQ.addEventListener('input',function(){calcTotal();renderInvoice();}); tdQ.appendChild(inpQ); tr.appendChild(tdQ);
-  // price
-  var tdP=document.createElement('td'); tdP.className='cp';
-  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01'; inpP.style.width='100%'; inpP.style.textAlign='right';
-  inpP.addEventListener('input',function(){calcTotal();renderInvoice();}); tdP.appendChild(inpP); tr.appendChild(tdP);
-  // total
-  var tdT=document.createElement('td'); tdT.className='ct'; tdT.id='rt'+rc; tdT.textContent='฿0'; tr.appendChild(tdT);
-  // delete
   var tdX=document.createElement('td'); tdX.className='cx';
   var btnDel=document.createElement('button'); btnDel.className='btn-dr'; btnDel.type='button'; btnDel.textContent='✕';
-  btnDel.addEventListener('click',(function(id){return function(){delRow(id);};}('row'+rc)));
+  btnDel.addEventListener('click',(function(rid){return function(){delRow(rid);};})(('row'+rc)));
   tdX.appendChild(btnDel); tr.appendChild(tdX);
 
+  // Row 2: จำนวน / ราคา / รวม
+  var tr2=document.createElement('tr'); tr2.id='row'+rc+'b';
+  var tdN2=document.createElement('td'); tdN2.className='cn'; tr2.appendChild(tdN2);
+  // จำนวน
+  var tdQ=document.createElement('td'); tdQ.className='cq';
+  var lblQ=document.createElement('div'); lblQ.style.cssText='font-size:.58rem;color:#8a96a3;font-weight:700;letter-spacing:.04em;margin-bottom:2px'; lblQ.textContent='จำนวน'; tdQ.appendChild(lblQ);
+  var inpQ=document.createElement('input'); inpQ.type='number'; inpQ.placeholder='0'; inpQ.min='0';
+  inpQ.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:5px;padding:5px 6px;font-family:Sarabun,sans-serif;font-size:.85rem;text-align:center;outline:none';
+  inpQ.addEventListener('input',function(){calcTotal();renderInvoice();}); tdQ.appendChild(inpQ); tr2.appendChild(tdQ);
+  // ราคา/หน่วย
+  var tdP=document.createElement('td'); tdP.className='cp';
+  var lblP=document.createElement('div'); lblP.style.cssText='font-size:.58rem;color:#8a96a3;font-weight:700;letter-spacing:.04em;margin-bottom:2px'; lblP.textContent='ราคา/หน่วย'; tdP.appendChild(lblP);
+  var inpP=document.createElement('input'); inpP.type='number'; inpP.placeholder='0'; inpP.min='0'; inpP.step='0.01';
+  inpP.style.cssText='width:100%;border:1.5px solid #dde3ea;border-radius:5px;padding:5px 6px;font-family:Sarabun,sans-serif;font-size:.85rem;text-align:right;outline:none';
+  inpP.addEventListener('input',function(){calcTotal();renderInvoice();}); tdP.appendChild(inpP); tr2.appendChild(tdP);
+  // รวม
+  var tdT=document.createElement('td'); tdT.className='ct';
+  var lblT=document.createElement('div'); lblT.style.cssText='font-size:.58rem;color:#8a96a3;font-weight:700;letter-spacing:.04em;margin-bottom:2px'; lblT.textContent='รวม'; tdT.appendChild(lblT);
+  var valT=document.createElement('div'); valT.id='rtv'+rc;
+  valT.style.cssText='font-size:.85rem;font-weight:700;color:#2e7db5'; valT.textContent='฿0'; tdT.appendChild(valT);
+  tr2.appendChild(tdT);
+  var tdX2=document.createElement('td'); tdX2.className='cx'; tr2.appendChild(tdX2);
+
   tb.appendChild(tr);
+  tb.appendChild(tr2);
   renum(); calcTotal(); renderInvoice();
 }
 
-function delRow(id){var el=document.getElementById(id);if(el)el.remove();renum();calcTotal();renderInvoice();}
-function renum(){var rows=document.getElementById('itemsBody').rows;for(var i=0;i<rows.length;i++)rows[i].cells[0].textContent=i+1;}
+function delRow(id){var el=document.getElementById(id);if(el)el.remove();var el2=document.getElementById(id+'b');if(el2)el2.remove();renum();calcTotal();renderInvoice();}
+function renum(){var rows=document.getElementById('itemsBody').rows;var n=1;for(var i=0;i<rows.length;i+=2){if(rows[i])rows[i].cells[0].textContent=n++;}}
 function fmt(n){return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function fmtDate(d){if(!d)return'–';var p=d.split('-');return p[2]+'/'+p[1]+'/'+(parseInt(p[0])+543);}
 function v(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim();}
@@ -1236,14 +1249,17 @@ function v(id){return(document.getElementById(id)?document.getElementById(id).va
 function calcTotal(){
   var sub=0;
   var rows=document.getElementById('itemsBody').rows;
-  for(var i=0;i<rows.length;i++){
-    var r=rows[i];
-    var q=parseFloat(r.cells[2].querySelector('input').value)||0;
-    var p=parseFloat(r.cells[3].querySelector('input').value)||0;
+  for(var i=0;i<rows.length;i+=2){
+    var r1=rows[i], r2=rows[i+1];
+    if(!r1||!r2) break;
+    var qtyInp=r2.cells[1]?r2.cells[1].querySelector('input'):null;
+    var priceInp=r2.cells[2]?r2.cells[2].querySelector('input'):null;
+    var q=qtyInp?parseFloat(qtyInp.value)||0:0;
+    var p=priceInp?parseFloat(priceInp.value)||0:0;
     var t=q*p; sub+=t;
-    var id=r.id.replace('row','');
-    var td=document.getElementById('rt'+id);
-    if(td) td.textContent='฿'+fmt(t);
+    var rid=r1.id.replace('row','');
+    var valEl=document.getElementById('rtv'+rid);
+    if(valEl) valEl.textContent='฿'+fmt(t);
   }
   var whtPct=parseFloat(document.getElementById('whtSel').value)||0;
   var vatPct=parseFloat(document.getElementById('vatSel').value)||0;
@@ -1257,12 +1273,16 @@ function calcTotal(){
 
 function getItems(){
   var rows=document.getElementById('itemsBody').rows, items=[];
-  for(var i=0;i<rows.length;i++){
-    var r=rows[i];
+  for(var i=0;i<rows.length;i+=2){
+    var r1=rows[i], r2=rows[i+1];
+    if(!r1||!r2) break;
+    var descInp=r1.cells[1]?r1.cells[1].querySelector('input'):null;
+    var qtyInp=r2.cells[1]?r2.cells[1].querySelector('input'):null;
+    var priceInp=r2.cells[2]?r2.cells[2].querySelector('input'):null;
     items.push({
-      desc:r.cells[1].querySelector('input').value||'',
-      qty:parseFloat(r.cells[2].querySelector('input').value)||0,
-      price:parseFloat(r.cells[3].querySelector('input').value)||0
+      desc:descInp?descInp.value||'':'',
+      qty:qtyInp?parseFloat(qtyInp.value)||0:0,
+      price:priceInp?parseFloat(priceInp.value)||0:0
     });
   }
   return items;
