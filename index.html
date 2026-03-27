@@ -1515,12 +1515,17 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <div id="barterBox" style="display:none;margin-top:8px;background:#fff8f0;border:1.5px solid #f97316;border-radius:8px;padding:10px 12px">
           <div style="font-size:.72rem;font-weight:700;color:#c2410c;margin-bottom:6px">📦 รายละเอียดสินค้า Barter</div>
           <div class="field">
+            <label>รายการงาน / สินค้าที่รีวิว</label>
+            <input id="barterJobDesc" placeholder="เช่น รีวิวครีม ABC / Unboxing Serum XYZ" oninput="updateBarterSummary();renderInvoice()"
+              style="border:1.5px solid #fed7aa;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none;box-sizing:border-box;margin-bottom:6px">
+          </div>
+          <div class="field">
             <label>ชื่อสินค้า / รายการ</label>
-            <input id="barterItem" placeholder="เช่น ครีม ABC / Serum XYZ" oninput="renderInvoice()" style="border:1.5px solid #fed7aa;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none;box-sizing:border-box">
+            <input id="barterItem" placeholder="เช่น ครีม ABC / Serum XYZ" oninput="updateBarterSummary();renderInvoice()" style="border:1.5px solid #fed7aa;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none;box-sizing:border-box">
           </div>
           <div class="field" style="margin-top:6px">
             <label>มูลค่าสินค้า (บาท)</label>
-            <input id="barterValue" type="number" placeholder="0.00" oninput="renderInvoice()" style="border:1.5px solid #fed7aa;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none;box-sizing:border-box">
+            <input id="barterValue" type="number" placeholder="0.00" oninput="updateBarterSummary();renderInvoice()" style="border:1.5px solid #fed7aa;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none;box-sizing:border-box">
           </div>
           <div style="font-size:.7rem;color:#9a6040;margin-top:6px;background:#fef3e8;border-radius:5px;padding:5px 8px">
             💡 มูลค่าสินค้าจะแสดงในรายการค่าตอบแทนโดยอัตโนมัติ
@@ -1529,6 +1534,11 @@ body{font-family:'Sarabun',sans-serif;background:#eef2f7;color:#1a1a2e;min-heigh
         <!-- KONVY Credit Box -->
         <div id="creditBox" class="credit-box">
           <div style="font-size:.72rem;font-weight:700;color:#f73174;margin-bottom:8px">🎁 ข้อมูล KONVY Credit</div>
+          <div class="field">
+            <label>รายการงาน / สินค้าที่รีวิว</label>
+            <input id="creditJobDesc" placeholder="เช่น รีวิวครีม ABC / Unboxing Serum XYZ" oninput="updateCreditSummary();renderInvoice()"
+              style="border:1.5px solid #f7c0d8;border-radius:6px;padding:8px 11px;font-size:.85rem;font-family:Sarabun,sans-serif;width:100%;outline:none;box-sizing:border-box;margin-bottom:6px">
+          </div>
           <div class="field">
             <label>Member ID <span class="req">*</span></label>
             <input id="creditMemberId" placeholder="เช่น pangyen0112" oninput="renderInvoice()"
@@ -1808,29 +1818,31 @@ function fmtDate(d){if(!d)return'–';var months=['Jan','Feb','Mar','Apr','May',
 function v(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim();}
 
 function calcTotal(){
-  // Barter: override items ด้วย barterValue
-  if(typeof currentPayType !== 'undefined' && currentPayType === 'barter'){
-    var bv = parseFloat((document.getElementById('barterValue')||{}).value)||0;
-    var bi = (document.getElementById('barterItem')||{}).value||'สินค้า Barter';
-    if(window.items && window.items.length > 0){
-      window.items[0].desc  = bi;
-      window.items[0].qty   = 1;
-      window.items[0].price = bv;
+  // หมายเหตุ: barter/credit items ถูก inject ใน updateBarterSummary/updateCreditSummary แล้ว
+  var sub=0;
+  var isCashlessEarly = (typeof currentPayType!=='undefined') && (currentPayType==='barter'||currentPayType==='credit');
+  if(isCashlessEarly){
+    // barter/credit: อ่านจาก window.items โดยตรง (DOM ซ่อนอยู่)
+    if(window.items){
+      window.items.forEach(function(it){
+        sub += (it.qty||1) * (it.price||0);
+      });
+    }
+  } else {
+    // เงินสด: อ่านจาก DOM ตามปกติ
+    var cards=document.getElementById('itemsBody').children;
+    for(var i=0;i<cards.length;i++){
+      var inps=cards[i].querySelectorAll('input');
+      var q=inps[1]?parseFloat(inps[1].value)||0:0;
+      var p=inps[2]?parseFloat(inps[2].value)||0:0;
+      var t=q*p; sub+=t;
+      var rid=cards[i].id.replace('row','');
+      var valEl=document.getElementById('rtv'+rid);
+      if(valEl) valEl.textContent='฿'+fmt(t);
     }
   }
-  var sub=0;
-  var cards=document.getElementById('itemsBody').children;
-  for(var i=0;i<cards.length;i++){
-    var inps=cards[i].querySelectorAll('input');
-    var q=inps[1]?parseFloat(inps[1].value)||0:0;
-    var p=inps[2]?parseFloat(inps[2].value)||0:0;
-    var t=q*p; sub+=t;
-    var rid=cards[i].id.replace('row','');
-    var valEl=document.getElementById('rtv'+rid);
-    if(valEl) valEl.textContent='฿'+fmt(t);
-  }
   // Barter/Credit: ไม่มี WHT และ VAT
-  var isCashless = (typeof currentPayType!=='undefined') && (currentPayType==='barter'||currentPayType==='credit');
+  var isCashless = isCashlessEarly;
   var vatPct = isCashless ? 0 : (parseFloat(document.getElementById('vatSel').value)||0);
   var whtRow = document.getElementById('whtRow');
   var vatRow = document.querySelector('.sum-sr:has(#vatSel)') || document.getElementById('vatSel')?.closest('.sum-sr');
@@ -1879,6 +1891,14 @@ function calcTotal(){
 }
 
 function getItems(){
+  // barter/credit: ใช้ window.items โดยตรง (DOM ซ่อนอยู่)
+  var isCL = (typeof currentPayType!=='undefined') && (currentPayType==='barter'||currentPayType==='credit');
+  if(isCL && window.items && window.items.length){
+    return window.items.map(function(it){
+      return { desc: it.desc||'', qty: it.qty||1, price: it.price||0 };
+    });
+  }
+  // เงินสด: อ่านจาก DOM
   var cards=document.getElementById('itemsBody').children, items=[];
   for(var i=0;i<cards.length;i++){
     var inps=cards[i].querySelectorAll('input');
@@ -1930,6 +1950,8 @@ function renderInvoice(){
   var _creditId = (document.getElementById('creditMemberId')||{}).value||'';
   var _creditVal = (document.getElementById('creditValue')||{}).value||'';
   var _payLabel = _payType==='barter' ? 'Barter (สินค้า)' : _payType==='credit' ? 'KONVY Credit' : 'เงินสด / โอนเงิน';
+  // หัว bank section — เปลี่ยนตาม payType
+  var _bankLabel = (_payType==='barter'||_payType==='credit') ? 'เงื่อนไขการชำระเงิน' : '+_bankLabel+';
   var _creditLabel = _payType==='credit' && _creditId ? ' — Member ID: '+_creditId : '';
   var _barterItem = (document.getElementById('barterItem')||{}).value||'';
   var _barterValue = (document.getElementById('barterValue')||{}).value||'';
@@ -4257,7 +4279,9 @@ function collectFormData(){
     barterItem: (document.getElementById('barterItem')||{}).value||'',
     barterValue:(document.getElementById('barterValue')||{}).value||'',
     creditMemberId:(document.getElementById('creditMemberId')||{}).value||'',
-    creditValue:(document.getElementById('creditValue')||{}).value||''
+    creditValue:(document.getElementById('creditValue')||{}).value||'',
+    creditJobDesc:(document.getElementById('creditJobDesc')||{}).value||'',
+    barterJobDesc:(document.getElementById('barterJobDesc')||{}).value||''
   };
   return data;
 }
@@ -4509,8 +4533,9 @@ function setPayType(type){
 }
 
 function updateBarterSummary(){
-  var item  = (document.getElementById('barterItem')||{}).value||'–';
-  var value = (document.getElementById('barterValue')||{}).value||'0';
+  var item    = (document.getElementById('barterItem')||{}).value||'–';
+  var value   = (document.getElementById('barterValue')||{}).value||'0';
+  var jobDesc = (document.getElementById('barterJobDesc')||{}).value||'';
   // สีและ style กล่อง
   var box = document.getElementById('barterSummaryBox');
   if(box){ box.style.background='#fff8f0'; box.style.border='1.5px solid #f97316'; }
@@ -4526,11 +4551,23 @@ function updateBarterSummary(){
   var sv = document.getElementById('barterSummaryValue');
   if(si) si.textContent = item || '–';
   if(sv) sv.textContent = '฿' + parseFloat(value||0).toLocaleString('th-TH', {minimumFractionDigits:2});
+  // auto-inject เข้า items[0] ทุกครั้ง (ไม่เช็ค desc ว่างแล้ว)
+  var itemDesc = jobDesc ? jobDesc + ' (' + item + ')' : item;
+  if(window.items){
+    if(window.items.length === 0) window.items.push({id: Date.now(), desc:'', qty:1, price:0});
+    window.items[0].desc  = itemDesc;
+    window.items[0].qty   = 1;
+    window.items[0].price = parseFloat(value)||0;
+    if(typeof renum==='function') renum();
+    if(typeof calcTotal==='function') calcTotal();
+    if(typeof renderInvoice==='function') renderInvoice();
+  }
 }
 
 function updateCreditSummary(){
   var memberId = (document.getElementById('creditMemberId')||{}).value||'–';
   var value    = (document.getElementById('creditValue')||{}).value||'0';
+  var jobDesc  = (document.getElementById('creditJobDesc')||{}).value||'';
   // สีและ style กล่อง
   var box = document.getElementById('barterSummaryBox');
   if(box){ box.style.background='#fdf0f7'; box.style.border='1.5px solid #f73174'; }
@@ -4546,13 +4583,15 @@ function updateCreditSummary(){
   var sv = document.getElementById('barterSummaryValue');
   if(si) si.textContent = memberId;
   if(sv) sv.textContent = '฿' + parseFloat(value||0).toLocaleString('th-TH', {minimumFractionDigits:2});
-  // auto-inject เข้า items[0]
+  // auto-inject เข้า items[0] — ใช้ jobDesc เป็น desc
+  var itemDesc = jobDesc ? jobDesc + ' (KONVY Credit — Member: ' + memberId + ')' : 'KONVY Credit (Member: ' + memberId + ')';
   if(window.items && window.items.length > 0){
-    window.items[0].desc  = 'KONVY Credit (Member: ' + memberId + ')';
+    window.items[0].desc  = itemDesc;
     window.items[0].qty   = 1;
     window.items[0].price = parseFloat(value)||0;
     if(typeof renum==='function') renum();
     if(typeof calcTotal==='function') calcTotal();
+    if(typeof renderInvoice==='function') renderInvoice();
   }
 }
 
