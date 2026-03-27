@@ -4269,17 +4269,25 @@ function buildQtLink(switchToInv){
   // เปลี่ยน QT- → INV-
   if(switchToInv && data.invNo) data.invNo = data.invNo.replace(/^QT-/i,'INV-');
   var json = JSON.stringify(data);
-  var b64  = btoa(unescape(encodeURIComponent(json)));
-  var base = window.location.href.split('?')[0].split('#')[0];
-  return base + '?d=' + b64;
+  try {
+    var b64 = btoa(unescape(encodeURIComponent(json)));
+    var base = window.location.href.split('?')[0].split('#')[0];
+    return base + '?d=' + b64;
+  } catch(e) {
+    console.error('buildQtLink encode error:', e);
+    return window.location.href.split('?')[0];
+  }
 }
 
 function getQtLink(){
-  // แสดง link popup เล็กๆ ใต้ปุ่ม
-  var url = buildQtLink(true);
-  // copy ไปก่อน
+  var url = buildQtLink(true); // true = switch to INV
   if(navigator.clipboard){
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(url).catch(function(){});
+  } else {
+    // fallback copy
+    var ta = document.createElement('textarea');
+    ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
   }
   var btn = document.getElementById('btnGetLink');
   if(btn){ btn.textContent = '✅ คัดลอกแล้ว!'; setTimeout(function(){ btn.textContent = '🔗 รับ Link INV'; }, 2500); }
@@ -4317,9 +4325,26 @@ function loadFromUrl(){
   try {
     var json = decodeURIComponent(escape(atob(d)));
     var data = JSON.parse(json);
+    console.log('loadFromUrl: data loaded', Object.keys(data));
 
-    // set docType
-    if(data.dtype) setDocType(data.dtype);
+    // set docType — force sections ด้วย
+    if(data.dtype){
+      setDocType(data.dtype);
+      // force sections ทันที (ไม่รอ event)
+      var _inv = data.dtype === 'inv';
+      var els = {
+        fcAttachGroup:  document.getElementById('fcAttachGroup'),
+        fcPostGroup:    document.getElementById('fcPostGroup'),
+        fcPostDateGroup:document.getElementById('fcPostDateGroup'),
+        fcBankGroup:    document.getElementById('fcBankGroup'),
+        fcPaymentGroup: document.getElementById('fcPaymentGroup')
+      };
+      if(els.fcAttachGroup)   els.fcAttachGroup.style.display   = _inv ? 'block' : 'none';
+      if(els.fcPostGroup)     els.fcPostGroup.style.display      = _inv ? 'block' : 'none';
+      if(els.fcPostDateGroup) els.fcPostDateGroup.style.display  = _inv ? 'none'  : 'block';
+      if(els.fcBankGroup)     els.fcBankGroup.style.display      = _inv ? 'block' : 'none';
+      if(els.fcPaymentGroup)  els.fcPaymentGroup.style.display   = _inv ? 'none'  : 'block';
+    }
 
     // เติมข้อมูล
     function setVal(id, val){ var el=document.getElementById(id); if(el && val!==undefined) el.value=val; }
@@ -4364,18 +4389,42 @@ function loadFromUrl(){
     setVal('tcFee22', data.tcFee22);
     setVal('tcFee23', data.tcFee23);
 
-    // trigger render
-    if(typeof renum==='function') renum();
-    if(typeof calcTotal==='function') calcTotal();
-    if(typeof renderInvoice==='function') renderInvoice();
-    if(typeof renderBuildItems==='function') renderBuildItems();
+    // trigger render — รอให้ DOM พร้อมก่อน
+    setTimeout(function(){
+      // rebuild items rows ใน DOM
+      if(window.items && window.items.length){
+        var body = document.getElementById('itemsBody');
+        if(body){
+          body.innerHTML = '';
+          window.items.forEach(function(it){
+            // สร้าง row ใหม่
+            var row = document.createElement('div');
+            row.className = 'item-row';
+            row.id = 'row' + it.id;
+            // สร้าง elements แยกกัน หลีกเลี่ยง quote conflict
+            var rn  = document.createElement('span'); rn.className='rn';
+            var rd  = document.createElement('input'); rd.className='rd'; rd.placeholder='รายการ...'; rd.value=it.desc||''; rd.oninput=function(){calcTotal();renderInvoice();};
+            var rq  = document.createElement('input'); rq.className='rq'; rq.type='number'; rq.min='1'; rq.value=it.qty||1; rq.oninput=function(){calcTotal();renderInvoice();};
+            var rp  = document.createElement('input'); rp.className='rp'; rp.type='number'; rp.min='0'; rp.step='0.01'; rp.value=it.price||0; rp.oninput=function(){calcTotal();renderInvoice();};
+            var rtv = document.createElement('span'); rtv.className='rtv'; rtv.id='rtv'+it.id; rtv.textContent='฿0.00';
+            var rdel= document.createElement('button'); rdel.className='rd-btn'; rdel.type='button'; rdel.textContent='✕';
+            (function(rowId){ rdel.onclick=function(){ delRow(rowId); }; })('row'+it.id);
+            [rn,rd,rq,rp,rtv,rdel].forEach(function(el){ row.appendChild(el); });
+            body.appendChild(row);
+          });
+        }
+      }
+      if(typeof renum==='function') renum();
+      if(typeof calcTotal==='function') calcTotal();
+      if(typeof renderInvoice==='function') renderInvoice();
+    }, 300);
 
     // แจ้ง KOL
     if(data.dtype === 'inv'){
       setTimeout(function(){
         var banner = document.createElement('div');
         banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#2ecc71;color:#fff;text-align:center;padding:10px 16px;font-family:Sarabun,sans-serif;font-size:.85rem;font-weight:700;z-index:9999;box-shadow:0 2px 10px rgba(0,0,0,.2)';
-        banner.innerHTML = '✅ โหลดข้อมูลจากใบเสนอราคาแล้ว — กรุณาเพิ่มหลักฐานการโพสต์และบันทึก PDF';
+        banner.innerHTML = '✅ โหลดข้อมูลจากใบเสนอราคาแล้ว — ตอนนี้เป็น <strong>ใบแจ้งหนี้</strong> แล้วค่ะ กรุณาแนบหลักฐานการโพสต์ บัตรประชาชน และ Bookbank';
         document.body.prepend(banner);
         setTimeout(function(){ banner.style.transition='opacity .5s'; banner.style.opacity='0'; setTimeout(function(){ banner.remove(); },600); }, 5000);
       }, 800);
